@@ -10,17 +10,19 @@ First, install this package:
 
 Next, modify your application's base `TestCase` class to extend `Laravel\BrowserKitTesting\TestCase` instead of `Illuminate\Foundation\Testing\TestCase`:
 
-    <?php
+```php
+<?php
 
-    namespace Tests;
+namespace Tests;
 
-    use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
-    abstract class TestCase extends BaseTestCase
-    {
-        public $baseUrl = 'http://localhost';
+abstract class TestCase extends BaseTestCase
+{
+    public $baseUrl = 'http://localhost';
 
-        // ...
-    }
+    // ...
+}
+```
 
 No other modifications to your tests should be necessary.
