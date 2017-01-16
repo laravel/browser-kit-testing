@@ -12,6 +12,10 @@
     "require": {
         "php": ">=5.5.9"
     },
+    "require-dev": {
+        "mockery/mockery": "^0.9.7",
+        "phpunit/phpunit": "^4.8 || ^5.4"
+    },
     "autoload": {
         "psr-4": {
             "Laravel\\BrowserKitTesting\\": "src/"
