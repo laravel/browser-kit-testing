@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/css-selector": "~3.1",
+        "symfony/dom-crawler": "~3.1"
     },
     "autoload": {
         "psr-4": {
