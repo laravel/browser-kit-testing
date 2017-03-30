@@ -202,7 +202,7 @@ trait MocksApplicationServices
             return true;
         });
 
-        $mock->shouldReceive('listen')->andReturnUsing(function ($event, $listener, $priority) {
+        $mock->shouldReceive('listen')->andReturnUsing(function ($event, $listener) {
             //
         });
 
