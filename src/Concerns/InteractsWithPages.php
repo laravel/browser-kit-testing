@@ -347,6 +347,36 @@ trait InteractsWithPages
     }
 
     /**
+     * Assert that a given sequance of strings is seen on the current text.
+     *
+     * @param  array    $expected
+     * @return $this
+     */
+    public function seeTextInOrder($expected)
+    {
+        if(! is_array($expected)) {
+            $expected = func_get_args();
+        }
+
+        return $this->assertInPage(new HasTextInOrder($expected));
+    }
+
+    /**
+     * Assert that a given sequence is not seen on the current text.
+     *
+     * @param  array    $expected
+     * @return $this
+     */
+    public function dontSeeTextInOrder($expected)
+    {
+        if(! is_array($expected)) {
+            $expected = func_get_args();
+        }
+
+        return $this->assertInPage(new HasTextInOrder($expected), $negate = true);
+    }
+
+    /**
      * Assert that a given string is seen inside an element.
      *
      * @param  string  $element
