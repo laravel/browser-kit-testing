@@ -3,15 +3,15 @@
 namespace Laravel\BrowserKitTesting;
 
 use Mockery;
-use PHPUnit_Framework_TestCase;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-abstract class TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends BaseTestCase
 {
     use Concerns\InteractsWithContainer,
         Concerns\MakesHttpRequests,
