@@ -35,7 +35,7 @@ class HasValue extends FormFieldConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
      * @return string
      *
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     public function getInputOrTextAreaValue(Crawler $crawler)
     {

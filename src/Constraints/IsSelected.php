@@ -36,7 +36,7 @@ class IsSelected extends FormFieldConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
      * @return array
      *
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     public function getSelectedValue(Crawler $crawler)
     {
