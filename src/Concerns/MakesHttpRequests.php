@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Contracts\View\View;
-use PHPUnit_Framework_Assert as PHPUnit;
-use PHPUnit_Framework_ExpectationFailedException;
+use PHPUnit\Framework\Assert as PHPUnit;
+use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 
@@ -322,7 +322,7 @@ trait MakesHttpRequests
 
         try {
             return $this->seeJsonEquals($data);
-        } catch (PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             return $this->seeJsonContains($data, $negate);
         }
     }

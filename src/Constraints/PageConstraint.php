@@ -2,12 +2,12 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-use PHPUnit_Framework_Constraint;
 use Symfony\Component\DomCrawler\Crawler;
+use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use PHPUnit_Framework_ExpectationFailedException as FailedExpection;
 
-abstract class PageConstraint extends PHPUnit_Framework_Constraint
+abstract class PageConstraint extends Constraint
 {
     /**
      * Make sure we obtain the HTML from the crawler or the response.
@@ -66,7 +66,7 @@ abstract class PageConstraint extends PHPUnit_Framework_Constraint
      * @param  \SebastianBergmann\Comparator\ComparisonFailure|null  $comparisonFailure
      * @return void
      *
-     * @throws \PHPUnit_Framework_ExpectationFailedException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     protected function fail($crawler, $description, ComparisonFailure $comparisonFailure = null)
     {
@@ -87,7 +87,7 @@ abstract class PageConstraint extends PHPUnit_Framework_Constraint
             $failureDescription .= '. The response is empty.';
         }
 
-        throw new FailedExpection($failureDescription, $comparisonFailure);
+        throw new ExpectationFailedException($failureDescription, $comparisonFailure);
     }
 
     /**

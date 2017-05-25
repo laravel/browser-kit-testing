@@ -2,7 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Concerns;
 
-use PHPUnit_Framework_Assert as PHPUnit;
+use PHPUnit\Framework\Assert as PHPUnit;
 
 trait InteractsWithSession
 {

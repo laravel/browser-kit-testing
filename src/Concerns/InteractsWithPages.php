@@ -18,7 +18,7 @@ use Laravel\BrowserKitTesting\Constraints\IsSelected;
 use Laravel\BrowserKitTesting\Constraints\HasInElement;
 use Laravel\BrowserKitTesting\Constraints\PageConstraint;
 use Laravel\BrowserKitTesting\Constraints\ReversePageConstraint;
-use PHPUnit_Framework_ExpectationFailedException as PHPUnitException;
+use PHPUnit\Framework\ExpectationFailedException as PHPUnitException;
 
 trait InteractsWithPages
 {
