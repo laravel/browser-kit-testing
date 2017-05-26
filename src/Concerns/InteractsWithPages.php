@@ -295,7 +295,7 @@ trait InteractsWithPages
      */
     public function dontSee($text)
     {
-        return $this->assertInPage(new HasSource($text), true);
+        return $this->see($text, true);
     }
 
     /**
@@ -320,7 +320,7 @@ trait InteractsWithPages
      */
     public function dontSeeElement($selector, array $attributes = [])
     {
-        return $this->assertInPage(new HasElement($selector, $attributes), true);
+        return $this->seeElement($selector, $attributes, true);
     }
 
     /**
@@ -343,7 +343,7 @@ trait InteractsWithPages
      */
     public function dontSeeText($text)
     {
-        return $this->assertInPage(new HasText($text), true);
+        return $this->seeText($text, true);
     }
 
     /**
@@ -368,7 +368,7 @@ trait InteractsWithPages
      */
     public function dontSeeInElement($element, $text)
     {
-        return $this->assertInPage(new HasInElement($element, $text), true);
+        return $this->seeInElement($element, $text, true);
     }
 
     /**
@@ -393,20 +393,20 @@ trait InteractsWithPages
      */
     public function dontSeeLink($text, $url = null)
     {
-        return $this->assertInPage(new HasLink($text, $url), true);
+        return $this->seeLink($text, $url, true);
     }
 
     /**
      * Assert that an input field contains the given value.
      *
      * @param  string  $selector
-     * @param  string  $expected
+     * @param  string  $value
      * @param  bool  $negate
      * @return $this
      */
-    public function seeInField($selector, $expected, $negate = false)
+    public function seeInField($selector, $value, $negate = false)
     {
-        return $this->assertInPage(new HasValue($selector, $expected), $negate);
+        return $this->assertInPage(new HasValue($selector, $value), $negate);
     }
 
     /**
@@ -418,7 +418,7 @@ trait InteractsWithPages
      */
     public function dontSeeInField($selector, $value)
     {
-        return $this->assertInPage(new HasValue($selector, $value), true);
+        return $this->seeInField($selector, $value, true);
     }
 
     /**
@@ -443,7 +443,7 @@ trait InteractsWithPages
      */
     public function dontSeeIsSelected($selector, $value)
     {
-        return $this->assertInPage(new IsSelected($selector, $value), true);
+        return $this->seeIsSelected($selector, $value, true);
     }
 
     /**
@@ -466,7 +466,7 @@ trait InteractsWithPages
      */
     public function dontSeeIsChecked($selector)
     {
-        return $this->assertInPage(new IsChecked($selector), true);
+        return $this->seeIsChecked($selector, true);
     }
 
     /**
