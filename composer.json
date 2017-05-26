@@ -14,6 +14,10 @@
         "symfony/css-selector": "~3.1",
         "symfony/dom-crawler": "~3.1"
     },
+    "require-dev": {
+        "mockery/mockery": "^0.9.7",
+        "phpunit/phpunit": "^4.8 || ^5.4"
+    },
     "autoload": {
         "psr-4": {
             "Laravel\\BrowserKitTesting\\": "src/"
