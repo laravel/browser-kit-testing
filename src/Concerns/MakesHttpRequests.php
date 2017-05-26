@@ -3,6 +3,7 @@
 namespace Laravel\BrowserKitTesting\Concerns;
 
 use Closure;
+use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -566,7 +567,7 @@ trait MakesHttpRequests
      */
     public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
-        $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
+        $kernel = $this->app->make(HttpKernel::class);
 
         $this->currentUri = $this->prepareUrlForRequest($uri);
 
