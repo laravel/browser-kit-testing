@@ -63,7 +63,7 @@ trait InteractsWithSession
      *
      * @param  string|array  $key
      * @param  mixed  $value
-     * @return void
+     * @return $this
      */
     public function seeInSession($key, $value = null)
     {
