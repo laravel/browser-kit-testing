@@ -85,6 +85,8 @@ trait InteractsWithPages
      */
     protected function makeRequest($method, $uri, $parameters = [], $cookies = [], $files = [])
     {
+        $level = error_reporting();
+        
         $uri = $this->prepareUrlForRequest($uri);
 
         $this->call($method, $uri, $parameters, $cookies, $files);
@@ -94,6 +96,8 @@ trait InteractsWithPages
         $this->currentUri = $this->app->make('request')->fullUrl();
 
         $this->crawler = new Crawler($this->response->getContent(), $this->currentUri);
+        
+        error_reporting($level);
 
         return $this;
     }
