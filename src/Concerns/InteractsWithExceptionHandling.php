@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Foundation\Testing\Concerns;
+namespace Laravel\BrowserKitTesting\Concerns;
 
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
