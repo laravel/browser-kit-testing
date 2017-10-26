@@ -11,17 +11,22 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithConsole;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithAuthentication;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithExceptionHandling;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithSession;
 
 abstract class TestCase extends BaseTestCase
 {
     use Concerns\InteractsWithContainer,
         Concerns\MakesHttpRequests,
         Concerns\ImpersonatesUsers,
-        Concerns\InteractsWithAuthentication,
-        Concerns\InteractsWithConsole,
-        Concerns\InteractsWithDatabase,
-        Concerns\InteractsWithExceptionHandling,
-        Concerns\InteractsWithSession,
+        InteractsWithAuthentication,
+        InteractsWithConsole,
+        InteractsWithDatabase,
+        InteractsWithExceptionHandling,
+        InteractsWithSession,
         Concerns\MocksApplicationServices;
 
     /**
