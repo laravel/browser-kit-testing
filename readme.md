@@ -1,6 +1,6 @@
 # Laravel BrowserKit Testing
 
-This package provides a backwards compatibility layer for Laravel 5.6 style "BrowserKit" testing on Laravel 5.4.
+This package provides a backwards compatibility layer for Laravel 5.3 style "BrowserKit" testing on Laravel 5.6.
 
 ## Installation
 
