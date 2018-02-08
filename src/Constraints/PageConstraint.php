@@ -68,7 +68,7 @@ abstract class PageConstraint extends Constraint
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
-    protected function fail($crawler, $description, ComparisonFailure $comparisonFailure = null)
+    protected function fail($crawler, $description, ComparisonFailure $comparisonFailure = null): void
     {
         $html = $this->html($crawler);
 
@@ -117,7 +117,7 @@ abstract class PageConstraint extends Constraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return '';
     }
