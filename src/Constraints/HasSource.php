@@ -28,7 +28,7 @@ class HasSource extends PageConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
      * @return bool
      */
-    protected function matches($crawler)
+    protected function matches($crawler): bool
     {
         $pattern = $this->getEscapedPattern($this->source);
 
@@ -40,7 +40,7 @@ class HasSource extends PageConstraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return "the HTML [{$this->source}]";
     }

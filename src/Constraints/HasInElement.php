@@ -39,7 +39,7 @@ class HasInElement extends PageConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
      * @return bool
      */
-    public function matches($crawler)
+    public function matches($crawler): bool
     {
         $elements = $this->crawler($crawler)->filter($this->element);
 

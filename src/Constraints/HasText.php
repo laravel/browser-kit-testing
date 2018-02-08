@@ -28,7 +28,7 @@ class HasText extends PageConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
      * @return bool
      */
-    protected function matches($crawler)
+    protected function matches($crawler): bool
     {
         $pattern = $this->getEscapedPattern($this->text);
 
@@ -40,7 +40,7 @@ class HasText extends PageConstraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return "the text [{$this->text}]";
     }

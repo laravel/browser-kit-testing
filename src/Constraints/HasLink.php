@@ -40,7 +40,7 @@ class HasLink extends PageConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
      * @return bool
      */
-    public function matches($crawler)
+    public function matches($crawler): bool
     {
         $links = $this->crawler($crawler)->selectLink($this->text);
 

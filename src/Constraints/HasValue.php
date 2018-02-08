@@ -22,7 +22,7 @@ class HasValue extends FormFieldConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
      * @return bool
      */
-    public function matches($crawler)
+    public function matches($crawler): bool
     {
         $crawler = $this->crawler($crawler);
 

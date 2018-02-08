@@ -23,7 +23,7 @@ class IsSelected extends FormFieldConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
      * @return bool
      */
-    protected function matches($crawler)
+    protected function matches($crawler): bool
     {
         $crawler = $this->crawler($crawler);
 

@@ -28,7 +28,7 @@ class ReversePageConstraint extends PageConstraint
      * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
      * @return bool
      */
-    public function matches($crawler)
+    public function matches($crawler): bool
     {
         return ! $this->pageConstraint->matches($crawler);
     }
@@ -50,7 +50,7 @@ class ReversePageConstraint extends PageConstraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return $this->pageConstraint->toString();
     }
