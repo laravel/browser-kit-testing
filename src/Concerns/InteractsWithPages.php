@@ -324,15 +324,16 @@ trait InteractsWithPages
     }
 
     /**
-     * Verify the number of dom elements
+     * Verify the number of DOM elements
      *
-     * @param  string $selector A CSS selector
-     * @param  int $number Amount of elements present in the dom
+     * @param  string  $selector
+     * @param  int  $number
      * @return $this
      */
-    public function countElements($selector, $number)
+    public function seeElementCount($selector, $count)
     {
-        $this->assertCount($number, $this->crawler->filter($selector));
+        $this->assertCount($count, $this->crawler->filter($selector));
+
         return $this;
     }
 
@@ -757,8 +758,8 @@ trait InteractsWithPages
      */
     protected function getUploadedFileForTesting($file, $uploads, $name)
     {
-        if($file['error'] == UPLOAD_ERR_NO_FILE) { 
-            return; 
+        if($file['error'] == UPLOAD_ERR_NO_FILE) {
+            return;
         }
 
         $originalName = isset($uploads[$name]) ? basename($uploads[$name]) :  $file['name'];
