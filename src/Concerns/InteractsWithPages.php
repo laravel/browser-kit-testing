@@ -324,6 +324,19 @@ trait InteractsWithPages
     }
 
     /**
+     * Verify the number of dom elements
+     *
+     * @param  string $selector A CSS selector
+     * @param  int $number Amount of elements present in the dom
+     * @return $this
+     */
+    public function countElements($selector, $number)
+    {
+        $this->assertCount($number, $this->crawler->filter($selector));
+        return $this;
+    }
+
+    /**
      * Assert that a given string is seen on the current text.
      *
      * @param  string  $text
