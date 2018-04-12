@@ -519,7 +519,23 @@ trait InteractsWithPages
      */
     protected function type($text, $element)
     {
-        return $this->storeInput($element, $text);
+        $field = $this->filterByNameOrId($element, ['input','textarea']);
+
+        if (! count($field)) {
+            throw new PHPUnitException(
+                sprintf(
+                    "%s\n\n\n%s",
+                    $this->crawler()->html(),
+                    "Dont exists input,textarea with the name or ID [name]. Please check the content above."
+                )
+            );
+        }
+
+        $element = str_replace(['#', '[]'], '', $element);
+
+        $this->inputs[$element] = $text;
+
+        return $this;
     }
 
     /**
