@@ -20,6 +20,11 @@
             "Laravel\\BrowserKitTesting\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "4.0-dev"
