@@ -224,6 +224,151 @@ class MakesHttpRequestsTest extends TestCase
         </html>';
         $this->createPage($html);
         $form = $this->fillForm('Send', ['name' => 'Taylor']);
+        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $form);
         $this->assertSame('Taylor', $form->get('name')->getValue());
+    }
+
+    /**
+     * @test
+     */
+    public function fillForm_method_return_Form_when_given_array_data()
+    {
+        $html = '<html>
+            <body>
+                <form action="https://localhost" method="post">
+                    <input type="text" name="name" id="name"/>
+                    <button class="btn" type="submit">Send</button>
+                </form>
+            </body>
+        </html>';
+        $this->createPage($html);
+        $form = $this->fillForm(['name' => 'Taylor']);
+        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $form);
+        $this->assertSame('Taylor', $form->get('name')->getValue());
+    }
+
+    /**
+     * @test
+     * @dataProvider dataUrls
+     */
+    public function prepareUrlForRequest_method_return_all_url($url, $expectedUrl)
+    {
+        $this->baseUrl = 'http://localhost';
+        $this->assertSame(
+            $this->prepareUrlForRequest($url),
+            $expectedUrl
+        );
+    }
+
+    public function dataUrls()
+    {
+        return [
+            ['', 'http://localhost'],
+            ['/', 'http://localhost'],
+            ['users', 'http://localhost/users'],
+            ['/users', 'http://localhost/users'],
+            ['users/', 'http://localhost/users'],
+            ['/users/', 'http://localhost/users']
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function resetPageContext_method_clear_crawler_subcrawlers()
+    {
+        $body = '<body>
+            <form action="https://localhost" method="post">
+                <input type="text" id="name">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </body>';
+        $this->createPage($body);
+
+        $this->within('form', function () {
+            $this->assertInstanceOf(
+                \Symfony\Component\DomCrawler\Crawler::class,
+                $this->crawler
+            );
+            $this->assertInstanceOf(
+                \Symfony\Component\DomCrawler\Crawler::class,
+                $this->subCrawlers[0]
+            );
+
+            // Clear Crawler and SubCrawlers
+            $this->resetPageContext();
+            $this->assertNull($this->crawler);
+            $this->assertEmpty($this->subCrawlers);
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function clearInputs_method_clear_all_inputs_and_uploads()
+    {
+        $avatar = '/path/to/my-avatar.png';
+        $this->inputs = [
+            'avatar' => $avatar
+        ];
+        $this->uploads = [
+            'avatar' => $avatar
+        ];
+
+        $this->clearInputs();
+        $this->assertEmpty($this->inputs);
+        $this->assertEmpty($this->uploads);
+    }
+
+    /**
+     * @test
+     */
+    public function extractParametersFromForm_extract_parameter_of_form()
+    {
+        $html = '<html>
+            <body>
+                <form action="https://localhost" method="post">
+                    <input type="text" name="name" id="name"/>
+                    <input type="text" name="email" id="email"/>
+                    <input type="text" name="github" id="github"/>
+                    <button class="btn" type="submit">Register</button>
+                </form>
+            </body>
+        </html>';
+        $this->createPage($html);
+
+        $form = $this->crawler()->filter('form')->form();
+        $this->assertSame(
+            $this->extractParametersFromForm($form),
+            ['name' => '', 'email' => '', 'github' => '']
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function convertUploadsForTesting_converter_uploads_to_UploadedFile_instances()
+    {
+        $html = '<html>
+            <body>
+                <form action="https://localhost" method="post" enctype="multipart/form-data">
+                    <input type="file" name="avatar" id="avatar"/>
+                    <input type="file" name="photos[]" id="photos[]"/>
+                    <button class="btn" type="submit">Send</button>
+                </form>
+            </body>
+        </html>';
+        $this->createPage($html);
+
+        // Attach Files...
+        $this->attach('/path/to/my-avatar.png', 'avatar');
+        $this->attach('/path/to/my-wallpaper.png', 'photos[]');
+
+        $form = $this->crawler()->filter('form')->form();
+
+        $uploads = $this->convertUploadsForTesting($form, $this->uploads);
+
+        $this->assertEmpty($uploads['avatar']);
+        $this->assertEmpty($uploads['photos'][0]);
     }
 }
