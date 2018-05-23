@@ -819,7 +819,7 @@ trait MakesHttpRequests
      */
     public function assertRedirectedTo($uri, $with = [])
     {
-        PHPUnit::assertInstanceOf('Illuminate\Http\RedirectResponse', $this->response);
+        PHPUnit::assertInstanceOf('Symfony\Component\HttpFoundation\RedirectResponse', $this->response);
 
         PHPUnit::assertEquals($this->app['url']->to($uri), $this->response->headers->get('Location'));
 
