@@ -505,9 +505,10 @@ trait MakesHttpRequests
      * @param  string  $cookieName
      * @param  mixed  $value
      * @param  bool  $encrypted
+     * @param  bool  $unserialize
      * @return $this
      */
-    protected function seeCookie($cookieName, $value = null, $encrypted = true)
+    protected function seeCookie($cookieName, $value = null, $encrypted = true, $unserialize = true)
     {
         $headers = $this->response->headers;
 
@@ -529,7 +530,7 @@ trait MakesHttpRequests
         $cookieValue = $cookie->getValue();
 
         $actual = $encrypted
-            ? $this->app['encrypter']->decrypt($cookieValue) : $cookieValue;
+            ? $this->app['encrypter']->decrypt($cookieValue, $unserialize) : $cookieValue;
 
         $this->assertEquals(
             $actual, $value,
