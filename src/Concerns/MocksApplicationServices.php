@@ -190,7 +190,7 @@ trait MocksApplicationServices
     {
         $mock = Mockery::mock('Illuminate\Contracts\Events\Dispatcher');
 
-        $mock->shouldReceive('fire')->andReturnUsing(function ($called) {
+        $mock->shouldReceive('dispatch')->andReturnUsing(function ($called) {
             $this->firedModelEvents[] = $called;
         });
 
