@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\WithoutEvents;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -124,6 +125,10 @@ abstract class TestCase extends BaseTestCase
 
         if (isset($uses[WithoutEvents::class])) {
             $this->disableEventsForAllTests();
+        }
+
+        if (isset($uses[WithFaker::class])) {
+            $this->setUpFaker();
         }
 
         return $uses;
