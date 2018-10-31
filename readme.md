@@ -1,6 +1,6 @@
 # Laravel BrowserKit Testing
 
-This package provides a backwards compatibility layer for Laravel 5.3 style "BrowserKit" testing on Laravel 5.6.
+This package provides a backwards compatibility layer for Laravel 5.3 style "BrowserKit" testing on Laravel 5.7.
 
 - [Introduction](#introduction)
 - [Interacting With Your Application](#interacting-with-your-application)
@@ -13,7 +13,6 @@ This package provides a backwards compatibility layer for Laravel 5.3 style "Bro
 - [Disabling Middleware](#disabling-middleware)
 - [Custom HTTP Requests](#custom-http-requests)
 - [PHPUnit Assertions](#phpunit-assertions)
-
 
 ## Installation
 
@@ -63,7 +62,7 @@ class ExampleTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Laravel 5')
+             ->see('Laravel')
              ->dontSee('Rails');
     }
 }
@@ -245,8 +244,9 @@ class ExampleTest extends TestCase
              ->seeJsonStructure([
                  'name',
                  'pet' => [
-                     'name', 'age'
-                 ]
+                     'name',
+                     'age',
+                 ],
              ]);
     }
 }
@@ -272,8 +272,10 @@ class ExampleTest extends TestCase
         $this->get('/users')
              ->seeJsonStructure([
                  '*' => [
-                     'id', 'name', 'email'
-                 ]
+                     'id',
+                     'name',
+                     'email',
+                 ],
              ]);
     }
 }
@@ -287,10 +289,11 @@ $this->get('/users')
          '*' => [
              'id', 'name', 'email', 'pets' => [
                  '*' => [
-                     'name', 'age'
-                 ]
-             ]
-         ]
+                     'name',
+                     'age',
+                 ],
+             ],
+         ],
      ]);
 ```
 
@@ -374,7 +377,7 @@ class ExampleTest extends TestCase
         $this->withoutMiddleware();
 
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('Laravel');
     }
 }
 ```
