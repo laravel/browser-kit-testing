@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit;
+namespace Laravel\BrowserKitTesting\Tests\Unit;
 
-use Tests\TestCase;
 use InvalidArgumentException;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
 
 class MakesHttpRequestsTest extends TestCase
