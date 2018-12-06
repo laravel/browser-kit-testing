@@ -24,7 +24,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Laravel\\BrowserKitTesting\\Tests\\": "tests/"
         }
     },
     "extra": {

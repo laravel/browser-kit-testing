@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Laravel\BrowserKitTesting\Tests;
 
 use DOMDocument;
 use Symfony\Component\DomCrawler\Crawler;
