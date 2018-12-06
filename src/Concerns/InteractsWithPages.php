@@ -324,6 +324,20 @@ trait InteractsWithPages
     }
 
     /**
+     * Verify the number of DOM elements
+     *
+     * @param  string  $selector
+     * @param  int  $number
+     * @return $this
+     */
+    public function seeElementCount($selector, $count)
+    {
+        $this->assertCount($count, $this->crawler->filter($selector));
+
+        return $this;
+    }
+
+    /**
      * Assert that a given string is seen on the current text.
      *
      * @param  string  $text
@@ -744,8 +758,8 @@ trait InteractsWithPages
      */
     protected function getUploadedFileForTesting($file, $uploads, $name)
     {
-        if($file['error'] == UPLOAD_ERR_NO_FILE) { 
-            return; 
+        if($file['error'] == UPLOAD_ERR_NO_FILE) {
+            return;
         }
 
         $originalName = isset($uploads[$name]) ? basename($uploads[$name]) :  $file['name'];

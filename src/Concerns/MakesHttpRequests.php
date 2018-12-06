@@ -41,11 +41,26 @@ trait MakesHttpRequests
     /**
      * Disable middleware for the test.
      *
+     * @param null $middleware
+     *
      * @return $this
      */
-    public function withoutMiddleware()
+    public function withoutMiddleware($middleware = null)
     {
-        $this->app->instance('middleware.disable', true);
+        if (is_null($middleware)) {
+            $this->app->instance('middleware.disable', true);
+
+            return $this;
+        }
+
+        foreach ((array) $middleware as $abstract) {
+            $this->app->instance($abstract, new class {
+                public function handle($request, $next)
+                {
+                    return $next($request);
+                }
+            });
+        }
 
         return $this;
     }
@@ -505,9 +520,10 @@ trait MakesHttpRequests
      * @param  string  $cookieName
      * @param  mixed  $value
      * @param  bool  $encrypted
+     * @param  bool  $unserialize
      * @return $this
      */
-    protected function seeCookie($cookieName, $value = null, $encrypted = true)
+    protected function seeCookie($cookieName, $value = null, $encrypted = true, $unserialize = true)
     {
         $headers = $this->response->headers;
 
@@ -529,7 +545,7 @@ trait MakesHttpRequests
         $cookieValue = $cookie->getValue();
 
         $actual = $encrypted
-            ? $this->app['encrypter']->decrypt($cookieValue) : $cookieValue;
+            ? $this->app['encrypter']->decrypt($cookieValue, $unserialize) : $cookieValue;
 
         $this->assertEquals(
             $actual, $value,
@@ -819,7 +835,7 @@ trait MakesHttpRequests
      */
     public function assertRedirectedTo($uri, $with = [])
     {
-        PHPUnit::assertInstanceOf('Illuminate\Http\RedirectResponse', $this->response);
+        PHPUnit::assertInstanceOf('Symfony\Component\HttpFoundation\RedirectResponse', $this->response);
 
         PHPUnit::assertEquals($this->app['url']->to($uri), $this->response->headers->get('Location'));
 

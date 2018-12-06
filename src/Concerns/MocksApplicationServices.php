@@ -407,7 +407,7 @@ trait MocksApplicationServices
                 }
             }
 
-            $this->fail('The following expected notification were not dispatched: ['.$notification.']');
+            $this->fail('The following expected notification was not dispatched: ['.$notification.']');
         });
 
         return $this;
