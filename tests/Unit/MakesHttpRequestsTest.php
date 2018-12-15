@@ -208,7 +208,7 @@ class MakesHttpRequestsTest extends TestCase
 
         $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm('Search'));
     }
-    
+
     /**
      * @test
      */
@@ -253,7 +253,6 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function prepareUrlForRequest_method_return_all_url($url, $expectedUrl)
     {
-        $this->baseUrl = 'http://localhost';
         $this->assertSame(
             $this->prepareUrlForRequest($url),
             $expectedUrl
@@ -263,12 +262,12 @@ class MakesHttpRequestsTest extends TestCase
     public function dataUrls()
     {
         return [
-            ['', 'http://localhost'],
-            ['/', 'http://localhost'],
-            ['users', 'http://localhost/users'],
-            ['/users', 'http://localhost/users'],
-            ['users/', 'http://localhost/users'],
-            ['/users/', 'http://localhost/users']
+            ['', 'https://localhost'],
+            ['/', 'https://localhost'],
+            ['users', 'https://localhost/users'],
+            ['/users', 'https://localhost/users'],
+            ['users/', 'https://localhost/users'],
+            ['/users/', 'https://localhost/users']
         ];
     }
 
@@ -370,5 +369,33 @@ class MakesHttpRequestsTest extends TestCase
 
         $this->assertEmpty($uploads['avatar']);
         $this->assertEmpty($uploads['photos'][0]);
+    }
+
+    /**
+     * @test
+     */
+    public function check_that_the_status_page()
+    {
+        $this->app = null;
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+        $uri = 'http://localhost/login';
+        $this->assertPageLoaded($uri);
+    }
+
+    /**
+     * @test
+     * @expectedException \Laravel\BrowserKitTesting\HttpException
+     * @expectedExceptionMessage A request to [http://localhost/login] failed. Received status code [404].
+     */
+    public function throw_exception_when_the_status_page_isnt_200()
+    {
+        $this->app = null;
+        $this->response = new class {
+            public function getStatusCode() { return 404; }
+        };
+        $uri = 'http://localhost/login';
+        $this->assertPageLoaded($uri);
     }
 }

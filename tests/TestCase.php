@@ -18,13 +18,15 @@ abstract class TestCase extends BaseTestCase
      */
     protected $crawler;
 
-    protected function createPage($html)
+    public $baseUrl = 'https://localhost';
+
+    protected function createPage($html, $uri = 'https://localhost')
     {
         if (empty($this->crawler)) {
             $this->dom = new DOMDocument;
             $this->dom->loadHtml($html);
 
-            $this->crawler = new Crawler($this->dom, 'https://localhost');
+            $this->crawler = new Crawler($this->dom, $uri);
         }
 
         return $this->crawler;
