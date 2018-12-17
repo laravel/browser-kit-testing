@@ -18,8 +18,16 @@ abstract class TestCase extends BaseTestCase
      */
     protected $crawler;
 
+    /**
+     * @var string
+     */
     public $baseUrl = 'https://localhost';
 
+    /**
+     * Create a new Page and assign to crawler attribute
+     *
+     * @return \Symfony\Component\DomCrawler\Crawler
+     */
     protected function createPage($html, $uri = 'https://localhost')
     {
         if (empty($this->crawler)) {
