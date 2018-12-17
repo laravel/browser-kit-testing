@@ -374,7 +374,7 @@ class MakesHttpRequestsTest extends TestCase
     /**
      * @test
      */
-    public function check_that_the_status_page()
+    public function assertPageLoaded_check_that_the_status_page()
     {
         $this->app = null;
         $this->response = new class {
@@ -389,7 +389,7 @@ class MakesHttpRequestsTest extends TestCase
      * @expectedException \Laravel\BrowserKitTesting\HttpException
      * @expectedExceptionMessage A request to [http://localhost/login] failed. Received status code [404].
      */
-    public function throw_exception_when_the_status_page_isnt_200()
+    public function assertPageLoaded_throw_exception_when_the_status_page_isnt_200()
     {
         $this->app = null;
         $this->response = new class {
@@ -398,4 +398,42 @@ class MakesHttpRequestsTest extends TestCase
         $uri = 'http://localhost/login';
         $this->assertPageLoaded($uri);
     }
+
+    /**
+     * @test
+     */
+    public function seeStatusCode_check_status_code()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+        $this->seeStatusCode(200);
+    }
+
+    /**
+     * @test
+     */
+    public function assertResponseOk_check_that_the_status_page_should_be_200()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+            public function isOk() { return true; }
+        };
+        $this->assertResponseOk();
+    }
+
+    /**
+     * @test
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
+     * @expectedExceptionMessage Expected status code 200, got 404.
+     */
+    public function assertResponseOk_throw_exception_when_the_status_page_isnt_200()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 404; }
+            public function isOK() { return false; }
+        };
+        $this->assertResponseOk();
+    }
+
 }
