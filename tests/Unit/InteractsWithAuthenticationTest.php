@@ -9,18 +9,28 @@ class InteractsWithAuthenticationTest extends TestCase
 {
     use InteractsWithAuthentication;
 
+    protected function createUserProviderToCredentials()
+    {
+        return new class {
+            public $retrieveByCredentials;
+            public $validateCredentials;
+            public function make() { return $this; }
+            public function guard() { return $this; }
+            public function getProvider() { return $this; }
+            public function retrieveByCredentials() { return $this->retrieveByCredentials; }
+            public function validateCredentials() { return $this->validateCredentials; }
+        };
+    }
+
     /**
      * @test
      */
     public function hasCredentials_return_true_if_the_credentials_are_valid()
     {
-        $this->app = new class {
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function getProvider() { return $this; }
-            public function retrieveByCredentials() { return true; }
-            public function validateCredentials() { return true; }
-        };
+        $this->app = $this->createUserProviderToCredentials();
+        $this->app->retrieveByCredentials = true;
+        $this->app->validateCredentials = true;
+
         $credentials = [
             'email' => 'john.doe@testing.com',
             'password' => 'secret'
@@ -34,17 +44,10 @@ class InteractsWithAuthenticationTest extends TestCase
      */
     public function hasCredentials_return_false_if_the_credentials_arent_valid($validateCredentials, $retrieveByCredentials)
     {
-        $this->app = new class {
-            public $retrieveByCredentials;
-            public $validateCredentials;
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function getProvider() { return $this; }
-            public function retrieveByCredentials() { return $this->retrieveByCredentials; }
-            public function validateCredentials() { return $this->validateCredentials; }
-        };
+        $this->app = $this->createUserProviderToCredentials();
         $this->app->retrieveByCredentials = $retrieveByCredentials;
         $this->app->validateCredentials = $validateCredentials;
+
         $credentials = [
             'email' => 'john.doe@testing.com',
             'password' => 'secret'
@@ -66,23 +69,37 @@ class InteractsWithAuthenticationTest extends TestCase
      */
     public function assert_if_credentials_are_valid_or_invalid()
     {
-        $this->app = new class {
-            public $retrieveByCredentials;
-            public $validateCredentials;
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function getProvider() { return $this; }
-            public function retrieveByCredentials() { return $this->retrieveByCredentials; }
-            public function validateCredentials() { return $this->validateCredentials; }
-        };
+        $this->app = $this->createUserProviderToCredentials();
         $this->app->retrieveByCredentials = true;
         $this->app->validateCredentials = true;
         $credentials = [
             'email' => 'john.doe@testing.com',
             'password' => 'secret'
         ];
+
         $this->seeCredentials($credentials);
+
         $this->app->retrieveByCredentials = false;
         $this->dontSeeCredentials($credentials);
+    }
+
+    /**
+     * @test
+     */
+    public function assert_if_user_is_authenticated()
+    {
+        $this->app = new class {
+            public function make() { return $this; }
+            public function guard() { return $this; }
+            public function user() { return $this->userAuthenticated; }
+            public function getAuthIdentifier() { return true; }
+        };
+        $user = new class {
+            public function getAuthIdentifier() { return true; }
+        };
+
+        $this->app->userAuthenticated = $user;
+
+        $this->seeIsAuthenticatedAs($user);
     }
 }
