@@ -208,7 +208,7 @@ class MakesHttpRequestsTest extends TestCase
 
         $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm('Search'));
     }
-    
+
     /**
      * @test
      */
