@@ -60,4 +60,29 @@ class InteractsWithAuthenticationTest extends TestCase
             "Case 03" => [true, false]
         ];
     }
+
+    /**
+     * @test
+     */
+    public function assert_if_credentials_are_valid_or_invalid()
+    {
+        $this->app = new class {
+            public $retrieveByCredentials;
+            public $validateCredentials;
+            public function make() { return $this; }
+            public function guard() { return $this; }
+            public function getProvider() { return $this; }
+            public function retrieveByCredentials() { return $this->retrieveByCredentials; }
+            public function validateCredentials() { return $this->validateCredentials; }
+        };
+        $this->app->retrieveByCredentials = true;
+        $this->app->validateCredentials = true;
+        $credentials = [
+            'email' => 'john.doe@testing.com',
+            'password' => 'secret'
+        ];
+        $this->seeCredentials($credentials);
+        $this->app->retrieveByCredentials = false;
+        $this->dontSeeCredentials($credentials);
+    }
 }
