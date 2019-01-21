@@ -172,7 +172,7 @@ public function testPhotoCanBeUploaded()
 ```
 
 <a name="testing-json-apis"></a>
-### Testing JSON APIs
+## Testing JSON APIs
 
 Laravel also provides several helpers for testing JSON APIs and their responses. For example, the `json`, `get`, `post`, `put`, `patch`, and `delete` methods may be used to issue requests with various HTTP verbs. You may also easily pass data and headers to these methods. To get started, let's write a test to make a `POST` request to `/user` and assert that the expected data was returned:
 
@@ -298,7 +298,7 @@ $this->get('/users')
 ```
 
 <a name="sessions-and-authentication"></a>
-### Sessions / Authentication
+## Sessions / Authentication
 
 Laravel provides several helpers for working with the session during testing. First, you may set the session data to a given array using the `withSession` method. This is useful for loading the session with data before issuing a request to your application:
 
@@ -341,7 +341,7 @@ $this->actingAs($user, 'api')
 ```
 
 <a name="disabling-middleware"></a>
-### Disabling Middleware
+## Disabling Middleware
 
 When testing your application, you may find it convenient to disable [middleware](/docs/{{version}}/middleware) for some of your tests. This will allow you to test your routes and controller in isolation from any middleware concerns. Laravel includes a simple `WithoutMiddleware` trait that you can use to automatically disable all middleware for the test class:
 
@@ -383,7 +383,7 @@ class ExampleTest extends TestCase
 ```
 
 <a name="custom-http-requests"></a>
-### Custom HTTP Requests
+## Custom HTTP Requests
 
 If you would like to make a custom HTTP request into your application and get the full `Illuminate\Http\Response` object, you may use the `call` method:
 
@@ -403,7 +403,7 @@ $response = $this->call('POST', '/user', ['name' => 'Taylor']);
 ```
 
 <a name="phpunit-assertions"></a>
-### PHPUnit Assertions
+## PHPUnit Assertions
 
 Laravel provides a variety of custom assertion methods for [PHPUnit](https://phpunit.de/) tests:
 

@@ -371,4 +371,93 @@ class MakesHttpRequestsTest extends TestCase
         $this->assertEmpty($uploads['avatar']);
         $this->assertEmpty($uploads['photos'][0]);
     }
+
+    /**
+     * @test
+     */
+    public function assertPageLoaded_check_that_the_page_was_loaded()
+    {
+        $this->app = null;
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+        $uri = 'http://localhost/login';
+        $this->assertPageLoaded($uri);
+    }
+
+    /**
+     * @test
+     * @expectedException \Laravel\BrowserKitTesting\HttpException
+     * @expectedExceptionMessage A request to [http://localhost/login] failed. Received status code [404].
+     */
+    public function assertPageLoaded_throw_exception_when_the_page_wasnt_loaded_correctly()
+    {
+        $this->app = null;
+        $this->response = new class {
+            public function getStatusCode() { return 404; }
+        };
+        $uri = 'http://localhost/login';
+        $this->assertPageLoaded($uri);
+    }
+
+    /**
+     * @test
+     */
+    public function seeStatusCode_check_status_code()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+        $this->seeStatusCode(200);
+    }
+
+    /**
+     * @test
+     */
+    public function assertResponseOk_check_that_the_status_page_should_be_200()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+            public function isOk() { return true; }
+        };
+        $this->assertResponseOk();
+    }
+
+    /**
+     * @test
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
+     * @expectedExceptionMessage Expected status code 200, got 404.
+     */
+    public function assertResponseOk_throw_exception_when_the_status_page_isnt_200()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 404; }
+            public function isOK() { return false; }
+        };
+        $this->assertResponseOk();
+    }
+
+    /**
+     * @test
+     */
+    public function assertResponseStatus_check_the_response_status_is_equal_to_passed_by_parameter()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+        $this->assertResponseStatus(200);
+    }
+
+    /**
+     * @test
+     * @expectedException \PHPUnit\Framework\ExpectationFailedException
+     * @expectedExceptionMessage Expected status code 404, got 200.
+     */
+    public function assertResponseStatus_throw_exception_when_the_response_status_isnt_equal_to_passed_by_parameter()
+    {
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+        $this->assertResponseStatus(404);
+    }
 }
