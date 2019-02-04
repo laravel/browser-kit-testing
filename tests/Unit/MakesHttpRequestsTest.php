@@ -3,7 +3,9 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use InvalidArgumentException;
+use Laravel\BrowserKitTesting\HttpException;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\ExpectationFailedException;
 use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
 
 class MakesHttpRequestsTest extends TestCase
@@ -153,11 +155,12 @@ class MakesHttpRequestsTest extends TestCase
 
     /**
      * @test
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Nothing matched the filter [name] CSS query provided for [].
      */
     public function when_input_dont_exist_storeInput_throw_exception()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Nothing matched the filter [name] CSS query provided for [].');
+
         $html = '<html>
             <body>
                 <form action="https://localhost" method="post">
@@ -192,11 +195,12 @@ class MakesHttpRequestsTest extends TestCase
 
     /**
      * @test
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Could not find a form that has submit button [Search].
      */
     public function when_exists_button_getForm_method_throw_exception()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Could not find a form that has submit button [Search].');
+
         $html = '<html>
             <body>
                 <form action="http://localhost" method="POST">
@@ -387,11 +391,12 @@ class MakesHttpRequestsTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Laravel\BrowserKitTesting\HttpException
-     * @expectedExceptionMessage A request to [http://localhost/login] failed. Received status code [404].
      */
-    public function assertPageLoaded_throw_exception_when_the_page_wasnt_loaded_correctly()
+    public function assertPageLoaded_throw_exception_when_the_page_was_not_loaded_correctly()
     {
+        $this->expectException(HttpException::class);
+        $this->expectExceptionMessage('A request to [http://localhost/login] failed. Received status code [404].');
+
         $this->app = null;
         $this->response = new class {
             public function getStatusCode() { return 404; }
@@ -425,11 +430,12 @@ class MakesHttpRequestsTest extends TestCase
 
     /**
      * @test
-     * @expectedException \PHPUnit\Framework\ExpectationFailedException
-     * @expectedExceptionMessage Expected status code 200, got 404.
      */
-    public function assertResponseOk_throw_exception_when_the_status_page_isnt_200()
+    public function assertResponseOk_throw_exception_when_the_status_page_is_not_200()
     {
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('Expected status code 200, got 404.');
+
         $this->response = new class {
             public function getStatusCode() { return 404; }
             public function isOK() { return false; }
@@ -450,11 +456,12 @@ class MakesHttpRequestsTest extends TestCase
 
     /**
      * @test
-     * @expectedException \PHPUnit\Framework\ExpectationFailedException
-     * @expectedExceptionMessage Expected status code 404, got 200.
      */
-    public function assertResponseStatus_throw_exception_when_the_response_status_isnt_equal_to_passed_by_parameter()
+    public function assertResponseStatus_throw_exception_when_the_response_status_is_not_equal_to_passed_by_parameter()
     {
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('Expected status code 404, got 200.');
+
         $this->response = new class {
             public function getStatusCode() { return 200; }
         };

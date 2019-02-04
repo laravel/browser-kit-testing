@@ -372,7 +372,7 @@ trait MakesHttpRequests
 
         foreach ($structure as $key => $value) {
             if (is_array($value) && $key === '*') {
-                $this->assertInternalType('array', $responseData);
+                $this->assertIsArray($responseData);
 
                 foreach ($responseData as $responseDataItem) {
                     $this->seeJsonStructure($structure['*'], $responseDataItem);
@@ -420,6 +420,8 @@ trait MakesHttpRequests
      *
      * @param  array  $data
      * @return $this
+     *
+     * @deprecated This method will be removed in 5.0
      */
     protected function seeJsonSubset(array $data)
     {

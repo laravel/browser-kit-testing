@@ -3,6 +3,7 @@
 namespace Laravel\BrowserKitTesting\Concerns;
 
 use Closure;
+use Exception;
 use InvalidArgumentException;
 use Illuminate\Http\UploadedFile;
 use Symfony\Component\DomCrawler\Form;
@@ -214,10 +215,11 @@ trait InteractsWithPages
         } catch (PHPUnitException $e) {
             $message = $message ?: "A request to [{$uri}] failed. Received status code [{$status}].";
 
-            $responseException = isset($this->response->exception)
-                    ? $this->response->exception : null;
+            if (isset($this->response->exception)) {
+                throw new HttpException($message, null, $this->response->exception);
+            }
 
-            throw new HttpException($message, null, $responseException);
+            throw new HttpException($message);
         }
     }
 
