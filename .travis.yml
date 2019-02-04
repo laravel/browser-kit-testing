@@ -5,8 +5,16 @@ php:
   - 7.2
   - 7.3
 
+matrix:
+  fast_finish: true
+  include:
+    - env: PHPUNIT=^7.0
+    - env: PHPUNIT=^8.0
+
 sudo: false
 
-install: travis_retry composer install --no-interaction --prefer-dist --no-suggest
+install:
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - travis_retry composer require phpunit/phpunit:$PHPUNIT --update-with-dependencies
 
 script: vendor/bin/phpunit --verbose
