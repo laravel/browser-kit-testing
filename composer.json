@@ -1,6 +1,6 @@
 {
     "name": "laravel/browser-kit-testing",
-    "description": "Provides backwards compatibility for BrowserKit testing in Laravel 5.4.",
+    "description": "Provides backwards compatibility for BrowserKit testing in the latest Laravel release.",
     "keywords": ["laravel", "testing"],
     "license": "MIT",
     "authors": [
