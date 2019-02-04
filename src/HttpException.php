@@ -2,9 +2,9 @@
 
 namespace Laravel\BrowserKitTesting;
 
-use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\AssertionFailedError;
 
-class HttpException extends ExpectationFailedException
+class HttpException extends AssertionFailedError
 {
     //
 }
