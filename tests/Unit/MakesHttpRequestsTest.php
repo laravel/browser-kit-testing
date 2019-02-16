@@ -2,6 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
+use Exception;
 use InvalidArgumentException;
 use Laravel\BrowserKitTesting\HttpException;
 use Laravel\BrowserKitTesting\Tests\TestCase;
@@ -400,6 +401,29 @@ class MakesHttpRequestsTest extends TestCase
         $this->app = null;
         $this->response = new class {
             public function getStatusCode() { return 404; }
+        };
+        $uri = 'http://localhost/login';
+        $this->assertPageLoaded($uri);
+    }
+
+    /**
+     * @test
+     */
+    public function assertPageLoaded_throw_exception_with_response_exception()
+    {
+        $this->expectException(HttpException::class);
+        $this->expectExceptionMessage('A request to [http://localhost/login] failed. Received status code [500].');
+
+        $this->app = null;
+        $this->response = new class {
+            public $exception;
+
+            public function __construct()
+            {
+                $this->exception = new Exception('System failure.');
+            }
+
+            public function getStatusCode() { return 500; }
         };
         $uri = 'http://localhost/login';
         $this->assertPageLoaded($uri);
