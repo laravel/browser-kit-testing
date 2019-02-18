@@ -1,5 +1,10 @@
 # Laravel BrowserKit Testing
 
+<a href="https://travis-ci.org/laravel/browser-kit-testing"><img src="https://travis-ci.org/laravel/browser-kit-testing.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/license.svg" alt="License"></a>
+
 This package provides a backwards compatibility layer for Laravel 5.3 style "BrowserKit" testing in the latest Laravel release.
 
 - [Introduction](#introduction)
