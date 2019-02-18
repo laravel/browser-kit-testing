@@ -18,6 +18,7 @@ This package provides a backwards compatibility layer for Laravel 5.3 style "Bro
 - [Disabling Middleware](#disabling-middleware)
 - [Custom HTTP Requests](#custom-http-requests)
 - [PHPUnit Assertions](#phpunit-assertions)
+- [License](#license)
 
 ## Installation
 
@@ -427,3 +428,7 @@ Method  | Description
 `->assertSessionHasErrors($bindings = [], $format = null);`  |  Assert that the session has errors bound.
 `->assertHasOldInput();`  |  Assert that the session has old input.
 `->assertSessionMissing($key);`  |  Assert that the session is missing a given key.
+
+## License
+
+Laravel BrowserKit Testing is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
