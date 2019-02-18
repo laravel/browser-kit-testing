@@ -216,7 +216,7 @@ trait InteractsWithPages
             $message = $message ?: "A request to [{$uri}] failed. Received status code [{$status}].";
 
             if (isset($this->response->exception)) {
-                throw new HttpException($message, null, $this->response->exception);
+                throw new HttpException($message, 0, $this->response->exception);
             }
 
             throw new HttpException($message);
