@@ -1,5 +1,10 @@
 # Release Notes
 
+## [v5.1.1 (2019-02-16)](https://github.com/laravel/browser-kit-testing/compare/v5.1.0...v5.1.1)
+
+### Fixed
+- Fix PHPUnit 8 strict comparison ([48a7a39](https://github.com/laravel/browser-kit-testing/commit/48a7a39de5603a604a70b94671a8e89b4bb42b99))
+
 ## [v5.1.0 (2019-02-12)](https://github.com/laravel/browser-kit-testing/compare/v5.0.0...v5.1.0)
 
 ### Added

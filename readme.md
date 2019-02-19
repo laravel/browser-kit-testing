@@ -1,20 +1,30 @@
 # Laravel BrowserKit Testing
 
+<a href="https://travis-ci.org/laravel/browser-kit-testing"><img src="https://travis-ci.org/laravel/browser-kit-testing.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/license.svg" alt="License"></a>
+
 This package provides a backwards compatibility layer for Laravel 5.3 style "BrowserKit" testing in the latest Laravel release.
 
-- [Introduction](#introduction)
-- [Interacting With Your Application](#interacting-with-your-application)
-    - [Interacting With Links](#interacting-with-links)
-    - [Interacting With Forms](#interacting-with-forms)
-- [Testing JSON APIs](#testing-json-apis)
-    - [Verifying Exact Match](#verifying-exact-match)
-    - [Verifying Structural Match](#verifying-structural-match)
-- [Sessions / Authentication](#sessions--authentication)
-- [Disabling Middleware](#disabling-middleware)
-- [Custom HTTP Requests](#custom-http-requests)
-- [PHPUnit Assertions](#phpunit-assertions)
+- [Official Documentation](#official-documentation)
+    - [Installation](#installation)
+    - [Introduction](#introduction)
+    - [Interacting With Your Application](#interacting-with-your-application)
+        - [Interacting With Links](#interacting-with-links)
+        - [Interacting With Forms](#interacting-with-forms)
+    - [Testing JSON APIs](#testing-json-apis)
+        - [Verifying Exact Match](#verifying-exact-match)
+        - [Verifying Structural Match](#verifying-structural-match)
+    - [Sessions / Authentication](#sessions--authentication)
+    - [Disabling Middleware](#disabling-middleware)
+    - [Custom HTTP Requests](#custom-http-requests)
+    - [PHPUnit Assertions](#phpunit-assertions)
+- [License](#license)
 
-## Installation
+## Official Documentation
+
+### Installation
 
 First, install this package:
 
@@ -41,10 +51,9 @@ abstract class TestCase extends BaseTestCase
 
 No other modifications to your tests should be necessary.
 
-<a name="introduction"></a>
-## Introduction
+### Introduction
 
-Laravel provides a very fluent API for making HTTP requests to your application, examining the output, and even filling out forms. For example, take a look at the test defined below:
+Laravel BrowserKit Testing provides a very fluent API for making HTTP requests to your application, examining the output, and even filling out forms. For example, take a look at the test defined below:
 
 ```php
 <?php
@@ -78,8 +87,7 @@ $this->visitRoute('profile');
 $this->visitRoute('profile', ['user' => 1]);
 ```
 
-<a name="interacting-with-your-application"></a>
-## Interacting With Your Application
+### Interacting With Your Application
 
 Of course, you can do much more than simply assert that text appears in a given response. Let's take a look at some examples of clicking links and filling out forms:
 
@@ -109,8 +117,7 @@ You may also check that the user has arrived at the correct named route using th
 ->seeRouteIs('profile', ['user' => 1]);
 ```
 
-<a name="interacting-with-forms"></a>
-### Interacting With Forms
+#### Interacting With Forms
 
 Laravel also provides several methods for testing forms. The `type`, `select`, `check`, `attach`, and `press` methods allow you to interact with all of your form's inputs. For example, let's imagine this form exists on the application's registration page:
 
@@ -156,8 +163,7 @@ Method  | Description
 `$this->attach($pathToFile, $elementName)`  |  "Attach" a file to the form.
 `$this->press($buttonTextOrElementName)`  |  "Press" a button with the given text or name.
 
-<a name="file-inputs"></a>
-#### File Inputs
+##### File Inputs
 
 If your form contains `file` inputs, you may attach files to the form using the `attach` method:
 
@@ -171,8 +177,7 @@ public function testPhotoCanBeUploaded()
 }
 ```
 
-<a name="testing-json-apis"></a>
-## Testing JSON APIs
+### Testing JSON APIs
 
 Laravel also provides several helpers for testing JSON APIs and their responses. For example, the `json`, `get`, `post`, `put`, `patch`, and `delete` methods may be used to issue requests with various HTTP verbs. You may also easily pass data and headers to these methods. To get started, let's write a test to make a `POST` request to `/user` and assert that the expected data was returned:
 
@@ -198,8 +203,7 @@ class ExampleTest extends TestCase
 
 > {tip} The `seeJson` method converts the given array into JSON, and then verifies that the JSON fragment occurs **anywhere** within the entire JSON response returned by the application. So, if there are other properties in the JSON response, this test will still pass as long as the given fragment is present.
 
-<a name="verifying-exact-match"></a>
-### Verifying Exact Match
+#### Verifying Exact Match
 
 If you would like to verify that the given array is an **exact** match for the JSON returned by the application, you should use the `seeJsonEquals` method:
 
@@ -223,8 +227,7 @@ class ExampleTest extends TestCase
 }
 ```
 
-<a name="verifying-structural-match"></a>
-### Verifying Structural Match
+#### Verifying Structural Match
 
 It is also possible to verify that a JSON response adheres to a specific structure. In this scenario, you should use the `seeJsonStructure` method and pass it your expected JSON structure:
 
@@ -297,8 +300,7 @@ $this->get('/users')
      ]);
 ```
 
-<a name="sessions-and-authentication"></a>
-## Sessions / Authentication
+### Sessions / Authentication
 
 Laravel provides several helpers for working with the session during testing. First, you may set the session data to a given array using the `withSession` method. This is useful for loading the session with data before issuing a request to your application:
 
@@ -382,8 +384,7 @@ class ExampleTest extends TestCase
 }
 ```
 
-<a name="custom-http-requests"></a>
-## Custom HTTP Requests
+### Custom HTTP Requests
 
 If you would like to make a custom HTTP request into your application and get the full `Illuminate\Http\Response` object, you may use the `call` method:
 
@@ -402,8 +403,7 @@ If you are making `POST`, `PUT`, or `PATCH` requests you may pass an array of in
 $response = $this->call('POST', '/user', ['name' => 'Taylor']);
 ```
 
-<a name="phpunit-assertions"></a>
-## PHPUnit Assertions
+### PHPUnit Assertions
 
 Laravel provides a variety of custom assertion methods for [PHPUnit](https://phpunit.de/) tests:
 
@@ -422,3 +422,7 @@ Method  | Description
 `->assertSessionHasErrors($bindings = [], $format = null);`  |  Assert that the session has errors bound.
 `->assertHasOldInput();`  |  Assert that the session has old input.
 `->assertSessionMissing($key);`  |  Assert that the session is missing a given key.
+
+## License
+
+Laravel BrowserKit Testing is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
