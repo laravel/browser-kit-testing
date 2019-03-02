@@ -48,6 +48,11 @@ trait InteractsWithExceptionHandling
             {
             }
 
+            public function shouldReport(Exception $e)
+            {
+                return false;
+            }
+
             public function render($request, Exception $e)
             {
                 if ($e instanceof NotFoundHttpException) {
