@@ -163,6 +163,23 @@ class InteractsWithSessionTest extends TestCase
     /**
      * @test
      */
+    public function check_if_exists_errors_with_value_on_session()
+    {
+        $this->app = new Application();
+        $this->app['session.store'] = new class {
+            public function get($key) {
+                return new class {
+                    public function get($key) { return ['bar']; }
+                };
+            }
+            public function has($key) { return true; }
+        };
+        $this->assertSessionHasErrors(['foo' => 'bar']);
+    }
+
+    /**
+     * @test
+     */
     public function check_if_exists_old_input_on_session()
     {
         $this->app['session'] = new class { };
