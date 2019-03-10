@@ -47,6 +47,10 @@ trait InteractsWithExceptionHandling
             public function report(Exception $e)
             {
             }
+            
+            public function shouldReport(Exception $e)
+            {
+            }
 
             public function render($request, Exception $e)
             {
