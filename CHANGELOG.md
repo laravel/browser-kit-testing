@@ -1,5 +1,12 @@
 # Release Notes
 
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...5.0)
+
+## [v5.1.2 (2019-03-12)](https://github.com/laravel/browser-kit-testing/compare/v5.1.1...v5.1.2)
+
+### Fixed
+- Implement abstract `shouldReport` method ([#93](https://github.com/laravel/browser-kit-testing/pull/93#issuecomment-468863285))
+
 ## [v5.1.1 (2019-02-16)](https://github.com/laravel/browser-kit-testing/compare/v5.1.0...v5.1.1)
 
 ### Fixed
