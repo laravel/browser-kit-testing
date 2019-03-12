@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...5.0)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...master)
 
 ## [v5.1.2 (2019-03-12)](https://github.com/laravel/browser-kit-testing/compare/v5.1.1...v5.1.2)
 
