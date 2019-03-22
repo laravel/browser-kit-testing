@@ -3,7 +3,6 @@
 namespace Laravel\BrowserKitTesting\Concerns;
 
 use Closure;
-use Exception;
 use InvalidArgumentException;
 use Illuminate\Http\UploadedFile;
 use Symfony\Component\DomCrawler\Form;
