@@ -6,9 +6,7 @@ use Exception;
 use Illuminate\Foundation\Application;
 use Laravel\BrowserKitTesting\Tests\TestCase;
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Laravel\BrowserKitTesting\Tests\Stubs\OutputStub;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Laravel\BrowserKitTesting\Tests\Stubs\ExceptionHandlerStub;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithExceptionHandling;
@@ -58,7 +56,6 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->withoutExceptionHandling();
         abort(404, 'Abort 404');
     }
-
 
     /**
      * @test
