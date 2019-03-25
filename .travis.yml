@@ -28,7 +28,8 @@ matrix:
     - php: 7.1
       env: LARAVEL=dev-master PHPUNIT=^8.0
   allow_failures:
-    - env: LARAVEL=dev-master
+    - env: LARAVEL=dev-master PHPUNIT=^7.0
+    - env: LARAVEL=dev-master PHPUNIT=^8.0
 
 before_install:
   - phpenv config-rm xdebug.ini || true
