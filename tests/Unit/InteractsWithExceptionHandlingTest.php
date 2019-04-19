@@ -14,13 +14,14 @@ use Laravel\BrowserKitTesting\Concerns\InteractsWithExceptionHandling;
 class InteractsWithExceptionHandlingTest extends TestCase
 {
     use InteractsWithExceptionHandling;
+
     /**
      * @test
      */
     public function withExceptionHandling_restore_exception_handling()
     {
         $this->app = new Application();
-        $this->previousExceptionHandler = "MyExceptionHandler";
+        $this->previousExceptionHandler = 'MyExceptionHandler';
         $this->withExceptionHandling();
         $this->assertEquals(
             app(ExceptionHandler::class),
@@ -51,7 +52,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Abort 404');
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {});
+        $this->app->instance(ExceptionHandler::class, new class {
+        });
 
         $this->withoutExceptionHandling();
         abort(404, 'Abort 404');
@@ -63,7 +65,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     public function report_of_instance_ExceptionHandler_on_Application_does_nothing()
     {
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {});
+        $this->app->instance(ExceptionHandler::class, new class {
+        });
 
         $this->withoutExceptionHandling();
         $this->assertNull(app(ExceptionHandler::class)->report(new Exception));
@@ -78,12 +81,24 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectExceptionMessage('GET http://localhost');
 
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {});
+        $this->app->instance(ExceptionHandler::class, new class {
+        });
 
         $request = new class {
-            public function method() { return "GET"; }
-            public function url() { return "http://localhost"; }
-            public function getCode() { return 404; }
+            public function method()
+            {
+                return 'GET';
+            }
+
+            public function url()
+            {
+                return 'http://localhost';
+            }
+
+            public function getCode()
+            {
+                return 404;
+            }
         };
 
         $this->withoutExceptionHandling();
@@ -99,9 +114,11 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectExceptionMessage('My Exception');
 
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {});
+        $this->app->instance(ExceptionHandler::class, new class {
+        });
 
-        $request = new class {};
+        $request = new class {
+        };
 
         $this->withoutExceptionHandling();
 
@@ -114,7 +131,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     public function renderForConsole_throw_exception_to_console_and_does_nothing()
     {
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {});
+        $this->app->instance(ExceptionHandler::class, new class {
+        });
         $output = new OutputStub;
         $this->withoutExceptionHandling();
 

@@ -116,9 +116,9 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame($this->uploads['avatar'], $avatar);
     }
 
-     /**
-      * @test
-      */
+    /**
+     * @test
+     */
     public function storeInput_method_store_a_form_input_in_the_local_array()
     {
         $html = '<html>
@@ -290,10 +290,10 @@ class InteractsWithPagesTest extends TestCase
     {
         $avatar = '/path/to/my-avatar.png';
         $this->inputs = [
-            'avatar' => $avatar
+            'avatar' => $avatar,
         ];
         $this->uploads = [
-            'avatar' => $avatar
+            'avatar' => $avatar,
         ];
 
         $this->clearInputs();
@@ -360,7 +360,10 @@ class InteractsWithPagesTest extends TestCase
     {
         $this->app = null;
         $this->response = new class {
-            public function getStatusCode() { return 200; }
+            public function getStatusCode()
+            {
+                return 200;
+            }
         };
         $uri = 'http://localhost/login';
         $this->assertPageLoaded($uri);
@@ -376,7 +379,10 @@ class InteractsWithPagesTest extends TestCase
 
         $this->app = null;
         $this->response = new class {
-            public function getStatusCode() { return 404; }
+            public function getStatusCode()
+            {
+                return 404;
+            }
         };
         $uri = 'http://localhost/login';
         $this->assertPageLoaded($uri);
@@ -399,7 +405,10 @@ class InteractsWithPagesTest extends TestCase
                 $this->exception = new Exception('System failure.');
             }
 
-            public function getStatusCode() { return 500; }
+            public function getStatusCode()
+            {
+                return 500;
+            }
         };
         $uri = 'http://localhost/login';
         $this->assertPageLoaded($uri);

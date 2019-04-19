@@ -2,8 +2,8 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
-use Laravel\BrowserKitTesting\Concerns\InteractsWithAuthentication;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use Laravel\BrowserKitTesting\Concerns\InteractsWithAuthentication;
 
 class InteractsWithAuthenticationTest extends TestCase
 {
@@ -14,11 +14,31 @@ class InteractsWithAuthenticationTest extends TestCase
         return new class {
             public $retrieveByCredentials;
             public $validateCredentials;
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function getProvider() { return $this; }
-            public function retrieveByCredentials() { return $this->retrieveByCredentials; }
-            public function validateCredentials() { return $this->validateCredentials; }
+
+            public function make()
+            {
+                return $this;
+            }
+
+            public function guard()
+            {
+                return $this;
+            }
+
+            public function getProvider()
+            {
+                return $this;
+            }
+
+            public function retrieveByCredentials()
+            {
+                return $this->retrieveByCredentials;
+            }
+
+            public function validateCredentials()
+            {
+                return $this->validateCredentials;
+            }
         };
     }
 
@@ -33,7 +53,7 @@ class InteractsWithAuthenticationTest extends TestCase
 
         $credentials = [
             'email' => 'john.doe@testing.com',
-            'password' => 'secret'
+            'password' => 'secret',
         ];
         $this->assertTrue($this->hasCredentials($credentials));
     }
@@ -50,7 +70,7 @@ class InteractsWithAuthenticationTest extends TestCase
 
         $credentials = [
             'email' => 'john.doe@testing.com',
-            'password' => 'secret'
+            'password' => 'secret',
         ];
         $this->assertFalse($this->hasCredentials($credentials));
     }
@@ -58,9 +78,9 @@ class InteractsWithAuthenticationTest extends TestCase
     public function DataHasCredentials()
     {
         return [
-            "Case 01" => [false, true],
-            "Case 02" => [false, false],
-            "Case 03" => [true, false]
+            'Case 01' => [false, true],
+            'Case 02' => [false, false],
+            'Case 03' => [true, false],
         ];
     }
 
@@ -74,7 +94,7 @@ class InteractsWithAuthenticationTest extends TestCase
         $this->app->validateCredentials = true;
         $credentials = [
             'email' => 'john.doe@testing.com',
-            'password' => 'secret'
+            'password' => 'secret',
         ];
 
         $this->seeCredentials($credentials);
@@ -89,13 +109,31 @@ class InteractsWithAuthenticationTest extends TestCase
     public function assert_if_user_is_authenticated()
     {
         $this->app = new class {
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function user() { return $this->userAuthenticated; }
-            public function getAuthIdentifier() { return true; }
+            public function make()
+            {
+                return $this;
+            }
+
+            public function guard()
+            {
+                return $this;
+            }
+
+            public function user()
+            {
+                return $this->userAuthenticated;
+            }
+
+            public function getAuthIdentifier()
+            {
+                return true;
+            }
         };
         $user = new class {
-            public function getAuthIdentifier() { return true; }
+            public function getAuthIdentifier()
+            {
+                return true;
+            }
         };
 
         $this->app->userAuthenticated = $user;
@@ -110,9 +148,21 @@ class InteractsWithAuthenticationTest extends TestCase
     {
         $this->app = new class {
             public $check;
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function check() { return $this->check; }
+
+            public function make()
+            {
+                return $this;
+            }
+
+            public function guard()
+            {
+                return $this;
+            }
+
+            public function check()
+            {
+                return $this->check;
+            }
         };
 
         $this->app->check = true;
@@ -129,9 +179,21 @@ class InteractsWithAuthenticationTest extends TestCase
     {
         $this->app = new class {
             public $check;
-            public function make() { return $this; }
-            public function guard() { return $this; }
-            public function check() { return $this->check; }
+
+            public function make()
+            {
+                return $this;
+            }
+
+            public function guard()
+            {
+                return $this;
+            }
+
+            public function check()
+            {
+                return $this->check;
+            }
         };
 
         $this->app->check = true;
