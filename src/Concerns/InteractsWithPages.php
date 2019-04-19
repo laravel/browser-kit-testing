@@ -8,8 +8,8 @@ use Illuminate\Http\UploadedFile;
 use Symfony\Component\DomCrawler\Form;
 use Symfony\Component\DomCrawler\Crawler;
 use Laravel\BrowserKitTesting\HttpException;
-use Laravel\BrowserKitTesting\Constraints\HasText;
 use Laravel\BrowserKitTesting\Constraints\HasLink;
+use Laravel\BrowserKitTesting\Constraints\HasText;
 use Laravel\BrowserKitTesting\Constraints\HasValue;
 use Laravel\BrowserKitTesting\Constraints\HasSource;
 use Laravel\BrowserKitTesting\Constraints\IsChecked;
@@ -325,7 +325,7 @@ trait InteractsWithPages
     }
 
     /**
-     * Verify the number of DOM elements
+     * Verify the number of DOM elements.
      *
      * @param  string  $selector
      * @param  int  $number
@@ -759,11 +759,11 @@ trait InteractsWithPages
      */
     protected function getUploadedFileForTesting($file, $uploads, $name)
     {
-        if($file['error'] == UPLOAD_ERR_NO_FILE) {
+        if ($file['error'] == UPLOAD_ERR_NO_FILE) {
             return;
         }
 
-        $originalName = isset($uploads[$name]) ? basename($uploads[$name]) :  $file['name'];
+        $originalName = isset($uploads[$name]) ? basename($uploads[$name]) : $file['name'];
 
         return new UploadedFile(
             $file['tmp_name'], $originalName, $file['type'], $file['size'], $file['error'], true

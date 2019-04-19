@@ -31,7 +31,7 @@ class MakesHttpRequestsTest extends TestCase
             ['users', 'http://localhost/users'],
             ['/users', 'http://localhost/users'],
             ['users/', 'http://localhost/users'],
-            ['/users/', 'http://localhost/users']
+            ['/users/', 'http://localhost/users'],
         ];
     }
 
@@ -41,7 +41,10 @@ class MakesHttpRequestsTest extends TestCase
     public function seeStatusCode_check_status_code()
     {
         $this->response = new class {
-            public function getStatusCode() { return 200; }
+            public function getStatusCode()
+            {
+                return 200;
+            }
         };
         $this->seeStatusCode(200);
     }
@@ -52,8 +55,15 @@ class MakesHttpRequestsTest extends TestCase
     public function assertResponseOk_check_that_the_status_page_should_be_200()
     {
         $this->response = new class {
-            public function getStatusCode() { return 200; }
-            public function isOk() { return true; }
+            public function getStatusCode()
+            {
+                return 200;
+            }
+
+            public function isOk()
+            {
+                return true;
+            }
         };
         $this->assertResponseOk();
     }
@@ -67,8 +77,15 @@ class MakesHttpRequestsTest extends TestCase
         $this->expectExceptionMessage('Expected status code 200, got 404.');
 
         $this->response = new class {
-            public function getStatusCode() { return 404; }
-            public function isOK() { return false; }
+            public function getStatusCode()
+            {
+                return 404;
+            }
+
+            public function isOK()
+            {
+                return false;
+            }
         };
         $this->assertResponseOk();
     }
@@ -79,7 +96,10 @@ class MakesHttpRequestsTest extends TestCase
     public function assertResponseStatus_check_the_response_status_is_equal_to_passed_by_parameter()
     {
         $this->response = new class {
-            public function getStatusCode() { return 200; }
+            public function getStatusCode()
+            {
+                return 200;
+            }
         };
         $this->assertResponseStatus(200);
     }
@@ -93,7 +113,10 @@ class MakesHttpRequestsTest extends TestCase
         $this->expectExceptionMessage('Expected status code 404, got 200.');
 
         $this->response = new class {
-            public function getStatusCode() { return 200; }
+            public function getStatusCode()
+            {
+                return 200;
+            }
         };
         $this->assertResponseStatus(404);
     }
