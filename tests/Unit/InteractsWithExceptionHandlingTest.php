@@ -141,4 +141,18 @@ class InteractsWithExceptionHandlingTest extends TestCase
                 ->renderForConsole($output, new Exception)
         );
     }
+
+    /**
+     * @test
+     */
+    public function withoutExceptionHandling_doesnt_not_report_exceptions()
+    {
+        $this->app = new Application();
+        $this->app->instance(ExceptionHandler::class, new class {
+        });
+        $this->withoutExceptionHandling();
+        $this->assertFalse(
+            app(ExceptionHandler::class)->shouldReport(new NotFoundHttpException)
+        );
+    }
 }
