@@ -437,7 +437,6 @@ class InteractsWithPagesTest extends TestCase
         });
     }
 
-
     /**
      * @test
      * @dataProvider attributes_UploadedFile
@@ -465,21 +464,21 @@ class InteractsWithPagesTest extends TestCase
                     'name' => 'avatar.png',
                     'tmp_name' => __DIR__.'/../Fixture/file.txt',
                     'type' => 'txt/plain',
-                    'size' => 0
+                    'size' => 0,
                 ],
                 [],
-                'avatar'
+                'avatar',
             ],
             [
                 [
                     'error' => null,
                     'tmp_name' => __DIR__.'/../Fixture/file.txt',
                     'type' => 'txt/plain',
-                    'size' => 0
+                    'size' => 0,
                 ],
                 ['avatar' => 'avatar.png'],
-                'avatar'
-            ]
+                'avatar',
+            ],
         ];
     }
 
@@ -493,5 +492,138 @@ class InteractsWithPagesTest extends TestCase
                 ['error' => UPLOAD_ERR_NO_FILE], [], ''
             )
         );
+    }
+
+    /**
+     * @test
+     */
+    public function see_on_current_HTML()
+    {
+        $body = '<body>
+            <h3>Hello, <strong>User</strong></h3>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSee('Hello, User');
+        $this->see('Hello, <strong>User</strong>');
+    }
+
+    /**
+     * @test
+     */
+    public function see_element_on_current_HTML()
+    {
+        $body = '<body>
+            <img src="avatar.png" alt="ups"/>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeElement('img', ['src' => 'unknown.png']);
+        $this->seeElement('img', ['src' => 'avatar.png', 'alt' => 'ups']);
+    }
+
+    /**
+     * @test
+     */
+    public function count_elements_on_current_HTML()
+    {
+        $body = '<body>
+            <div class="card-user">...</div>
+            <div class="card-user">...</div>
+        </body>';
+        $this->createPage($body);
+
+        $this->seeElementCount('.card-user', 2);
+    }
+
+    /**
+     * @test
+     */
+    public function see_text_on_current_HTML()
+    {
+        $body = '<body>
+            <h3>Hello, <strong>User</strong></h3>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeText('Hello, <strong>User</strong>');
+        $this->seeText('Hello, User');
+    }
+
+    /**
+     * @test
+     */
+    public function see_html_on_element()
+    {
+        $body = '<body>
+            <h3>Hello, <strong>User</strong></h3>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeInElement('h3', 'Hello, User');
+        $this->seeInElement('h3', 'Hello, <strong>User</strong>');
+    }
+
+    /**
+     * @test
+     */
+    public function see_value_on_field()
+    {
+        $body = '<body>
+            <form>
+                <input type="text" name="email" value="john.doe@testing.com"/>
+            </form>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeInField('email', 'unknown@testing.com');
+        $this->seeInField('email', 'john.doe@testing.com');
+    }
+
+    /**
+     * @test
+     */
+    public function see_selected_value_on_select_tag()
+    {
+        $body = '<body>
+            <select name="role">
+                <option value="auxiliar">User Auxiliar</option>
+                <option value="user">User</option>
+                <option value="sales" selected>User Sales</option>
+            </select>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeIsSelected('role', 'User Sales');
+        $this->seeIsSelected('role', 'sales');
+    }
+
+    /**
+     * @test
+     */
+    public function is_checked_checkbox()
+    {
+        $body = '<body>
+            <input type="checkbox" name="active" checked/>
+            <input type="checkbox" name="feedback"/>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeIsChecked('feedback');
+        $this->seeIsChecked('active');
+    }
+
+    /**
+     * @test
+     */
+    public function see_text_on_link()
+    {
+        $body = '<body>
+            <a href="/users/1">Show <strong>details</strong></a>
+        </body>';
+        $this->createPage($body);
+
+        $this->dontSeeLink('Show <strong>details</strong>');
+        $this->seeLink('Show details');
     }
 }
