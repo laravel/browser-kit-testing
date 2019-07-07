@@ -413,4 +413,85 @@ class InteractsWithPagesTest extends TestCase
         $uri = 'http://localhost/login';
         $this->assertPageLoaded($uri);
     }
+
+    /**
+     * @test
+     */
+    public function crawler_method_return_first_subCrawler()
+    {
+        $body = '<body>
+            <div class="card-user">
+                <h3>John Doe</h3> <a href="#">show</a>
+            </div>
+            <div class="card-user">
+                <h3>Not User</h3> <a href="#">show</a>
+            </div>
+        </body>';
+        $this->createPage($body);
+
+        $this->within('.card-user > h3', function () {
+            $this->assertEquals(
+                'John Doe',
+                $this->crawler()->text()
+            );
+        });
+    }
+
+
+    /**
+     * @test
+     * @dataProvider attributes_UploadedFile
+     */
+    public function create_UploadedFile_for_testing($file, $uploads, $name)
+    {
+        $file = $this->getUploadedFileForTesting(
+            $file, $uploads, $name
+        );
+        $this->assertInstanceOf(
+            \Illuminate\Http\UploadedFile::class,
+            $file
+        );
+        $this->assertEquals('avatar.png', $file->getClientOriginalName());
+        $this->assertEquals('txt/plain', $file->getClientMimeType());
+        $this->assertEquals(0, $file->getClientSize());
+    }
+
+    public function attributes_UploadedFile()
+    {
+        return [
+            [
+                [
+                    'error' => null,
+                    'name' => 'avatar.png',
+                    'tmp_name' => __DIR__.'/../Fixture/file.txt',
+                    'type' => 'txt/plain',
+                    'size' => 0
+                ],
+                [],
+                'avatar'
+            ],
+            [
+                [
+                    'error' => null,
+                    'tmp_name' => __DIR__.'/../Fixture/file.txt',
+                    'type' => 'txt/plain',
+                    'size' => 0
+                ],
+                ['avatar' => 'avatar.png'],
+                'avatar'
+            ]
+        ];
+    }
+
+    /**
+     * @test
+     */
+    public function getUploadedFileForTesting_return_null_if_it_can_not_upload_file()
+    {
+        $this->assertNull(
+            $this->getUploadedFileForTesting(
+                ['error' => UPLOAD_ERR_NO_FILE], [], ''
+            )
+        );
+    }
 }
