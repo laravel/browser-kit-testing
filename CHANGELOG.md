@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...master)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...master)
+
+
+## [v5.1.3](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...v5.1.3)
+
+### Changed
+- Updated version constraints for Laravel 6.0 ([73b18b2](https://github.com/laravel/browser-kit-testing/commit/73b18b2835db45b08f80c0a04cb0a74f5f384d95))
 
 
 ## [v5.1.2 (2019-03-12)](https://github.com/laravel/browser-kit-testing/compare/v5.1.1...v5.1.2)
