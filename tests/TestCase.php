@@ -3,8 +3,8 @@
 namespace Laravel\BrowserKitTesting\Tests;
 
 use DOMDocument;
-use Symfony\Component\DomCrawler\Crawler;
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use Symfony\Component\DomCrawler\Crawler;
 
 abstract class TestCase extends BaseTestCase
 {

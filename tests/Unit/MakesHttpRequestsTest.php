@@ -2,9 +2,9 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
+use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
 use Laravel\BrowserKitTesting\Tests\TestCase;
 use PHPUnit\Framework\ExpectationFailedException;
-use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
 
 class MakesHttpRequestsTest extends TestCase
 {

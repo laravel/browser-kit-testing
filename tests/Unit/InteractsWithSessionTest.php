@@ -3,8 +3,8 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Illuminate\Foundation\Application;
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithSession;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 
 class InteractsWithSessionTest extends TestCase
 {

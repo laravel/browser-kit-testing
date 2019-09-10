@@ -2,8 +2,8 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithAuthentication;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 
 class InteractsWithAuthenticationTest extends TestCase
 {

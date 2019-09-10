@@ -2,9 +2,9 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\BrowserKitTesting\Concerns\ImpersonatesUsers;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 
 class ImpersonatesUsersTest extends TestCase
 {

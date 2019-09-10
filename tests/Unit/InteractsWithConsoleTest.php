@@ -3,8 +3,8 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Illuminate\Contracts\Console\Kernel;
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithConsole;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 
 class InteractsWithConsoleTest extends TestCase
 {

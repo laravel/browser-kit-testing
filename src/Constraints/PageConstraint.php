@@ -2,10 +2,10 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-use Symfony\Component\DomCrawler\Crawler;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
+use Symfony\Component\DomCrawler\Crawler;
 
 abstract class PageConstraint extends Constraint
 {

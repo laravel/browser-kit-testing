@@ -2,8 +2,8 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithContainer;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 
 class InteractsWithContainerTest extends TestCase
 {
