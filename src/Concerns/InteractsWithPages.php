@@ -3,22 +3,22 @@
 namespace Laravel\BrowserKitTesting\Concerns;
 
 use Closure;
-use InvalidArgumentException;
 use Illuminate\Http\UploadedFile;
-use Symfony\Component\DomCrawler\Form;
-use Symfony\Component\DomCrawler\Crawler;
-use Laravel\BrowserKitTesting\HttpException;
+use InvalidArgumentException;
+use Laravel\BrowserKitTesting\Constraints\HasElement;
+use Laravel\BrowserKitTesting\Constraints\HasInElement;
 use Laravel\BrowserKitTesting\Constraints\HasLink;
+use Laravel\BrowserKitTesting\Constraints\HasSource;
 use Laravel\BrowserKitTesting\Constraints\HasText;
 use Laravel\BrowserKitTesting\Constraints\HasValue;
-use Laravel\BrowserKitTesting\Constraints\HasSource;
 use Laravel\BrowserKitTesting\Constraints\IsChecked;
-use Laravel\BrowserKitTesting\Constraints\HasElement;
 use Laravel\BrowserKitTesting\Constraints\IsSelected;
-use Laravel\BrowserKitTesting\Constraints\HasInElement;
 use Laravel\BrowserKitTesting\Constraints\PageConstraint;
 use Laravel\BrowserKitTesting\Constraints\ReversePageConstraint;
+use Laravel\BrowserKitTesting\HttpException;
 use PHPUnit\Framework\ExpectationFailedException as PHPUnitException;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\DomCrawler\Form;
 
 trait InteractsWithPages
 {

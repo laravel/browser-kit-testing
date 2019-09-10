@@ -2,10 +2,10 @@
 
 namespace Laravel\BrowserKitTesting\Concerns;
 
-use Mockery;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Notifications\Dispatcher as NotificationDispatcher;
+use Illuminate\Database\Eloquent\Model;
+use Mockery;
 
 trait MocksApplicationServices
 {
