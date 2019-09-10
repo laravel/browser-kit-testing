@@ -2,8 +2,8 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class HasLink extends PageConstraint
 {

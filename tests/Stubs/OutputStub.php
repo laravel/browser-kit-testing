@@ -2,8 +2,8 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Stubs;
 
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Formatter\OutputFormatterInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class OutputStub implements OutputInterface
 {

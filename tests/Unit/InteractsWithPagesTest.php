@@ -4,9 +4,9 @@ namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Exception;
 use InvalidArgumentException;
+use Laravel\BrowserKitTesting\Concerns\InteractsWithPages;
 use Laravel\BrowserKitTesting\HttpException;
 use Laravel\BrowserKitTesting\Tests\TestCase;
-use Laravel\BrowserKitTesting\Concerns\InteractsWithPages;
 
 class InteractsWithPagesTest extends TestCase
 {

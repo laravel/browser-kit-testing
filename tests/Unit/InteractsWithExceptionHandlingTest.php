@@ -3,13 +3,13 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Exception;
-use Illuminate\Foundation\Application;
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use Laravel\BrowserKitTesting\Tests\Stubs\OutputStub;
-use Laravel\BrowserKitTesting\Tests\Stubs\ExceptionHandlerStub;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Foundation\Application;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithExceptionHandling;
+use Laravel\BrowserKitTesting\Tests\Stubs\ExceptionHandlerStub;
+use Laravel\BrowserKitTesting\Tests\Stubs\OutputStub;
+use Laravel\BrowserKitTesting\Tests\TestCase;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class InteractsWithExceptionHandlingTest extends TestCase
 {

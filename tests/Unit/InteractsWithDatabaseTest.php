@@ -3,9 +3,9 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Illuminate\Contracts\Console\Kernel;
-use Laravel\BrowserKitTesting\Tests\TestCase;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithConsole;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithDatabase;
+use Laravel\BrowserKitTesting\Tests\TestCase;
 
 class InteractsWithDatabaseTest extends TestCase
 {

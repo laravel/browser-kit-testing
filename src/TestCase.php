@@ -2,16 +2,16 @@
 
 namespace Laravel\BrowserKitTesting;
 
-use Mockery;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Testing\WithFaker;
-use PHPUnit\Framework\TestCase as BaseTestCase;
-use Illuminate\Foundation\Testing\WithoutEvents;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\WithoutEvents;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Support\Facades\Facade;
+use Mockery;
+use PHPUnit\Framework\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
