@@ -422,8 +422,6 @@ trait MakesHttpRequests
      *
      * @param  array  $data
      * @return $this
-     *
-     * @deprecated This method will be removed in 5.0
      */
     protected function seeJsonSubset(array $data)
     {
