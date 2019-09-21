@@ -3,6 +3,7 @@
 namespace Laravel\BrowserKitTesting\Concerns;
 
 use Closure;
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -15,7 +16,8 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 trait MakesHttpRequests
 {
-    use InteractsWithPages;
+    use ArraySubsetAsserts,
+        InteractsWithPages;
 
     /**
      * The last response returned by the application.
@@ -425,7 +427,7 @@ trait MakesHttpRequests
      */
     protected function seeJsonSubset(array $data)
     {
-        $this->assertArraySubset($data, $this->decodeResponseJson());
+        self::assertArraySubset($data, $this->decodeResponseJson());
 
         return $this;
     }

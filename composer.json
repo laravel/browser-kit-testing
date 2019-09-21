@@ -13,6 +13,7 @@
         "php": "^7.2",
         "ext-dom": "*",
         "ext-json": "*",
+        "dms/phpunit-arraysubset-asserts": "^0.1.0",
         "illuminate/contracts": "^6.0|^7.0",
         "illuminate/database": "^6.0|^7.0",
         "illuminate/http": "^6.0|^7.0",
