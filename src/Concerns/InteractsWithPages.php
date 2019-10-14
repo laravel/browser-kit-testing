@@ -19,6 +19,7 @@ use Laravel\BrowserKitTesting\HttpException;
 use PHPUnit\Framework\ExpectationFailedException as PHPUnitException;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\DomCrawler\Form;
+use Symfony\Component\HttpFoundation\Cookie;
 
 trait InteractsWithPages
 {
@@ -147,7 +148,14 @@ trait InteractsWithPages
     protected function followRedirects()
     {
         while ($this->response->isRedirect()) {
-            $this->makeRequest('GET', $this->response->getTargetUrl());
+            $this->makeRequest(
+                'GET',
+                $this->response->getTargetUrl(),
+                [],
+                collect($this->response->headers->getCookies())->mapWithKeys(function (Cookie $cookie) {
+                    return [$cookie->getName() => $cookie->getValue()];
+                })->all()
+            );
         }
 
         return $this;
