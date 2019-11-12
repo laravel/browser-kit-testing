@@ -20,6 +20,9 @@ This package provides a backwards compatibility layer for Laravel 5.3 style "Bro
     - [Disabling Middleware](#disabling-middleware)
     - [Custom HTTP Requests](#custom-http-requests)
     - [PHPUnit Assertions](#phpunit-assertions)
+- [Contributing](#contributing)
+- [Code of Conduct](#code-of-conduct)
+- [Security Vulnerabilities](#security-vulnerabilities)
 - [License](#license)
 
 ## Official Documentation
@@ -422,6 +425,18 @@ Method  | Description
 `->assertSessionHasErrors($bindings = [], $format = null);`  |  Assert that the session has errors bound.
 `->assertHasOldInput();`  |  Assert that the session has old input.
 `->assertSessionMissing($key);`  |  Assert that the session is missing a given key.
+
+## Contributing
+
+Thank you for considering contributing to the BrowserKit Testing. You can read the contribution guide [here](.github/CONTRIBUTING.md).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
+
+## Security Vulnerabilities
+
+Please review [our security policy](https://github.com/laravel/browser-kit-testing/security/policy) on how to report security vulnerabilities.
 
 ## License
 
