@@ -428,7 +428,7 @@ Method  | Description
 
 ## Contributing
 
-Thank you for considering contributing to the BrowserKit Testing. You can read the contribution guide [here](.github/CONTRIBUTING.md).
+Thank you for considering contributing to BrowserKit Testing! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
 ## Code of Conduct
 
@@ -440,4 +440,4 @@ Please review [our security policy](https://github.com/laravel/browser-kit-testi
 
 ## License
 
-Laravel BrowserKit Testing is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Laravel BrowserKit Testing is open-sourced software licensed under the [MIT license](LICENSE.md).
