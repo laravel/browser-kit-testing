@@ -20,6 +20,9 @@ This package provides a backwards compatibility layer for Laravel 5.3 style "Bro
     - [Disabling Middleware](#disabling-middleware)
     - [Custom HTTP Requests](#custom-http-requests)
     - [PHPUnit Assertions](#phpunit-assertions)
+- [Contributing](#contributing)
+- [Code of Conduct](#code-of-conduct)
+- [Security Vulnerabilities](#security-vulnerabilities)
 - [License](#license)
 
 ## Official Documentation
@@ -423,6 +426,18 @@ Method  | Description
 `->assertHasOldInput();`  |  Assert that the session has old input.
 `->assertSessionMissing($key);`  |  Assert that the session is missing a given key.
 
+## Contributing
+
+Thank you for considering contributing to BrowserKit Testing! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
+
+## Security Vulnerabilities
+
+Please review [our security policy](https://github.com/laravel/browser-kit-testing/security/policy) on how to report security vulnerabilities.
+
 ## License
 
-Laravel BrowserKit Testing is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Laravel BrowserKit Testing is open-sourced software licensed under the [MIT license](LICENSE.md).
