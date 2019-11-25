@@ -2,7 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Stubs;
 
-use Exception;
+use Throwable;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -13,16 +13,16 @@ class ExceptionHandlerStub implements ExceptionHandler
     {
     }
 
-    public function report(Exception $e)
+    public function report(Throwable $e)
     {
     }
 
-    public function shouldReport(Exception $e)
+    public function shouldReport(Throwable $e)
     {
         return false;
     }
 
-    public function render($request, Exception $e)
+    public function render($request, Throwable $e)
     {
         if ($e instanceof NotFoundHttpException) {
             throw new NotFoundHttpException(
@@ -33,7 +33,7 @@ class ExceptionHandlerStub implements ExceptionHandler
         throw $e;
     }
 
-    public function renderForConsole($output, Exception $e)
+    public function renderForConsole($output, Throwable $e)
     {
         (new ConsoleApplication)->renderException($e, $output);
     }

@@ -452,7 +452,7 @@ class InteractsWithPagesTest extends TestCase
         );
         $this->assertEquals('avatar.png', $file->getClientOriginalName());
         $this->assertEquals('txt/plain', $file->getClientMimeType());
-        $this->assertEquals(0, $file->getClientSize());
+        $this->assertEquals(0, $file->getSize());
     }
 
     public function attributes_UploadedFile()
