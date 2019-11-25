@@ -774,7 +774,7 @@ trait InteractsWithPages
         $originalName = isset($uploads[$name]) ? basename($uploads[$name]) : $file['name'];
 
         return new UploadedFile(
-            $file['tmp_name'], $originalName, $file['type'], $file['size'], $file['error'], true
+            $file['tmp_name'], $originalName, $file['type'], $file['error'], true
         );
     }
 }
