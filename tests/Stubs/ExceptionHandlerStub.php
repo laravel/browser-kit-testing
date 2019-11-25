@@ -2,10 +2,10 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Stubs;
 
-use Throwable;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Symfony\Component\Console\Application as ConsoleApplication;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class ExceptionHandlerStub implements ExceptionHandler
 {
