@@ -416,21 +416,6 @@ trait MakesHttpRequests
     }
 
     /**
-     * Assert that the response is a superset of the given JSON.
-     *
-     * @param  array  $data
-     * @return $this
-     *
-     * @deprecated This method will be removed in 5.0
-     */
-    protected function seeJsonSubset(array $data)
-    {
-        $this->assertArraySubset($data, $this->decodeResponseJson());
-
-        return $this;
-    }
-
-    /**
      * Validate and return the decoded response JSON.
      *
      * @return array
