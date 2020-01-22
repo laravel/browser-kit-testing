@@ -2,6 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
+use DOMDocument;
 use Exception;
 use InvalidArgumentException;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithPages;
@@ -11,6 +12,21 @@ use Laravel\BrowserKitTesting\Tests\TestCase;
 class InteractsWithPagesTest extends TestCase
 {
     use InteractsWithPages;
+
+    protected $returns = [
+        'prepareUrlForRequest' => null,
+        'call' => null
+    ];
+
+    public function call()
+    {
+        return $this->returns['call'];
+    }
+
+    public function prepareUrlForRequest($uri)
+    {
+        return $this->returns['prepareUrlForRequest'];
+    }
 
     /**
      * @test
@@ -625,5 +641,73 @@ class InteractsWithPagesTest extends TestCase
 
         $this->dontSeeLink('Show <strong>details</strong>');
         $this->seeLink('Show details');
+    }
+
+    /**
+     * @test
+     */
+    public function seePageIs_assert_the_current_page_matches_a_given_uri()
+    {
+        $expectedUri = 'http://localhost/users';
+        $currentUri = 'http://localhost/users';
+
+        $this->currentUri = $currentUri;
+        $this->returns['prepareUrlForRequest'] = $expectedUri;
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+
+        $this->seePageIs($expectedUri);
+    }
+
+    /**
+     * @test
+     */
+    public function seeRouteIs_assert_the_current_page_matches_a_given_named_route()
+    {
+        $expectedUri = 'http://localhost/users';
+        $currentUri = 'http://localhost/users';
+
+        // Bind Anonymus Class to url alias
+        $uriGenerator = new class {
+            public function route() { return 'http://localhost/users'; }
+        };
+        app()->bind(get_class($uriGenerator));
+        app()->alias(get_class($uriGenerator), 'url');
+
+
+        $this->currentUri = $currentUri;
+        $this->returns['prepareUrlForRequest'] = $expectedUri;
+        $this->response = new class {
+            public function getStatusCode() { return 200; }
+        };
+
+        $this->seeRouteIs('users');
+    }
+
+    /**
+     * @test
+     */
+    public function makeRequest_make_request_to_the_application_and_create_crawler()
+    {
+
+        $expectedUri = 'http://localhost/users';
+        $this->returns['prepareUrlForRequest'] = $expectedUri;
+        $this->response = new class {
+
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+               $dom = new DOMDocument;
+               $dom->loadHTML('<body></body>');
+               return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() { return 'http://localhost/users'; }
+        };
+
+        $this->makeRequest('GET', 'users');
     }
 }
