@@ -761,4 +761,72 @@ class InteractsWithPagesTest extends TestCase
 
         $this->visitRoute('users');
     }
+
+    /**
+     * @test
+     */
+    public function click_on_link_by_body_or_name_or_id()
+    {
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+
+        // By Body
+        $body = '<body><a href="users">Users</a></body>';
+        $this->createPage($body);
+
+        $this->click('Users');
+
+        $this->crawler = null;
+
+        // By Name
+        $body = '<body><a href="users" name="users">All Users</a></body>';
+        $this->createPage($body);
+
+        $this->click('users');
+
+        $this->crawler = null;
+
+        // By Id
+        $body = '<body><a href="users" id="users">All Users</a></body>';
+        $this->createPage($body);
+
+        $this->click('users');
+    }
+
+    /**
+     * @test
+     */
+    public function click_method_fail_when_can_not_find_link()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+        $body = '<body><a href="posts">Posts</a></body>';
+        $this->createPage($body);
+
+        $this->click('users');
+    }
 }
