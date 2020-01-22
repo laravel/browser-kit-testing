@@ -710,4 +710,55 @@ class InteractsWithPagesTest extends TestCase
 
         $this->makeRequest('GET', 'users');
     }
+
+    /**
+     * @test
+     */
+    public function visit_to_page_a_given_uri()
+    {
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+
+        $this->visit('users');
+    }
+
+    /**
+     * @test
+     */
+    public function visitRoute_to_page_a_given_named_route()
+    {
+        // Bind Anonymus Class to url alias
+        $uriGenerator = new class {
+            public function route() { return 'http://localhost/users'; }
+        };
+        app()->bind(get_class($uriGenerator));
+        app()->alias(get_class($uriGenerator), 'url');
+
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+
+        $this->visitRoute('users');
+    }
 }
