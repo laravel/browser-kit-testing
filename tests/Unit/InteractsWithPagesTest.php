@@ -918,4 +918,28 @@ class InteractsWithPagesTest extends TestCase
 
         $this->press('Send');
     }
+
+    /**
+     * @test
+     */
+    public function follow_redirects_from_last_response()
+    {
+        $this->response = new class {
+            protected $redirect = true;
+            public function isRedirect() { return $this->redirect; }
+            public function getTargetUrl() { $this->redirect = false; }
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() { return 'http://localhost/users'; }
+        };
+
+        $this->followRedirects();
+    }
 }
