@@ -829,4 +829,93 @@ class InteractsWithPagesTest extends TestCase
 
         $this->click('users');
     }
+
+    /**
+     * @test
+     */
+    public function make_request_using_form()
+    {
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+
+        // Create Form
+        $body = '<body>
+            <form method="GET" action="users"></form>
+        </body>';
+        $this->createPage($body);
+        $form = $this->getForm();
+
+        $this->makeRequestUsingForm($form);
+    }
+
+    /**
+     * @test
+     */
+    public function submitForm_method_submit_form_by_given_button()
+    {
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+
+        // Create Form
+        $body = '<body>
+            <form method="GET" action="users">
+                <button type="submit">Send</button>
+            </form>
+        </body>';
+        $this->createPage($body);
+
+        $this->submitForm('Send');
+    }
+
+    /**
+     * @test
+     */
+    public function press_method_submit_form_by_given_text_of_button()
+    {
+        $this->response = new class {
+            public function isRedirect() {}
+            public function getStatusCode() { return 200; }
+            public function getContent() {
+                $dom = new DOMDocument;
+                $dom->loadHTML('<body></body>');
+                return $dom;
+            }
+        };
+        $this->app = new class {
+            public function make() { return $this; }
+            public function fullUrl() {}
+        };
+
+        // Create Form
+        $body = '<body>
+            <form method="GET" action="users">
+                <button type="submit">Send</button>
+            </form>
+        </body>';
+        $this->createPage($body);
+
+        $this->press('Send');
+    }
 }
