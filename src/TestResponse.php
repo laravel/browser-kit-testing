@@ -2,6 +2,8 @@
 
 namespace Laravel\BrowserKitTesting;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 class TestResponse extends \Illuminate\Testing\TestResponse
 {
     /**
@@ -34,7 +36,7 @@ class TestResponse extends \Illuminate\Testing\TestResponse
      */
     public function assertRedirectedTo($uri, $with = [])
     {
-        PHPUnit::assertInstanceOf('Symfony\Component\HttpFoundation\RedirectResponse', $this->baseResponse);
+        PHPUnit::assertInstanceOf(RedirectResponse::class, $this->baseResponse);
 
         $this->assertRedirect($uri);
 
