@@ -3,6 +3,7 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
+use Laravel\BrowserKitTesting\TestResponse;
 use Laravel\BrowserKitTesting\Tests\TestCase;
 use PHPUnit\Framework\ExpectationFailedException;
 
@@ -40,12 +41,13 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function seeStatusCode_check_status_code()
     {
-        $this->response = new class {
+        $this->response = TestResponse::fromBaseResponse(new class {
             public function getStatusCode()
             {
                 return 200;
             }
-        };
+        });
+
         $this->seeStatusCode(200);
     }
 
@@ -54,7 +56,7 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function assertResponseOk_check_that_the_status_page_should_be_200()
     {
-        $this->response = new class {
+        $this->response = TestResponse::fromBaseResponse(new class {
             public function getStatusCode()
             {
                 return 200;
@@ -64,8 +66,9 @@ class MakesHttpRequestsTest extends TestCase
             {
                 return true;
             }
-        };
-        $this->assertResponseOk();
+        });
+
+        $this->response->assertResponseOk();
     }
 
     /**
@@ -74,9 +77,9 @@ class MakesHttpRequestsTest extends TestCase
     public function assertResponseOk_throw_exception_when_the_status_page_is_not_200()
     {
         $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage('Expected status code 200, got 404.');
+        $this->expectExceptionMessage('Response status code [404] does not match expected 200 status code.');
 
-        $this->response = new class {
+        $this->response = TestResponse::fromBaseResponse(new class {
             public function getStatusCode()
             {
                 return 404;
@@ -86,8 +89,9 @@ class MakesHttpRequestsTest extends TestCase
             {
                 return false;
             }
-        };
-        $this->assertResponseOk();
+        });
+
+        $this->response->assertResponseOk();
     }
 
     /**
@@ -95,13 +99,14 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function assertResponseStatus_check_the_response_status_is_equal_to_passed_by_parameter()
     {
-        $this->response = new class {
+        $this->response = TestResponse::fromBaseResponse(new class {
             public function getStatusCode()
             {
                 return 200;
             }
-        };
-        $this->assertResponseStatus(200);
+        });
+
+        $this->response->assertResponseStatus(200);
     }
 
     /**
@@ -110,14 +115,15 @@ class MakesHttpRequestsTest extends TestCase
     public function assertResponseStatus_throw_exception_when_the_response_status_is_not_equal_to_passed_by_parameter()
     {
         $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage('Expected status code 404, got 200.');
+        $this->expectExceptionMessage('Expected status code 404 but received 200.');
 
-        $this->response = new class {
+        $this->response = TestResponse::fromBaseResponse(new class {
             public function getStatusCode()
             {
                 return 200;
             }
-        };
-        $this->assertResponseStatus(404);
+        });
+
+        $this->response->assertResponseStatus(404);
     }
 }
