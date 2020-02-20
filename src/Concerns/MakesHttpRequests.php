@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Laravel\BrowserKitTesting\TestResponse;
 use PHPUnit\Framework\Assert as PHPUnit;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
@@ -274,7 +275,9 @@ trait MakesHttpRequests
     {
         $this->currentUri = $request->fullUrl();
 
-        $this->response = $this->app->prepareResponse($this->app->handle($request));
+        $this->response = TestResponse::fromBaseResponse(
+            $this->app->prepareResponse($this->app->handle($request))
+        );
 
         return $this;
     }
@@ -309,11 +312,7 @@ trait MakesHttpRequests
      */
     public function seeJsonEquals(array $data)
     {
-        $actual = json_encode(Arr::sortRecursive(
-            (array) $this->decodeResponseJson()
-        ));
-
-        $this->assertEquals(json_encode(Arr::sortRecursive($data)), $actual);
+        $this->response->assertExactJson($data);
 
         return $this;
     }
@@ -362,28 +361,7 @@ trait MakesHttpRequests
      */
     public function seeJsonStructure(array $structure = null, $responseData = null)
     {
-        if (is_null($structure)) {
-            return $this->seeJson();
-        }
-
-        if (is_null($responseData)) {
-            $responseData = $this->decodeResponseJson();
-        }
-
-        foreach ($structure as $key => $value) {
-            if (is_array($value) && $key === '*') {
-                $this->assertIsArray($responseData);
-
-                foreach ($responseData as $responseDataItem) {
-                    $this->seeJsonStructure($structure['*'], $responseDataItem);
-                }
-            } elseif (is_array($value)) {
-                $this->assertArrayHasKey($key, $responseData);
-                $this->seeJsonStructure($structure[$key], $responseData[$key]);
-            } else {
-                $this->assertArrayHasKey($value, $responseData);
-            }
-        }
+        $this->response->assertJsonStructure($structure, $responseData);
 
         return $this;
     }
@@ -397,19 +375,10 @@ trait MakesHttpRequests
      */
     protected function seeJsonContains(array $data, $negate = false)
     {
-        $method = $negate ? 'assertFalse' : 'assertTrue';
-
-        $actual = json_encode(Arr::sortRecursive(
-            (array) $this->decodeResponseJson()
-        ));
-
-        foreach (Arr::sortRecursive($data) as $key => $value) {
-            $expected = $this->formatToExpectedJson($key, $value);
-
-            $this->{$method}(
-                Str::contains($actual, $expected),
-                ($negate ? 'Found unexpected' : 'Unable to find').' JSON fragment'.PHP_EOL."[{$expected}]".PHP_EOL.'within'.PHP_EOL."[{$actual}]."
-            );
+        if ($negate) {
+            $this->response->assertJsonMissing($data, false);
+        } else {
+            $this->response->assertJsonFragment($data);
         }
 
         return $this;
@@ -432,28 +401,6 @@ trait MakesHttpRequests
     }
 
     /**
-     * Format the given key and value into a JSON string for expectation checks.
-     *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return string
-     */
-    protected function formatToExpectedJson($key, $value)
-    {
-        $expected = json_encode([$key => $value]);
-
-        if (Str::startsWith($expected, '{')) {
-            $expected = substr($expected, 1);
-        }
-
-        if (Str::endsWith($expected, '}')) {
-            $expected = substr($expected, 0, -1);
-        }
-
-        return trim($expected);
-    }
-
-    /**
      * Asserts that the status code of the response matches the given code.
      *
      * @param  int  $status
@@ -461,7 +408,7 @@ trait MakesHttpRequests
      */
     protected function seeStatusCode($status)
     {
-        $this->assertEquals($status, $this->response->getStatusCode());
+        $this->response->assertStatus($status);
 
         return $this;
     }
@@ -475,16 +422,7 @@ trait MakesHttpRequests
      */
     protected function seeHeader($headerName, $value = null)
     {
-        $headers = $this->response->headers;
-
-        $this->assertTrue($headers->has($headerName), "Header [{$headerName}] not present on response.");
-
-        if (! is_null($value)) {
-            $this->assertEquals(
-                $headers->get($headerName), $value,
-                "Header [{$headerName}] was found, but value [{$headers->get($headerName)}] does not match [{$value}]."
-            );
-        }
+        $this->response->assertHeader($headerName, $value);
 
         return $this;
     }
@@ -512,32 +450,7 @@ trait MakesHttpRequests
      */
     protected function seeCookie($cookieName, $value = null, $encrypted = true, $unserialize = true)
     {
-        $headers = $this->response->headers;
-
-        $exist = false;
-
-        foreach ($headers->getCookies() as $cookie) {
-            if ($cookie->getName() === $cookieName) {
-                $exist = true;
-                break;
-            }
-        }
-
-        $this->assertTrue($exist, "Cookie [{$cookieName}] not present on response.");
-
-        if (! $exist || is_null($value)) {
-            return $this;
-        }
-
-        $cookieValue = $cookie->getValue();
-
-        $actual = $encrypted
-            ? $this->app['encrypter']->decrypt($cookieValue, $unserialize) : $cookieValue;
-
-        $this->assertEquals(
-            $actual, $value,
-            "Cookie [{$cookieName}] was found, but value [{$actual}] does not match [{$value}]."
-        );
+        $this->response->assertCookie($cookieName, $value, $encrypted, $unserialize);
 
         return $this;
     }
@@ -586,7 +499,7 @@ trait MakesHttpRequests
 
         $kernel->terminate($request, $response);
 
-        return $this->response = $response;
+        return $this->response = TestResponse::fromBaseResponse($response);
     }
 
     /**
@@ -605,7 +518,7 @@ trait MakesHttpRequests
     {
         $uri = $this->app['url']->secure(ltrim($uri, '/'));
 
-        return $this->response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
+        return $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
     }
 
     /**
@@ -625,7 +538,7 @@ trait MakesHttpRequests
     {
         $uri = $this->app['url']->action($action, $wildcards, true);
 
-        return $this->response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
+        return $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
     }
 
     /**
@@ -645,7 +558,7 @@ trait MakesHttpRequests
     {
         $uri = $this->app['url']->route($name, $routeParameters);
 
-        return $this->response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
+        return $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
     }
 
     /**
@@ -718,160 +631,5 @@ trait MakesHttpRequests
         }
 
         return $files;
-    }
-
-    /**
-     * Assert that the client response has an OK status code.
-     *
-     * @return $this
-     */
-    public function assertResponseOk()
-    {
-        $actual = $this->response->getStatusCode();
-
-        PHPUnit::assertTrue($this->response->isOk(), "Expected status code 200, got {$actual}.");
-
-        return $this;
-    }
-
-    /**
-     * Assert that the client response has a given code.
-     *
-     * @param  int  $code
-     * @return $this
-     */
-    public function assertResponseStatus($code)
-    {
-        $actual = $this->response->getStatusCode();
-
-        PHPUnit::assertEquals($code, $this->response->getStatusCode(), "Expected status code {$code}, got {$actual}.");
-
-        return $this;
-    }
-
-    /**
-     * Assert that the response view has a given piece of bound data.
-     *
-     * @param  string|array  $key
-     * @param  mixed  $value
-     * @return $this
-     */
-    public function assertViewHas($key, $value = null)
-    {
-        if (is_array($key)) {
-            return $this->assertViewHasAll($key);
-        }
-
-        if (! isset($this->response->original) || ! $this->response->original instanceof View) {
-            return PHPUnit::assertTrue(false, 'The response was not a view.');
-        }
-
-        if (is_null($value)) {
-            PHPUnit::assertArrayHasKey($key, $this->response->original->getData());
-        } elseif ($value instanceof Closure) {
-            PHPUnit::assertTrue($value($this->response->original->$key));
-        } else {
-            PHPUnit::assertEquals($value, $this->response->original->$key);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Assert that the view has a given list of bound data.
-     *
-     * @param  array  $bindings
-     * @return $this
-     */
-    public function assertViewHasAll(array $bindings)
-    {
-        foreach ($bindings as $key => $value) {
-            if (is_int($key)) {
-                $this->assertViewHas($value);
-            } else {
-                $this->assertViewHas($key, $value);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Assert that the response view is missing a piece of bound data.
-     *
-     * @param  string  $key
-     * @return $this
-     */
-    public function assertViewMissing($key)
-    {
-        if (! isset($this->response->original) || ! $this->response->original instanceof View) {
-            return PHPUnit::assertTrue(false, 'The response was not a view.');
-        }
-
-        PHPUnit::assertArrayNotHasKey($key, $this->response->original->getData());
-
-        return $this;
-    }
-
-    /**
-     * Assert whether the client was redirected to a given URI.
-     *
-     * @param  string  $uri
-     * @param  array  $with
-     * @return $this
-     */
-    public function assertRedirectedTo($uri, $with = [])
-    {
-        PHPUnit::assertInstanceOf('Symfony\Component\HttpFoundation\RedirectResponse', $this->response);
-
-        PHPUnit::assertEquals($this->app['url']->to($uri), $this->response->headers->get('Location'));
-
-        $this->assertSessionHasAll($with);
-
-        return $this;
-    }
-
-    /**
-     * Assert whether the client was redirected to a given route.
-     *
-     * @param  string  $name
-     * @param  array  $parameters
-     * @param  array  $with
-     * @return $this
-     */
-    public function assertRedirectedToRoute($name, $parameters = [], $with = [])
-    {
-        return $this->assertRedirectedTo($this->app['url']->route($name, $parameters), $with);
-    }
-
-    /**
-     * Assert whether the client was redirected to a given action.
-     *
-     * @param  string  $name
-     * @param  array  $parameters
-     * @param  array  $with
-     * @return $this
-     */
-    public function assertRedirectedToAction($name, $parameters = [], $with = [])
-    {
-        return $this->assertRedirectedTo($this->app['url']->action($name, $parameters), $with);
-    }
-
-    /**
-     * Dump the content from the last response.
-     *
-     * @return void
-     */
-    public function dump()
-    {
-        $content = $this->response->getContent();
-
-        $json = json_decode($content);
-
-        if (json_last_error() === JSON_ERROR_NONE) {
-            $content = $json;
-        }
-
-        dd($content);
     }
 }
