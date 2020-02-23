@@ -5,6 +5,7 @@ namespace Laravel\BrowserKitTesting\Concerns;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use Illuminate\Testing\PHPUnit;
 use Laravel\BrowserKitTesting\TestResponse;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
@@ -323,8 +324,8 @@ trait MakesHttpRequests
     public function seeJson(array $data = null, $negate = false)
     {
         if (is_null($data)) {
-            $this->assertJson(
-                $this->response->getContent(), "JSON was not returned from [{$this->currentUri}]."
+            PHPUnit::assertArraySubset(
+                null, json_decode($this->getContent(), true), false, "JSON was not returned from [{$this->currentUri}]."
             );
 
             return $this;
