@@ -2,6 +2,7 @@
 
 namespace Laravel\BrowserKitTesting;
 
+use Illuminate\Testing\Assert as PHPUnit;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class TestResponse extends \Illuminate\Testing\TestResponse
