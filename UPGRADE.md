@@ -2,24 +2,23 @@
 
 ## Upgrading To 6.0 From 5.x
 
-### Minimum Laravel version
+### Minimum Laravel Version
 
-Laravel 7.0 is now the minimum supported version of the framework and you should upgrade to continue using Browser Kit Testing.
+Laravel 7.0 is now the minimum supported version of the framework.
 
-### Minimum PHP version
+### Minimum PHP Version
 
-PHP 7.2 is now the minimum supported version of the language and you should upgrade to continue using Browser Kit Testing.
+PHP 7.2 is now the minimum supported version of the language.
 
-### Minimum PHPUnit version
+### Minimum PHPUnit Version
 
-PHPUnit 8.5 is now the minimum supported version of the language and you should upgrade to continue using Browser Kit Testing.
+PHPUnit 8.5 is now the minimum supported version of the library.
 
 ### Keep Cookies Between Redirects
 
 PR: https://github.com/laravel/browser-kit-testing/pull/107
 
-When using the `followRedirects` method, previously set cookies will now be preserved.
-
+When using the `followRedirects` method, previously defined cookies will now be preserved.
 
 ## Upgrading To 5.0 From 4.x
 
