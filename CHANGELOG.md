@@ -2,10 +2,17 @@
 
 ## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...master)
 
+### Added
+- Allow PHPUnit 9 ([#121](https://github.com/laravel/browser-kit-testing/pull/121))
+
 ### Changed
-- Dropped support for Laravel 5.7 & 5.8 ([36b1614](https://github.com/laravel/browser-kit-testing/commit/36b1614abacdd680dafcf22111707d1a036a75b4))
+- Bumped minimum dependencies to Laravel 7.0 ([#111](https://github.com/laravel/browser-kit-testing/pull/111))
 - Dropped support for PHP 7.1 ([d0152a0](https://github.com/laravel/browser-kit-testing/commit/d0152a091a3ada16b2fa70fab1f7e4e42eb539cf))
-- Bumped minimum Symfony dependencies to 4.3 ([cf60fdb](https://github.com/laravel/browser-kit-testing/commit/cf60fdb7983dcc1c4718552e436f239255a282fc))
+- Keep cookies between redirects ([#107](https://github.com/laravel/browser-kit-testing/pull/107))
+- Utilise `illuminate/testing` ([#126](https://github.com/laravel/browser-kit-testing/pull/126))
+
+### Removed
+- Remove deprecated `seeJsonSubset` method ([#116](https://github.com/laravel/browser-kit-testing/pull/116))
 
 
 ## [v5.1.3 (2019-07-30)](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...v5.1.3)
