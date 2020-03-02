@@ -8,6 +8,7 @@
 ### Changed
 - Bumped minimum dependencies to Laravel 7.0 ([#111](https://github.com/laravel/browser-kit-testing/pull/111))
 - Dropped support for PHP 7.1 ([d0152a0](https://github.com/laravel/browser-kit-testing/commit/d0152a091a3ada16b2fa70fab1f7e4e42eb539cf))
+- Dropped support for PHPUnit 7.x
 - Keep cookies between redirects ([#107](https://github.com/laravel/browser-kit-testing/pull/107))
 - Utilise `illuminate/testing` ([#126](https://github.com/laravel/browser-kit-testing/pull/126))
 
