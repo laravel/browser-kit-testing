@@ -1,6 +1,26 @@
 # Upgrade Guide
 
-## Upgrading To 5.0 From 4.0
+## Upgrading To 6.0 From 5.x
+
+### Minimum Laravel Version
+
+Laravel 7.0 is now the minimum supported version of the framework.
+
+### Minimum PHP Version
+
+PHP 7.2 is now the minimum supported version of the language.
+
+### Minimum PHPUnit Version
+
+PHPUnit 8.5 is now the minimum supported version of the library.
+
+### Keep Cookies Between Redirects
+
+PR: https://github.com/laravel/browser-kit-testing/pull/107
+
+When using the `followRedirects` method, previously defined cookies will now be preserved.
+
+## Upgrading To 5.0 From 4.x
 
 ### PHPUnit 8
 
