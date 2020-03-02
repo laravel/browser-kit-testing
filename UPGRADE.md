@@ -10,6 +10,10 @@ Laravel 7.0 is now the minimum supported version of the framework and you should
 
 PHP 7.2 is now the minimum supported version of the language and you should upgrade to continue using Browser Kit Testing.
 
+### Minimum PHPUnit version
+
+PHPUnit 8.5 is now the minimum supported version of the language and you should upgrade to continue using Browser Kit Testing.
+
 ### Keep Cookies Between Redirects
 
 PR: https://github.com/laravel/browser-kit-testing/pull/107
