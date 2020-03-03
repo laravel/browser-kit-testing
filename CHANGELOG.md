@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...master)
 
 ### Added
 - Allow PHPUnit 9 ([#121](https://github.com/laravel/browser-kit-testing/pull/121))
