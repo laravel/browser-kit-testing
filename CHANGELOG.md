@@ -1,6 +1,9 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.0.0...6.x)
+
+
+## [v6.0.0 (2020-03-03)](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...v6.0.0)
 
 ### Added
 - Allow PHPUnit 9 ([#121](https://github.com/laravel/browser-kit-testing/pull/121))
