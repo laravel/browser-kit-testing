@@ -811,13 +811,8 @@ trait MakesHttpRequests
             return array_merge($this->defaultCookies, $this->unencryptedCookies);
         }
 
-        $appKey = config('app.key');
-        if (Str::startsWith($appKey, 'base64:')) {
-            $appKey = base64_decode(substr($appKey, 7));
-        }
-
-        return collect($this->defaultCookies)->map(function ($value, $key) use ($appKey) {
-            return encrypt(CookieValuePrefix::create($key, $appKey).$value, false);
+        return collect($this->defaultCookies)->map(function ($value, $key) {
+            return encrypt(CookieValuePrefix::create($key, app('encrypter')->getKey()).$value, false);
         })->merge($this->unencryptedCookies)->all();
     }
 
