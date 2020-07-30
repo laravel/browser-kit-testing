@@ -4,6 +4,7 @@ namespace Laravel\BrowserKitTesting\Concerns;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
@@ -39,6 +40,27 @@ trait MakesHttpRequests
     protected $serverVariables = [];
 
     /**
+     * Additional cookies for the request.
+     *
+     * @var array
+     */
+    protected $defaultCookies = [];
+
+    /**
+     * Additional cookies will not be encrypted for the request.
+     *
+     * @var array
+     */
+    protected $unencryptedCookies = [];
+
+    /**
+     * Indicates whether cookies should be encrypted.
+     *
+     * @var bool
+     */
+    protected $encryptCookies = true;
+
+    /**
      * Disable middleware for the test.
      *
      * @param null $middleware
@@ -66,6 +88,72 @@ trait MakesHttpRequests
     }
 
     /**
+     * Define additional cookies to be sent with the request.
+     *
+     * @param  array  $cookies
+     * @return $this
+     */
+    public function withCookies(array $cookies)
+    {
+        $this->defaultCookies = array_merge($this->defaultCookies, $cookies);
+
+        return $this;
+    }
+
+    /**
+     * Add a cookie to be sent with the request.
+     *
+     * @param  string  $name
+     * @param  string  $value
+     * @return $this
+     */
+    public function withCookie(string $name, string $value)
+    {
+        $this->defaultCookies[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Define additional cookies will not be encrypted before sending with the request.
+     *
+     * @param  array  $cookies
+     * @return $this
+     */
+    public function withUnencryptedCookies(array $cookies)
+    {
+        $this->unencryptedCookies = array_merge($this->unencryptedCookies, $cookies);
+
+        return $this;
+    }
+
+    /**
+     * Add a cookie will not be encrypted before sending with the request.
+     *
+     * @param  string  $name
+     * @param  string  $value
+     * @return $this
+     */
+    public function withUnencryptedCookie(string $name, string $value)
+    {
+        $this->unencryptedCookies[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Disable automatic encryption of cookie values.
+     *
+     * @return $this
+     */
+    public function disableCookieEncryption()
+    {
+        $this->encryptCookies = false;
+
+        return $this;
+    }
+
+    /**
      * Visit the given URI with a JSON request.
      *
      * @param  string  $method
@@ -77,6 +165,7 @@ trait MakesHttpRequests
     public function json($method, $uri, array $data = [], array $headers = [])
     {
         $files = $this->extractFilesFromDataArray($data);
+        $cookies = $this->prepareCookiesForRequest();
 
         $content = json_encode($data);
 
@@ -124,6 +213,7 @@ trait MakesHttpRequests
     public function get($uri, array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
+        $cookies = $this->prepareCookiesForRequest();
 
         $this->call('GET', $uri, [], [], [], $server);
 
@@ -153,8 +243,9 @@ trait MakesHttpRequests
     public function post($uri, array $data = [], array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
+        $cookies = $this->prepareCookiesForRequest();
 
-        $this->call('POST', $uri, $data, [], [], $server);
+        $this->call('POST', $uri, $data, $cookies, [], $server);
 
         return $this;
     }
@@ -183,8 +274,9 @@ trait MakesHttpRequests
     public function put($uri, array $data = [], array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
+        $cookies = $this->prepareCookiesForRequest();
 
-        $this->call('PUT', $uri, $data, [], [], $server);
+        $this->call('PUT', $uri, $data, $cookies, [], $server);
 
         return $this;
     }
@@ -213,8 +305,9 @@ trait MakesHttpRequests
     public function patch($uri, array $data = [], array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
+        $cookies = $this->prepareCookiesForRequest();
 
-        $this->call('PATCH', $uri, $data, [], [], $server);
+        $this->call('PATCH', $uri, $data, $cookies, [], $server);
 
         return $this;
     }
@@ -243,8 +336,9 @@ trait MakesHttpRequests
     public function delete($uri, array $data = [], array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
+        $cookies = $this->prepareCookiesForRequest();
 
-        $this->call('DELETE', $uri, $data, [], [], $server);
+        $this->call('DELETE', $uri, $data, $cookies, [], $server);
 
         return $this;
     }
@@ -704,6 +798,22 @@ trait MakesHttpRequests
         }
 
         return $server;
+    }
+
+    /**
+     * If enabled, encrypt cookie values for request.
+     *
+     * @return array
+     */
+    protected function prepareCookiesForRequest()
+    {
+        if (! $this->encryptCookies) {
+            return array_merge($this->defaultCookies, $this->unencryptedCookies);
+        }
+
+        return collect($this->defaultCookies)->map(function ($value, $key) {
+            return encrypt(CookieValuePrefix::create($key, app('encrypter')->getKey()).$value, false);
+        })->merge($this->unencryptedCookies)->all();
     }
 
     /**
