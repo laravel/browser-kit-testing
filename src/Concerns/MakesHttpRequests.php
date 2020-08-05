@@ -619,7 +619,7 @@ trait MakesHttpRequests
      * @param  bool  $unserialize
      * @return $this
      */
-    protected function seeCookie($cookieName, $value = null, $encrypted = true, $unserialize = true)
+    protected function seeCookie($cookieName, $value = null, $encrypted = true, $unserialize = false)
     {
         $headers = $this->response->headers;
 
@@ -642,6 +642,11 @@ trait MakesHttpRequests
 
         $actual = $encrypted
             ? $this->app['encrypter']->decrypt($cookieValue, $unserialize) : $cookieValue;
+        
+        // remove the prefix from the cookie
+        $hasValidPrefix = strpos($actual, CookieValuePrefix::create($cookieName, app('encrypter')->getKey())) === 0;
+
+        $actual = $hasValidPrefix ? CookieValuePrefix::remove($actual) : null;
 
         $this->assertEquals(
             $actual, $value,
