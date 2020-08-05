@@ -643,7 +643,6 @@ trait MakesHttpRequests
         $actual = $encrypted
             ? $this->app['encrypter']->decrypt($cookieValue, $unserialize) : $cookieValue;
 
-        // remove the prefix from the cookie
         $hasValidPrefix = strpos($actual, CookieValuePrefix::create($cookieName, app('encrypter')->getKey())) === 0;
 
         $actual = $hasValidPrefix ? CookieValuePrefix::remove($actual) : null;
