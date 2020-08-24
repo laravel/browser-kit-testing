@@ -126,4 +126,25 @@ class MakesHttpRequestsTest extends TestCase
 
         $this->response->assertResponseStatus(404);
     }
+
+    public function testWithCookieSetCookie()
+    {
+        $this->withCookie('foo', 'bar');
+
+        $this->assertCount(1, $this->defaultCookies);
+        $this->assertSame('bar', $this->defaultCookies['foo']);
+    }
+
+    public function testWithCookiesSetsCookiesAndOverwritesPreviousValues()
+    {
+        $this->withCookie('foo', 'bar');
+        $this->withCookies([
+            'foo' => 'baz',
+            'new-cookie' => 'new-value',
+        ]);
+
+        $this->assertCount(2, $this->defaultCookies);
+        $this->assertSame('baz', $this->defaultCookies['foo']);
+        $this->assertSame('new-value', $this->defaultCookies['new-cookie']);
+    }
 }
