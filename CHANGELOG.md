@@ -3,7 +3,7 @@
 ## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.0.0...6.x)
 
 
-## [v6.0.0 (2020-03-03)](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...v6.0.0)
+## [v6.0.0 (2020-03-03)](https://github.com/laravel/browser-kit-testing/compare/v5.1.4...v6.0.0)
 
 ### Added
 - Allow PHPUnit 9 ([#121](https://github.com/laravel/browser-kit-testing/pull/121))
@@ -17,6 +17,12 @@
 
 ### Removed
 - Remove deprecated `seeJsonSubset` method ([#116](https://github.com/laravel/browser-kit-testing/pull/116))
+
+
+## [v5.1.4 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...v5.1.4)
+
+### Security
+- Cookie handling fixes ([#137](https://github.com/laravel/browser-kit-testing/pull/137), [#139](https://github.com/laravel/browser-kit-testing/pull/139))
 
 
 ## [v5.1.3 (2019-07-30)](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...v5.1.3)
