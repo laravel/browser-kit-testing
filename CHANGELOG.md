@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.1.01...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.1.0...6.x)
 
 
 ## [v6.1.0 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v6.0.0...v6.1.0)
