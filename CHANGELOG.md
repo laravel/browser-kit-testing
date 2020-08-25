@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...5.0)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v5.1.4...5.0)
+
+
+## [v5.1.4 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...v5.1.4)
+
+### Security
+- Cookie handling fixes ([#137](https://github.com/laravel/browser-kit-testing/pull/137), [#139](https://github.com/laravel/browser-kit-testing/pull/139))
 
 
 ## [v5.1.3 (2019-07-30)](https://github.com/laravel/browser-kit-testing/compare/v5.1.2...v5.1.3)
