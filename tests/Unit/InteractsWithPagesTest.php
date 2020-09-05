@@ -430,7 +430,7 @@ class InteractsWithPagesTest extends TestCase
         $this->createPage($body);
 
         $this->within('.card-user > h3', function () {
-            $this->assertEquals(
+            $this->assertSame(
                 'John Doe',
                 $this->crawler()->text()
             );
@@ -450,9 +450,9 @@ class InteractsWithPagesTest extends TestCase
             \Illuminate\Http\UploadedFile::class,
             $file
         );
-        $this->assertEquals('avatar.png', $file->getClientOriginalName());
-        $this->assertEquals('txt/plain', $file->getClientMimeType());
-        $this->assertEquals(0, $file->getSize());
+        $this->assertSame('avatar.png', $file->getClientOriginalName());
+        $this->assertSame('txt/plain', $file->getClientMimeType());
+        $this->assertSame(0, $file->getSize());
     }
 
     public function attributes_UploadedFile()

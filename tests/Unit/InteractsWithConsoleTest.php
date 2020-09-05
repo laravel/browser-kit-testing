@@ -24,12 +24,12 @@ class InteractsWithConsoleTest extends TestCase
         $command = 'app:user';
         $parameters = ['name' => 'john'];
 
-        $this->assertEquals(
+        $this->assertSame(
             'User was created.',
             $this->artisan($command, $parameters)
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             $this->code,
             $this->app[Kernel::class]->call($command, $parameters)
         );
