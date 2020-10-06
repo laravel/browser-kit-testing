@@ -5,11 +5,13 @@
 <a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/browser-kit-testing"><img src="https://poser.pugx.org/laravel/browser-kit-testing/license.svg" alt="License"></a>
 
-This package provides a backwards compatibility layer for Laravel 5.3 style "BrowserKit" testing in the latest Laravel release.
+## Introduction
+
+Laravel BrowserKit Testing provides a very fluent API for making HTTP requests to your application, examining the output, and even filling out forms.
 
 - [Official Documentation](#official-documentation)
     - [Installation](#installation)
-    - [Introduction](#introduction)
+    - [Usage](#usage)
     - [Interacting With Your Application](#interacting-with-your-application)
         - [Interacting With Links](#interacting-with-links)
         - [Interacting With Forms](#interacting-with-forms)
@@ -54,9 +56,9 @@ abstract class TestCase extends BaseTestCase
 
 No other modifications to your tests should be necessary.
 
-### Introduction
+### Usage
 
-Laravel BrowserKit Testing provides a very fluent API for making HTTP requests to your application, examining the output, and even filling out forms. For example, take a look at the test defined below:
+To get started with a simple example, take a look at the test defined below:
 
 ```php
 <?php
@@ -94,7 +96,6 @@ $this->visitRoute('profile', ['user' => 1]);
 
 Of course, you can do much more than simply assert that text appears in a given response. Let's take a look at some examples of clicking links and filling out forms:
 
-<a name="interacting-with-links"></a>
 ### Interacting With Links
 
 In this test, we will make a request to the application, "click" a link in the returned response, and then assert that we landed on a given URI. For example, let's assume there is a link in our response that has a text value of "About Us":
@@ -345,7 +346,6 @@ You may also specify which guard should be used to authenticate the given user b
 $this->actingAs($user, 'api')
 ```
 
-<a name="disabling-middleware"></a>
 ## Disabling Middleware
 
 When testing your application, you may find it convenient to disable [middleware](/docs/{{version}}/middleware) for some of your tests. This will allow you to test your routes and controller in isolation from any middleware concerns. Laravel includes a simple `WithoutMiddleware` trait that you can use to automatically disable all middleware for the test class:
