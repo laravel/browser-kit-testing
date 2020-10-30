@@ -15,26 +15,13 @@ jobs:
       matrix:
         php: [7.1, 7.2, 7.3, 7.4, 8.0]
         laravel: [~5.7.0, ~5.8.0, ^6.0]
-        phpunit: [^7.5, ^8.0, ^9.3]
         exclude:
-          - php: 7.1
-            phpunit: ^8.0
-          - php: 7.1
-            phpunit: ^9.3
-          - php: 7.2
-            phpunit: ^9.3
-          - php: 8.0
-            phpunit: ^7.5
-          - php: 8.0
-            phpunit: ^8.0
           - php: 8.0
             laravel: ~5.7.0
           - php: 8.0
             laravel: ~5.8.0
-          - laravel: ^6.0
-            phpunit: ^7.5
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - U${{ matrix.phpunit }}
+    name: P${{ matrix.php }} - L${{ matrix.laravel }}
 
     steps:
       - name: Checkout code
@@ -50,7 +37,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "illuminate/contracts:${{ matrix.laravel }}" "phpunit/phpunit:${{ matrix.phpunit }}" --dev --no-update
+          composer require "illuminate/contracts:${{ matrix.laravel }}" --no-update
           composer update --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
