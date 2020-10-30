@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.1.0...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.0...6.x)
+
+
+## [v6.2.0 (2020-10-30)](https://github.com/laravel/browser-kit-testing/compare/v6.1.0...v6.2.0)
+
+### Added
+- PHP 8 Support ([#146](https://github.com/laravel/browser-kit-testing/pull/146))
 
 
 ## [v6.1.0 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v6.0.0...v6.1.0)
