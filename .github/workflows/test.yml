@@ -18,6 +18,8 @@ jobs:
         phpunit: [^7.5, ^8.0, ^9.3]
         exclude:
           - php: 7.1
+            phpunit: ^8.0
+          - php: 7.1
             phpunit: ^9.3
           - php: 7.2
             phpunit: ^9.3
