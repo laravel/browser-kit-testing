@@ -16,6 +16,8 @@ jobs:
         php: [7.1, 7.2, 7.3, 7.4, 8.0]
         laravel: [~5.7.0, ~5.8.0, ^6.0]
         exclude:
+          - php: 7.1
+            laravel: ^6.0
           - php: 8.0
             laravel: ~5.7.0
           - php: 8.0
