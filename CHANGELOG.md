@@ -28,6 +28,12 @@
 - Remove deprecated `seeJsonSubset` method ([#116](https://github.com/laravel/browser-kit-testing/pull/116))
 
 
+## [v5.2.0 (2020-10-30)](https://github.com/laravel/browser-kit-testing/compare/v5.1.4...v5.2.0)
+
+### Added
+- PHP 8 Support ([#147](https://github.com/laravel/browser-kit-testing/pull/147))
+
+
 ## [v5.1.4 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...v5.1.4)
 
 ### Security
