@@ -2,6 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Concerns;
 
+use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
