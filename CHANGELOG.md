@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.0...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.1...6.x)
+
+
+## [v6.2.1 (2020-11-10)](https://github.com/laravel/browser-kit-testing/compare/v6.2.0...v6.2.1)
+
+### Fixed
+- Add missing import for CookieValuePrefix ([#148](https://github.com/laravel/browser-kit-testing/pull/148))
 
 
 ## [v6.2.0 (2020-10-30)](https://github.com/laravel/browser-kit-testing/compare/v6.1.0...v6.2.0)
