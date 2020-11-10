@@ -1,6 +1,18 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.1.0...master)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.1...master)
+
+
+## [v6.2.1 (2020-11-10)](https://github.com/laravel/browser-kit-testing/compare/v6.2.0...v6.2.1)
+
+### Fixed
+- Add missing import for CookieValuePrefix ([#148](https://github.com/laravel/browser-kit-testing/pull/148))
+
+
+## [v6.2.0 (2020-10-30)](https://github.com/laravel/browser-kit-testing/compare/v6.1.0...v6.2.0)
+
+### Added
+- PHP 8 Support ([#146](https://github.com/laravel/browser-kit-testing/pull/146))
 
 
 ## [v6.1.0 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v6.0.0...v6.1.0)
@@ -26,6 +38,12 @@
 
 ### Removed
 - Remove deprecated `seeJsonSubset` method ([#116](https://github.com/laravel/browser-kit-testing/pull/116))
+
+
+## [v5.2.0 (2020-10-30)](https://github.com/laravel/browser-kit-testing/compare/v5.1.4...v5.2.0)
+
+### Added
+- PHP 8 Support ([#147](https://github.com/laravel/browser-kit-testing/pull/147))
 
 
 ## [v5.1.4 (2020-08-25)](https://github.com/laravel/browser-kit-testing/compare/v5.1.3...v5.1.4)

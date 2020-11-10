@@ -109,7 +109,7 @@ class InteractsWithDatabaseTest extends TestCase
             }
         };
         $this->seed();
-        $this->assertEquals(
+        $this->assertSame(
             'Seeding: DatabaseSeeder',
             $this->code
         );
