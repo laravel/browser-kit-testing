@@ -19,7 +19,7 @@ trait MakesHttpRequests
     /**
      * The last response returned by the application.
      *
-     * @var \Illuminate\Http\Response
+     * @var \Laravel\BrowserKitTesting\TestResponse
      */
     protected $response;
 
@@ -555,7 +555,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Illuminate\Http\Response
+     * @return \Laravel\BrowserKitTesting\TestResponse
      */
     public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -589,7 +589,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Illuminate\Http\Response
+     * @return \Laravel\BrowserKitTesting\TestResponse
      */
     public function callSecure($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -609,7 +609,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Illuminate\Http\Response
+     * @return \Laravel\BrowserKitTesting\TestResponse
      */
     public function action($method, $action, $wildcards = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -629,7 +629,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Illuminate\Http\Response
+     * @return \Laravel\BrowserKitTesting\TestResponse
      */
     public function route($method, $name, $routeParameters = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
