@@ -173,7 +173,7 @@ trait MakesHttpRequests
         ], $headers);
 
         $this->call(
-            $method, $uri, [], [], $files, $this->transformHeadersToServerVars($headers), $content
+            $method, $uri, [], $cookies, $files, $this->transformHeadersToServerVars($headers), $content
         );
 
         return $this;
@@ -212,7 +212,7 @@ trait MakesHttpRequests
         $server = $this->transformHeadersToServerVars($headers);
         $cookies = $this->prepareCookiesForRequest();
 
-        $this->call('GET', $uri, [], [], [], $server);
+        $this->call('GET', $uri, [], $cookies, [], $server);
 
         return $this;
     }
