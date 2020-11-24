@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.1...master)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.2...master)
+
+
+## [v6.2.2 (2020-11-24)](https://github.com/laravel/browser-kit-testing/compare/v6.2.1...v6.2.2)
+
+### Fixed
+- Use TestResponse as return value in PHPDoc ([#150](https://github.com/laravel/browser-kit-testing/pull/150))
+- Fix missing `$cookies` argument ([#151](https://github.com/laravel/browser-kit-testing/pull/151))
 
 
 ## [v6.2.1 (2020-11-10)](https://github.com/laravel/browser-kit-testing/compare/v6.2.0...v6.2.1)
