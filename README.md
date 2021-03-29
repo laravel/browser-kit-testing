@@ -9,24 +9,6 @@
 
 Laravel BrowserKit Testing provides a very fluent API for making HTTP requests to your application, examining the output, and even filling out forms.
 
-- [Official Documentation](#official-documentation)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Interacting With Your Application](#interacting-with-your-application)
-        - [Interacting With Links](#interacting-with-links)
-        - [Interacting With Forms](#interacting-with-forms)
-    - [Testing JSON APIs](#testing-json-apis)
-        - [Verifying Exact Match](#verifying-exact-match)
-        - [Verifying Structural Match](#verifying-structural-match)
-    - [Sessions / Authentication](#sessions--authentication)
-    - [Disabling Middleware](#disabling-middleware)
-    - [Custom HTTP Requests](#custom-http-requests)
-    - [PHPUnit Assertions](#phpunit-assertions)
-- [Contributing](#contributing)
-- [Code of Conduct](#code-of-conduct)
-- [Security Vulnerabilities](#security-vulnerabilities)
-- [License](#license)
-
 ## Official Documentation
 
 ### Installation
