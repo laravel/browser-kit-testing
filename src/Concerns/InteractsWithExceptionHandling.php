@@ -39,7 +39,8 @@ trait InteractsWithExceptionHandling
     {
         $this->previousExceptionHandler = app(ExceptionHandler::class);
 
-        $this->app->instance(ExceptionHandler::class, new class implements ExceptionHandler {
+        $this->app->instance(ExceptionHandler::class, new class implements ExceptionHandler
+        {
             public function __construct()
             {
             }

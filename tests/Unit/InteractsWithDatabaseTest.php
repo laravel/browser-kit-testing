@@ -17,7 +17,8 @@ class InteractsWithDatabaseTest extends TestCase
      */
     public function assert_that_data_exists_on_databases()
     {
-        $this->app = new class {
+        $this->app = new class
+        {
             public function make()
             {
                 return $this;
@@ -58,7 +59,8 @@ class InteractsWithDatabaseTest extends TestCase
      */
     public function assert_that_data_not_exists_on_databases()
     {
-        $this->app = new class {
+        $this->app = new class
+        {
             public function make()
             {
                 return $this;
@@ -102,7 +104,8 @@ class InteractsWithDatabaseTest extends TestCase
      */
     public function run_seed()
     {
-        $this->app[Kernel::class] = new class {
+        $this->app[Kernel::class] = new class
+        {
             public function call()
             {
                 return 'Seeding: DatabaseSeeder';

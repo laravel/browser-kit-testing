@@ -359,7 +359,8 @@ class InteractsWithPagesTest extends TestCase
     public function assertPageLoaded_check_that_the_page_was_loaded()
     {
         $this->app = null;
-        $this->response = new class {
+        $this->response = new class
+        {
             public function getStatusCode()
             {
                 return 200;
@@ -378,7 +379,8 @@ class InteractsWithPagesTest extends TestCase
         $this->expectExceptionMessage('A request to [http://localhost/login] failed. Received status code [404].');
 
         $this->app = null;
-        $this->response = new class {
+        $this->response = new class
+        {
             public function getStatusCode()
             {
                 return 404;
@@ -397,7 +399,8 @@ class InteractsWithPagesTest extends TestCase
         $this->expectExceptionMessage('A request to [http://localhost/login] failed. Received status code [500].');
 
         $this->app = null;
-        $this->response = new class {
+        $this->response = new class
+        {
             public $exception;
 
             public function __construct()

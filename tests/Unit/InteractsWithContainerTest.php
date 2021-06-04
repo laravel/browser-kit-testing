@@ -14,13 +14,15 @@ class InteractsWithContainerTest extends TestCase
      */
     public function register_instances_of_object_on_container()
     {
-        $this->app = new class {
+        $this->app = new class
+        {
             public function instance()
             {
             }
         };
         $abstract = 'Foo';
-        $instance = new class {
+        $instance = new class
+        {
         };
         $this->assertEquals(
             $instance,
