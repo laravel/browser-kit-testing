@@ -41,7 +41,8 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function seeStatusCode_check_status_code()
     {
-        $this->response = TestResponse::fromBaseResponse(new class {
+        $this->response = TestResponse::fromBaseResponse(new class
+        {
             public function getStatusCode()
             {
                 return 200;
@@ -56,7 +57,8 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function assertResponseOk_check_that_the_status_page_should_be_200()
     {
-        $this->response = TestResponse::fromBaseResponse(new class {
+        $this->response = TestResponse::fromBaseResponse(new class
+        {
             public function getStatusCode()
             {
                 return 200;
@@ -79,7 +81,8 @@ class MakesHttpRequestsTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage('Response status code [404] does not match expected 200 status code.');
 
-        $this->response = TestResponse::fromBaseResponse(new class {
+        $this->response = TestResponse::fromBaseResponse(new class
+        {
             public function getStatusCode()
             {
                 return 404;
@@ -99,7 +102,8 @@ class MakesHttpRequestsTest extends TestCase
      */
     public function assertResponseStatus_check_the_response_status_is_equal_to_passed_by_parameter()
     {
-        $this->response = TestResponse::fromBaseResponse(new class {
+        $this->response = TestResponse::fromBaseResponse(new class
+        {
             public function getStatusCode()
             {
                 return 200;
@@ -117,7 +121,8 @@ class MakesHttpRequestsTest extends TestCase
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage('Expected status code 404 but received 200.');
 
-        $this->response = TestResponse::fromBaseResponse(new class {
+        $this->response = TestResponse::fromBaseResponse(new class
+        {
             public function getStatusCode()
             {
                 return 200;
