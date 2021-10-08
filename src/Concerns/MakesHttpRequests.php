@@ -61,8 +61,7 @@ trait MakesHttpRequests
     /**
      * Disable middleware for the test.
      *
-     * @param null $middleware
-     *
+     * @param  null  $middleware
      * @return $this
      */
     public function withoutMiddleware($middleware = null)
@@ -74,7 +73,8 @@ trait MakesHttpRequests
         }
 
         foreach ((array) $middleware as $abstract) {
-            $this->app->instance($abstract, new class {
+            $this->app->instance($abstract, new class
+            {
                 public function handle($request, $next)
                 {
                     return $next($request);

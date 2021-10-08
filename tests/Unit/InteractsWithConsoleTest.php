@@ -15,7 +15,8 @@ class InteractsWithConsoleTest extends TestCase
      */
     public function call_artisan_command_return_code()
     {
-        $this->app[Kernel::class] = new class {
+        $this->app[Kernel::class] = new class
+        {
             public function call($command, $parameters)
             {
                 return 'User was created.';
