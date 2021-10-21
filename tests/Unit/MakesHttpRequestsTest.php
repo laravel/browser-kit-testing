@@ -80,7 +80,6 @@ class MakesHttpRequestsTest extends TestCase
     public function assertResponseOk_throw_exception_when_the_status_page_is_not_200()
     {
         $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage('Expected response status code [200] but received 404.');
 
         $this->response = TestResponse::fromBaseResponse(new class extends Response
         {
@@ -120,7 +119,6 @@ class MakesHttpRequestsTest extends TestCase
     public function assertResponseStatus_throw_exception_when_the_response_status_is_not_equal_to_passed_by_parameter()
     {
         $this->expectException(ExpectationFailedException::class);
-        $this->expectExceptionMessage('Expected response status code [404] but received 200.');
 
         $this->response = TestResponse::fromBaseResponse(new class extends Response
         {
