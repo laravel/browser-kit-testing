@@ -61,8 +61,7 @@ trait MakesHttpRequests
     /**
      * Disable middleware for the test.
      *
-     * @param null $middleware
-     *
+     * @param  null  $middleware
      * @return $this
      */
     public function withoutMiddleware($middleware = null)
