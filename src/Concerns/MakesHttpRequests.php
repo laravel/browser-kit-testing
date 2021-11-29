@@ -6,7 +6,6 @@ use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
-use Illuminate\Testing\Assert as PHPUnit;
 use Laravel\BrowserKitTesting\TestResponse;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
