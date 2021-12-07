@@ -15,7 +15,8 @@ class InteractsWithSessionTest extends TestCase
      */
     public function session_method_can_add_data_on_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
             protected $put = 0;
 
             public function isStarted()
@@ -33,7 +34,8 @@ class InteractsWithSessionTest extends TestCase
                 return $times == $this->put;
             }
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
         };
 
         $this->session([
@@ -49,7 +51,8 @@ class InteractsWithSessionTest extends TestCase
      */
     public function withSession_method_can_add_data_on_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
             protected $put = 0;
 
             public function isStarted()
@@ -67,7 +70,8 @@ class InteractsWithSessionTest extends TestCase
                 return $times == $this->put;
             }
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
         };
 
         $this->withSession([
@@ -83,7 +87,8 @@ class InteractsWithSessionTest extends TestCase
      */
     public function can_start_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
             public $start = false;
 
             public function isStarted()
@@ -107,7 +112,8 @@ class InteractsWithSessionTest extends TestCase
      */
     public function can_flush_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
             protected $flush = false;
 
             public function isStarted()
@@ -136,9 +142,11 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_if_exists_data_on_session_and_check_exist_key()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
             public function get($key)
             {
                 return 'bar';
@@ -161,9 +169,11 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_multi_data_on_session_and_check_multi_keys()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
             protected $data = [
                 'foo' => 'bar',
                 'unit' => 'test',
@@ -198,9 +208,11 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_not_exists_key_and_multi_key_on_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
             public function has($key)
             {
                 return false;
@@ -215,9 +227,11 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_if_exists_errors_on_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
             public function get($key)
             {
                 return $this;
@@ -237,10 +251,12 @@ class InteractsWithSessionTest extends TestCase
     public function check_if_exists_errors_with_value_on_session()
     {
         $this->app = new Application();
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
             public function get($key)
             {
-                return new class {
+                return new class
+                {
                     public function get($key)
                     {
                         return ['bar'];
@@ -261,9 +277,11 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_if_exists_old_input_on_session()
     {
-        $this->app['session'] = new class {
+        $this->app['session'] = new class
+        {
         };
-        $this->app['session.store'] = new class {
+        $this->app['session.store'] = new class
+        {
             public function has($key)
             {
                 return true;

@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.2...master)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.3...master)
+
+
+## [v6.2.3 (2020-11-30)](https://github.com/laravel/browser-kit-testing/compare/v6.2.2...v6.2.3)
+
+### Fixed
+- Fix seeJson with null data ([#160](https://github.com/laravel/browser-kit-testing/pull/160))
 
 
 ## [v6.2.2 (2020-11-24)](https://github.com/laravel/browser-kit-testing/compare/v6.2.1...v6.2.2)

@@ -11,7 +11,8 @@ class InteractsWithAuthenticationTest extends TestCase
 
     protected function createUserProviderToCredentials()
     {
-        return new class {
+        return new class
+        {
             public $retrieveByCredentials;
             public $validateCredentials;
 
@@ -108,7 +109,8 @@ class InteractsWithAuthenticationTest extends TestCase
      */
     public function assert_if_user_is_authenticated()
     {
-        $this->app = new class {
+        $this->app = new class
+        {
             public function make()
             {
                 return $this;
@@ -129,7 +131,8 @@ class InteractsWithAuthenticationTest extends TestCase
                 return true;
             }
         };
-        $user = new class {
+        $user = new class
+        {
             public function getAuthIdentifier()
             {
                 return true;
@@ -146,7 +149,8 @@ class InteractsWithAuthenticationTest extends TestCase
      */
     public function can_assert_if_someone_is_authenticated()
     {
-        $this->app = new class {
+        $this->app = new class
+        {
             public $check;
 
             public function make()
@@ -177,7 +181,8 @@ class InteractsWithAuthenticationTest extends TestCase
      */
     public function assert_if_someone_is_authenticated()
     {
-        $this->app = new class {
+        $this->app = new class
+        {
             public $check;
 
             public function make()

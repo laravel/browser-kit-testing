@@ -6,7 +6,6 @@ use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
-use Illuminate\Testing\Assert as PHPUnit;
 use Laravel\BrowserKitTesting\TestResponse;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
@@ -61,8 +60,7 @@ trait MakesHttpRequests
     /**
      * Disable middleware for the test.
      *
-     * @param null $middleware
-     *
+     * @param  null  $middleware
      * @return $this
      */
     public function withoutMiddleware($middleware = null)
@@ -74,7 +72,8 @@ trait MakesHttpRequests
         }
 
         foreach ((array) $middleware as $abstract) {
-            $this->app->instance($abstract, new class {
+            $this->app->instance($abstract, new class
+            {
                 public function handle($request, $next)
                 {
                     return $next($request);
@@ -420,11 +419,12 @@ trait MakesHttpRequests
         if (is_null($data)) {
             $decodedResponse = json_decode($this->response->getContent(), true);
 
-            if (is_null($decodedResponse) || $decodedResponse === false) {
-                PHPUnit::fail(
-                    "JSON was not returned from [{$this->currentUri}]."
-                );
-            }
+            $this->assertTrue(
+                ! is_null($decodedResponse) && $decodedResponse !== false,
+                "JSON was not returned from [{$this->currentUri}]."
+            );
+
+            return $this;
         }
 
         try {

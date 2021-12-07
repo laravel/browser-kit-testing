@@ -15,7 +15,8 @@ class ImpersonatesUsersTest extends TestCase
      */
     public function set_currently_logged_in_user_for_app()
     {
-        $user = new class implements Authenticatable {
+        $user = new class implements Authenticatable
+        {
             public function getAuthIdentifierName()
             {
             }
@@ -41,7 +42,8 @@ class ImpersonatesUsersTest extends TestCase
             }
         };
 
-        $this->app['auth'] = new class {
+        $this->app['auth'] = new class
+        {
             public $user;
 
             public function guard()
