@@ -19,31 +19,36 @@ class OutputStub implements OutputInterface
     {
     }
 
-    public function getVerbosity()
+    public function getVerbosity(): int
     {
+        return 1;
     }
 
-    public function isQuiet()
+    public function isQuiet(): bool
     {
+        return false;
     }
 
-    public function isVerbose()
+    public function isVerbose(): bool
     {
+        return false;
     }
 
-    public function isVeryVerbose()
+    public function isVeryVerbose(): bool
     {
+        return false;
     }
 
-    public function isDebug()
+    public function isDebug(): bool
     {
+        return false;
     }
 
     public function setDecorated($decorated)
     {
     }
 
-    public function isDecorated()
+    public function isDecorated(): bool
     {
     }
 
@@ -51,7 +56,7 @@ class OutputStub implements OutputInterface
     {
     }
 
-    public function getFormatter()
+    public function getFormatter(): OutputFormatterInterface
     {
     }
 }
