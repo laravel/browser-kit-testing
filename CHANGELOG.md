@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.2.3...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.3.0...6.x)
+
+
+## [v6.3.0 (2022-01-12)](https://github.com/laravel/browser-kit-testing/compare/v6.2.3...v6.3.0)
+
+### Changed
+- Laravel 9 Support ([#162](https://github.com/laravel/browser-kit-testing/pull/162))
 
 
 ## [v6.2.3 (2020-11-30)](https://github.com/laravel/browser-kit-testing/compare/v6.2.2...v6.2.3)
