@@ -10,6 +10,8 @@ class InteractsWithConsoleTest extends TestCase
 {
     use InteractsWithConsole;
 
+    protected $app;
+
     /**
      * @test
      */

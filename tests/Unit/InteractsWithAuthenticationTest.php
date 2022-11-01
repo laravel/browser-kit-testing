@@ -9,6 +9,8 @@ class InteractsWithAuthenticationTest extends TestCase
 {
     use InteractsWithAuthentication;
 
+    protected $app;
+
     protected function createUserProviderToCredentials()
     {
         return new class
