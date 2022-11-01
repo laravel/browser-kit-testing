@@ -12,6 +12,8 @@ class MakesHttpRequestsTest extends TestCase
 {
     use MakesHttpRequests;
 
+    protected $baseUrl;
+
     /**
      * @test
      * @dataProvider dataUrls

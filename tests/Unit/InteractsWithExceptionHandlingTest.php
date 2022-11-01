@@ -15,6 +15,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
 {
     use InteractsWithExceptionHandling;
 
+    protected $app;
+
     /**
      * @test
      */
