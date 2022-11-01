@@ -113,6 +113,8 @@ class InteractsWithAuthenticationTest extends TestCase
     {
         $this->app = new class
         {
+            public $userAuthenticated;
+
             public function make()
             {
                 return $this;
