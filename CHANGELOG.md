@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.3.1...6.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.4.0...6.x)
+
+## [v6.4.0](https://github.com/laravel/browser-kit-testing/compare/v6.3.1...v6.4.0) - 2023-01-06
+
+### Added
+
+- Laravel v10 Support by @driesvints in https://github.com/laravel/browser-kit-testing/pull/166
 
 ## [v6.3.1](https://github.com/laravel/browser-kit-testing/compare/v6.3.0...v6.3.1) - 2022-04-13
 
