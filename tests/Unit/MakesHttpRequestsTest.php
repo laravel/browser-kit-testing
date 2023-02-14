@@ -27,7 +27,7 @@ class MakesHttpRequestsTest extends TestCase
         );
     }
 
-    public function dataUrls()
+    public static function dataUrls()
     {
         return [
             ['', 'http://localhost'],

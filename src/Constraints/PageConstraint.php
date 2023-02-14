@@ -61,16 +61,16 @@ abstract class PageConstraint extends Constraint
     /**
      * Throw an exception for the given comparison and test description.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
+     * @param  mixed  $other
      * @param  string  $description
      * @param  \SebastianBergmann\Comparator\ComparisonFailure|null  $comparisonFailure
      * @return void
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
-    protected function fail($crawler, $description, ComparisonFailure $comparisonFailure = null): void
+    protected function fail(mixed $other, string $description, ?ComparisonFailure $comparisonFailure = null): never
     {
-        $html = $this->html($crawler);
+        $html = $this->html($other);
 
         $failureDescription = sprintf(
             "%s\n\n\nFailed asserting that %s",

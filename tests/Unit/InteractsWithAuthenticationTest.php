@@ -63,7 +63,7 @@ class InteractsWithAuthenticationTest extends TestCase
 
     /**
      * @test
-     * @dataProvider DataHasCredentials
+     * @dataProvider dataHasCredentials
      */
     public function hasCredentials_return_false_if_the_credentials_arent_valid($validateCredentials, $retrieveByCredentials)
     {
@@ -78,7 +78,7 @@ class InteractsWithAuthenticationTest extends TestCase
         $this->assertFalse($this->hasCredentials($credentials));
     }
 
-    public function DataHasCredentials()
+    public static function dataHasCredentials()
     {
         return [
             'Case 01' => [false, true],
