@@ -12,6 +12,8 @@ class InteractsWithDatabaseTest extends TestCase
     use InteractsWithDatabase,
         InteractsWithConsole;
 
+    protected $app;
+
     /**
      * @test
      */

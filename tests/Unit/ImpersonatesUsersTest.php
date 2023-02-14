@@ -10,6 +10,8 @@ class ImpersonatesUsersTest extends TestCase
 {
     use ImpersonatesUsers;
 
+    protected $app;
+
     /**
      * @test
      */

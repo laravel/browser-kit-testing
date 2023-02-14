@@ -10,6 +10,8 @@ class InteractsWithSessionTest extends TestCase
 {
     use InteractsWithSession;
 
+    protected $app;
+
     /**
      * @test
      */

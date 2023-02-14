@@ -9,6 +9,8 @@ class InteractsWithContainerTest extends TestCase
 {
     use InteractsWithContainer;
 
+    protected $app;
+
     /**
      * @test
      */

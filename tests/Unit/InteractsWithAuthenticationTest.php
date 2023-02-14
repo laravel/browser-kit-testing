@@ -9,6 +9,8 @@ class InteractsWithAuthenticationTest extends TestCase
 {
     use InteractsWithAuthentication;
 
+    protected $app;
+
     protected function createUserProviderToCredentials()
     {
         return new class
@@ -111,6 +113,8 @@ class InteractsWithAuthenticationTest extends TestCase
     {
         $this->app = new class
         {
+            public $userAuthenticated;
+
             public function make()
             {
                 return $this;
