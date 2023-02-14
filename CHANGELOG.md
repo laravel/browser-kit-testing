@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.4.0...master)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.4.0...7.x)
 
 ## [v6.4.0](https://github.com/laravel/browser-kit-testing/compare/v6.3.1...v6.4.0) - 2023-01-06
 
