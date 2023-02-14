@@ -16,6 +16,7 @@ The deprecated `MocksApplicationServices` trait has been removed from the librar
 
 If your application uses these methods, we recommend you transition to `Event::fake` and `Bus::fake`, respectively. You can learn more about mocking via fakes in the corresponding documentation for the component you are attempting to fake.
 
+
 ## Upgrading To 6.0 From 5.x
 
 ### Minimum Laravel Version
