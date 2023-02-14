@@ -462,7 +462,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame(0, $file->getSize());
     }
 
-    public function attributes_UploadedFile()
+    public static function attributes_UploadedFile()
     {
         return [
             [
