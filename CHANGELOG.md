@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v6.4.0...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.0.0...7.x)
+
+## [v7.0.0](https://github.com/laravel/browser-kit-testing/compare/v6.4.0...v7.0.0) - 2023-02-14
+
+### Added
+
+- PHPUnit v10 Support by @driesvints in https://github.com/laravel/browser-kit-testing/pull/169
+
+### Changed
+
+- Drop old PHP and Laravel versions by @driesvints in https://github.com/laravel/browser-kit-testing/pull/168
 
 ## [v6.4.0](https://github.com/laravel/browser-kit-testing/compare/v6.3.1...v6.4.0) - 2023-01-06
 
