@@ -22,8 +22,7 @@ abstract class TestCase extends BaseTestCase
         Concerns\InteractsWithConsole,
         Concerns\InteractsWithDatabase,
         Concerns\InteractsWithExceptionHandling,
-        Concerns\InteractsWithSession,
-        Concerns\MocksApplicationServices;
+        Concerns\InteractsWithSession;
 
     /**
      * The Illuminate application instance.

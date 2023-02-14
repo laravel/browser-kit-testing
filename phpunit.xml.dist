@@ -8,9 +8,9 @@
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false"
 >
-  <testsuites>
-    <testsuite name="Unit">
-      <directory suffix="Test.php">./tests</directory>
-    </testsuite>
-  </testsuites>
+    <testsuites>
+        <testsuite name="Unit">
+        <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
