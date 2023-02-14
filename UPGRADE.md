@@ -1,5 +1,22 @@
 # Upgrade Guide
 
+## Upgrading To 7.0 From 6.x
+
+### Minimum Versions
+
+The following required dependency versions have been updated:
+
+- The minimum PHP version is now v8.1
+- The minimum Laravel version is now v10.0
+- The minimum PHPUnit version is now v10.0
+
+### Service Mocking
+
+The deprecated `MocksApplicationServices` trait has been removed from the library. This trait provided testing methods such as `expectsEvents` and `expectsJobs`.
+
+If your application uses these methods, we recommend you transition to `Event::fake` and `Bus::fake`, respectively. You can learn more about mocking via fakes in the corresponding documentation for the component you are attempting to fake.
+
+
 ## Upgrading To 6.0 From 5.x
 
 ### Minimum Laravel Version
@@ -19,6 +36,7 @@ PHPUnit 8.5 is now the minimum supported version of the library.
 PR: https://github.com/laravel/browser-kit-testing/pull/107
 
 When using the `followRedirects` method, previously defined cookies will now be preserved.
+
 
 ## Upgrading To 5.0 From 4.x
 
