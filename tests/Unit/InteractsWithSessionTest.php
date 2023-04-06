@@ -36,8 +36,7 @@ class InteractsWithSessionTest extends TestCase
                 return $times == $this->put;
             }
         };
-        $this->app['session.store'] = new class
-        {
+        $this->app['session.store'] = new class {
         };
 
         $this->session([
@@ -72,8 +71,7 @@ class InteractsWithSessionTest extends TestCase
                 return $times == $this->put;
             }
         };
-        $this->app['session.store'] = new class
-        {
+        $this->app['session.store'] = new class {
         };
 
         $this->withSession([
@@ -144,8 +142,7 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_if_exists_data_on_session_and_check_exist_key()
     {
-        $this->app['session'] = new class
-        {
+        $this->app['session'] = new class {
         };
         $this->app['session.store'] = new class
         {
@@ -171,8 +168,7 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_multi_data_on_session_and_check_multi_keys()
     {
-        $this->app['session'] = new class
-        {
+        $this->app['session'] = new class {
         };
         $this->app['session.store'] = new class
         {
@@ -210,8 +206,7 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_not_exists_key_and_multi_key_on_session()
     {
-        $this->app['session'] = new class
-        {
+        $this->app['session'] = new class {
         };
         $this->app['session.store'] = new class
         {
@@ -229,8 +224,7 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_if_exists_errors_on_session()
     {
-        $this->app['session'] = new class
-        {
+        $this->app['session'] = new class {
         };
         $this->app['session.store'] = new class
         {
@@ -279,8 +273,7 @@ class InteractsWithSessionTest extends TestCase
      */
     public function check_if_exists_old_input_on_session()
     {
-        $this->app['session'] = new class
-        {
+        $this->app['session'] = new class {
         };
         $this->app['session.store'] = new class
         {

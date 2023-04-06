@@ -63,6 +63,7 @@ class InteractsWithAuthenticationTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider dataHasCredentials
      */
     public function hasCredentials_return_false_if_the_credentials_arent_valid($validateCredentials, $retrieveByCredentials)
