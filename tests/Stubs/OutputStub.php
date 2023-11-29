@@ -2,10 +2,10 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Stubs;
 
-use Traversable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Traversable;
 
 if (property_exists(Command::class, 'defaultName')) {
     class OutputStub implements OutputInterface
@@ -122,4 +122,3 @@ if (property_exists(Command::class, 'defaultName')) {
         }
     }
 }
-
