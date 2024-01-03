@@ -2,7 +2,9 @@
 
 namespace Laravel\BrowserKitTesting;
 
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,6 +14,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Facade;
 use Mockery;
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use RuntimeException;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -55,11 +58,22 @@ abstract class TestCase extends BaseTestCase
     /**
      * Creates the application.
      *
-     * Needs to be implemented by subclasses.
-     *
-     * @return \Symfony\Component\HttpKernel\HttpKernelInterface
+     * @return \Illuminate\Foundation\Application
      */
-    abstract public function createApplication();
+    public function createApplication()
+    {
+        if (method_exists(Application::class, 'inferBaseDirectory')) {
+            $app = require Application::inferBaseDirectory().'/bootstrap/app.php';
+
+            $app->make(Kernel::class)->bootstrap();
+
+            return $app;
+        }
+
+        throw new RuntimeException(
+            'Unable to guess application base directory. Please use the [Tests\CreatesApplication] trait.',
+        );
+    }
 
     /**
      * Setup the test environment.
