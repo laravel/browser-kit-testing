@@ -4,21 +4,14 @@ namespace Laravel\BrowserKitTesting\Constraints;
 
 use Symfony\Component\DomCrawler\Crawler;
 
-abstract class FormFieldConstraint extends PageConstraint
+abstract readonly class FormFieldConstraint extends PageConstraint
 {
-    /**
-     * The name or ID of the element.
-     *
-     * @var string
-     */
-    protected $selector;
-
     /**
      * The expected value.
      *
      * @var string
      */
-    protected $value;
+    protected string $value;
 
     /**
      * Create a new constraint instance.
@@ -27,9 +20,8 @@ abstract class FormFieldConstraint extends PageConstraint
      * @param  mixed  $value
      * @return void
      */
-    public function __construct($selector, $value)
+    public function __construct(protected string $selector, $value)
     {
-        $this->selector = $selector;
         $this->value = (string) $value;
     }
 

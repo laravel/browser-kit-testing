@@ -5,22 +5,8 @@ namespace Laravel\BrowserKitTesting\Constraints;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
-class HasLink extends PageConstraint
+readonly class HasLink extends PageConstraint
 {
-    /**
-     * The text expected to be found.
-     *
-     * @var string
-     */
-    protected $text;
-
-    /**
-     * The URL expected to be linked in the <a> tag.
-     *
-     * @var string|null
-     */
-    protected $url;
-
     /**
      * Create a new constraint instance.
      *
@@ -28,10 +14,11 @@ class HasLink extends PageConstraint
      * @param  string|null  $url
      * @return void
      */
-    public function __construct($text, $url = null)
-    {
-        $this->url = $url;
-        $this->text = $text;
+    public function __construct(
+        protected string $text,
+        protected ?string $url = null
+    ) {
+        //
     }
 
     /**

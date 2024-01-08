@@ -2,7 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-class IsChecked extends FormFieldConstraint
+readonly class IsChecked extends FormFieldConstraint
 {
     /**
      * Create a new constraint instance.
@@ -10,9 +10,10 @@ class IsChecked extends FormFieldConstraint
      * @param  string  $selector
      * @return void
      */
-    public function __construct($selector)
-    {
-        $this->selector = $selector;
+    public function __construct(
+        protected string $selector
+    ) {
+        //
     }
 
     /**

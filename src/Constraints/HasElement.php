@@ -4,22 +4,8 @@ namespace Laravel\BrowserKitTesting\Constraints;
 
 use Symfony\Component\DomCrawler\Crawler;
 
-class HasElement extends PageConstraint
+readonly class HasElement extends PageConstraint
 {
-    /**
-     * The name or ID of the element.
-     *
-     * @var string
-     */
-    protected $selector;
-
-    /**
-     * The attributes the element should have.
-     *
-     * @var array
-     */
-    protected $attributes;
-
     /**
      * Create a new constraint instance.
      *
@@ -27,10 +13,11 @@ class HasElement extends PageConstraint
      * @param  array  $attributes
      * @return void
      */
-    public function __construct($selector, array $attributes = [])
-    {
-        $this->selector = $selector;
-        $this->attributes = $attributes;
+    public function __construct(
+        protected string $selector,
+        protected array $attributes = []
+    ) {
+        //
     }
 
     /**

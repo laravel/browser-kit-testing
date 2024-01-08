@@ -2,24 +2,18 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-class HasText extends PageConstraint
+readonly class HasText extends PageConstraint
 {
-    /**
-     * The expected text.
-     *
-     * @var string
-     */
-    protected $text;
-
     /**
      * Create a new constraint instance.
      *
      * @param  string  $text
      * @return void
      */
-    public function __construct($text)
-    {
-        $this->text = $text;
+    public function __construct(
+        protected string $text
+    ) {
+        //
     }
 
     /**

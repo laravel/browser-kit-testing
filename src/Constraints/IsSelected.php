@@ -5,7 +5,7 @@ namespace Laravel\BrowserKitTesting\Constraints;
 use DOMElement;
 use Symfony\Component\DomCrawler\Crawler;
 
-class IsSelected extends FormFieldConstraint
+readonly class IsSelected extends FormFieldConstraint
 {
     /**
      * Get the valid elements.

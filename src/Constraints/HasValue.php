@@ -4,7 +4,7 @@ namespace Laravel\BrowserKitTesting\Constraints;
 
 use Symfony\Component\DomCrawler\Crawler;
 
-class HasValue extends FormFieldConstraint
+readonly class HasValue extends FormFieldConstraint
 {
     /**
      * Get the valid elements.

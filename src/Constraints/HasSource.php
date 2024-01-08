@@ -2,24 +2,18 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-class HasSource extends PageConstraint
+readonly class HasSource extends PageConstraint
 {
-    /**
-     * The expected HTML source.
-     *
-     * @var string
-     */
-    protected $source;
-
     /**
      * Create a new constraint instance.
      *
      * @param  string  $source
      * @return void
      */
-    public function __construct($source)
-    {
-        $this->source = $source;
+    public function __construct(
+        protected string $source
+    ) {
+        //
     }
 
     /**

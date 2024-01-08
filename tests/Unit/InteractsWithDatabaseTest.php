@@ -6,6 +6,7 @@ use Illuminate\Contracts\Console\Kernel;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithConsole;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithDatabase;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class InteractsWithDatabaseTest extends TestCase
 {
@@ -14,9 +15,7 @@ class InteractsWithDatabaseTest extends TestCase
 
     protected $app;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assert_that_data_exists_on_databases()
     {
         $this->app = new class
@@ -56,9 +55,7 @@ class InteractsWithDatabaseTest extends TestCase
         $this->seeInDatabase($table, $data);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assert_that_data_not_exists_on_databases()
     {
         $this->app = new class
@@ -101,9 +98,7 @@ class InteractsWithDatabaseTest extends TestCase
         $this->notSeeInDatabase($table, $data);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function run_seed()
     {
         $this->app[Kernel::class] = new class

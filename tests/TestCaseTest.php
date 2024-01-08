@@ -15,6 +15,7 @@ class TestCaseTest extends TestCase
         return new Application();
     }
 
+    #[Test]
     public function test_refresh_application()
     {
         $this->refreshApplication();

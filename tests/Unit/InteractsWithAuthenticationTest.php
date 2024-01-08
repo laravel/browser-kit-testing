@@ -4,6 +4,8 @@ namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Laravel\BrowserKitTesting\Concerns\InteractsWithAuthentication;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class InteractsWithAuthenticationTest extends TestCase
 {
@@ -45,9 +47,7 @@ class InteractsWithAuthenticationTest extends TestCase
         };
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasCredentials_return_true_if_the_credentials_are_valid()
     {
         $this->app = $this->createUserProviderToCredentials();
@@ -61,11 +61,8 @@ class InteractsWithAuthenticationTest extends TestCase
         $this->assertTrue($this->hasCredentials($credentials));
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider dataHasCredentials
-     */
+    #[Test]
+    #[DataProvider('dataHasCredentials')]
     public function hasCredentials_return_false_if_the_credentials_arent_valid($validateCredentials, $retrieveByCredentials)
     {
         $this->app = $this->createUserProviderToCredentials();
@@ -88,9 +85,7 @@ class InteractsWithAuthenticationTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assert_if_credentials_are_valid_or_invalid()
     {
         $this->app = $this->createUserProviderToCredentials();
@@ -107,9 +102,7 @@ class InteractsWithAuthenticationTest extends TestCase
         $this->dontSeeCredentials($credentials);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assert_if_user_is_authenticated()
     {
         $this->app = new class
@@ -149,9 +142,7 @@ class InteractsWithAuthenticationTest extends TestCase
         $this->seeIsAuthenticatedAs($user);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_assert_if_someone_is_authenticated()
     {
         $this->app = new class
@@ -181,9 +172,7 @@ class InteractsWithAuthenticationTest extends TestCase
         $this->assertFalse($this->isAuthenticated());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assert_if_someone_is_authenticated()
     {
         $this->app = new class

@@ -2,24 +2,18 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-class ReversePageConstraint extends PageConstraint
+readonly class ReversePageConstraint extends PageConstraint
 {
-    /**
-     * The page constraint instance.
-     *
-     * @var \Laravel\BrowserKitTesting\Constraints\PageConstraint
-     */
-    protected $pageConstraint;
-
     /**
      * Create a new reverse page constraint instance.
      *
      * @param  \Laravel\BrowserKitTesting\Constraints\PageConstraint  $pageConstraint
      * @return void
      */
-    public function __construct(PageConstraint $pageConstraint)
-    {
-        $this->pageConstraint = $pageConstraint;
+    public function __construct(
+        protected PageConstraint $pageConstraint
+    ) {
+        //
     }
 
     /**
