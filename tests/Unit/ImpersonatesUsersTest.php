@@ -31,6 +31,10 @@ class ImpersonatesUsersTest extends TestCase
             {
             }
 
+            public function getAuthPasswordName()
+            {
+            }
+
             public function getRememberToken()
             {
             }
