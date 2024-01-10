@@ -2,8 +2,6 @@
 
 namespace Laravel\BrowserKitTesting\Constraints\Concerns;
 
-use Laravel\BrowserKitTesting\Constraints\FormFieldConstraint;
-
 trait IsChecked
 {
     /**

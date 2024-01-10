@@ -10,7 +10,7 @@ if (str_starts_with(Version::series(), '10')) {
         use Concerns\FormFieldConstraint;
     }
 } else {
-    readonly abstract class FormFieldConstraint extends PageConstraint
+    abstract readonly class FormFieldConstraint extends PageConstraint
     {
         use Concerns\FormFieldConstraint;
     }

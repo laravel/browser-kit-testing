@@ -3,7 +3,6 @@
 namespace Laravel\BrowserKitTesting\Constraints\Concerns;
 
 use DOMElement;
-use Laravel\BrowserKitTesting\Constraints\FormFieldConstraint;
 use Symfony\Component\DomCrawler\Crawler;
 
 trait IsSelected

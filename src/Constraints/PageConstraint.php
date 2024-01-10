@@ -3,7 +3,6 @@
 namespace Laravel\BrowserKitTesting\Constraints;
 
 use PHPUnit\Framework\Constraint\Constraint;
-
 use PHPUnit\Runner\Version;
 
 if (str_starts_with(Version::series(), '10')) {
@@ -12,7 +11,7 @@ if (str_starts_with(Version::series(), '10')) {
         use Concerns\PageConstraint;
     }
 } else {
-    readonly abstract class PageConstraint extends Constraint
+    abstract readonly class PageConstraint extends Constraint
     {
         use Concerns\PageConstraint;
     }
