@@ -5,6 +5,7 @@ namespace Laravel\BrowserKitTesting\Tests\Unit;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\BrowserKitTesting\Concerns\ImpersonatesUsers;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ImpersonatesUsersTest extends TestCase
 {
@@ -12,9 +13,7 @@ class ImpersonatesUsersTest extends TestCase
 
     protected $app;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function set_currently_logged_in_user_for_app()
     {
         $user = new class implements Authenticatable
