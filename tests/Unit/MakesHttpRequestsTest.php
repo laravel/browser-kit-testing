@@ -6,6 +6,8 @@ use Illuminate\Http\Response;
 use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
 use Laravel\BrowserKitTesting\TestResponse;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\ExpectationFailedException;
 
 class MakesHttpRequestsTest extends TestCase
@@ -14,11 +16,8 @@ class MakesHttpRequestsTest extends TestCase
 
     protected $baseUrl;
 
-    /**
-     * @test
-     *
-     * @dataProvider dataUrls
-     */
+    #[Test]
+    #[DataProvider('dataUrls')]
     public function prepareUrlForRequest_method_return_all_url($url, $expectedUrl)
     {
         $this->baseUrl = 'http://localhost';
@@ -40,9 +39,7 @@ class MakesHttpRequestsTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function seeStatusCode_check_status_code()
     {
         $this->response = TestResponse::fromBaseResponse(new class extends Response
@@ -56,9 +53,7 @@ class MakesHttpRequestsTest extends TestCase
         $this->seeStatusCode(200);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertResponseOk_check_that_the_status_page_should_be_200()
     {
         $this->response = TestResponse::fromBaseResponse(new class extends Response
@@ -77,9 +72,7 @@ class MakesHttpRequestsTest extends TestCase
         $this->response->assertResponseOk();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertResponseOk_throw_exception_when_the_status_page_is_not_200()
     {
         $this->expectException(ExpectationFailedException::class);
@@ -100,9 +93,7 @@ class MakesHttpRequestsTest extends TestCase
         $this->response->assertResponseOk();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertResponseStatus_check_the_response_status_is_equal_to_passed_by_parameter()
     {
         $this->response = TestResponse::fromBaseResponse(new class extends Response
@@ -116,9 +107,7 @@ class MakesHttpRequestsTest extends TestCase
         $this->response->assertResponseStatus(200);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertResponseStatus_throw_exception_when_the_response_status_is_not_equal_to_passed_by_parameter()
     {
         $this->expectException(ExpectationFailedException::class);

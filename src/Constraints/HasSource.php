@@ -2,46 +2,16 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-class HasSource extends PageConstraint
-{
-    /**
-     * The expected HTML source.
-     *
-     * @var string
-     */
-    protected $source;
+use PHPUnit\Runner\Version;
 
-    /**
-     * Create a new constraint instance.
-     *
-     * @param  string  $source
-     * @return void
-     */
-    public function __construct($source)
+if (str_starts_with(Version::series(), '10')) {
+    class HasSource extends PageConstraint
     {
-        $this->source = $source;
+        use Concerns\HasSource;
     }
-
-    /**
-     * Check if the source is found in the given crawler.
-     *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return bool
-     */
-    protected function matches($crawler): bool
+} else {
+    readonly class HasSource extends PageConstraint
     {
-        $pattern = $this->getEscapedPattern($this->source);
-
-        return preg_match("/{$pattern}/i", $this->html($crawler));
-    }
-
-    /**
-     * Returns a string representation of the object.
-     *
-     * @return string
-     */
-    public function toString(): string
-    {
-        return "the HTML [{$this->source}]";
+        use Concerns\HasSource;
     }
 }

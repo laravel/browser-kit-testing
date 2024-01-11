@@ -5,6 +5,7 @@ namespace Laravel\BrowserKitTesting\Tests\Unit;
 use Illuminate\Foundation\Application;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithSession;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class InteractsWithSessionTest extends TestCase
 {
@@ -12,9 +13,7 @@ class InteractsWithSessionTest extends TestCase
 
     protected $app;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function session_method_can_add_data_on_session()
     {
         $this->app['session'] = new class
@@ -47,9 +46,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertTrue($this->app['session']->wasCalledPutMethod(2));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withSession_method_can_add_data_on_session()
     {
         $this->app['session'] = new class
@@ -82,9 +79,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertTrue($this->app['session']->wasCalledPutMethod(2, 'put'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_start_session()
     {
         $this->app['session'] = new class
@@ -107,9 +102,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertTrue($this->app['session']->isStarted());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_flush_session()
     {
         $this->app['session'] = new class
@@ -137,9 +130,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertTrue($this->app['session']->isCalledFlushMethod());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_if_exists_data_on_session_and_check_exist_key()
     {
         $this->app['session'] = new class {
@@ -163,9 +154,7 @@ class InteractsWithSessionTest extends TestCase
         $this->seeInSession('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_multi_data_on_session_and_check_multi_keys()
     {
         $this->app['session'] = new class {
@@ -201,9 +190,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertSessionHasAll(['foo', 'unit']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_not_exists_key_and_multi_key_on_session()
     {
         $this->app['session'] = new class {
@@ -219,9 +206,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertSessionMissing(['foo', 'bar']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_if_exists_errors_on_session()
     {
         $this->app['session'] = new class {
@@ -241,9 +226,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertSessionHasErrors(['foo', 'bar']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_if_exists_errors_with_value_on_session()
     {
         $this->app = new Application();
@@ -268,9 +251,7 @@ class InteractsWithSessionTest extends TestCase
         $this->assertSessionHasErrors(['foo' => 'bar']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_if_exists_old_input_on_session()
     {
         $this->app['session'] = new class {

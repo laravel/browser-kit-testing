@@ -7,6 +7,8 @@ use InvalidArgumentException;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithPages;
 use Laravel\BrowserKitTesting\HttpException;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class InteractsWithPagesTest extends TestCase
 {
@@ -16,9 +18,7 @@ class InteractsWithPagesTest extends TestCase
     protected $response;
     protected $currentUri;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function type_method_write_on_input()
     {
         $html = '<html>
@@ -36,9 +36,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame($this->inputs['name'], $name);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function check_method_check_checkbox()
     {
         $html = '<html>
@@ -55,9 +53,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertTrue($this->inputs['terms-conditions']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function uncheck_method_uncheck_checkbox()
     {
         $html = '<html>
@@ -74,9 +70,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertFalse($this->inputs['terms-conditions']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function select_method_select_an_option_from_drop_down()
     {
         $html = '<html>
@@ -98,9 +92,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame($this->inputs['role'], $role);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function attach_method_attach_a_file()
     {
         $html = '<html>
@@ -120,9 +112,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame($this->uploads['avatar'], $avatar);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storeInput_method_store_a_form_input_in_the_local_array()
     {
         $html = '<html>
@@ -157,9 +147,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame($this->inputs['name'], $name);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function when_input_dont_exist_storeInput_throw_exception()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -181,9 +169,7 @@ class InteractsWithPagesTest extends TestCase
         $this->storeInput('name', 'Taylor');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getForm_method_returns_Form_from_page_with_the_given_submit_button_text()
     {
         $html = '<html>
@@ -199,9 +185,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function when_exists_button_getForm_method_throw_exception()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -219,9 +203,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm('Search'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fillForm_method_return_Form_with_the_given_data()
     {
         $html = '<html>
@@ -238,9 +220,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame('Taylor', $form->get('name')->getValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fillForm_method_return_Form_when_given_array_data()
     {
         $html = '<html>
@@ -257,9 +237,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertSame('Taylor', $form->get('name')->getValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function resetPageContext_method_clear_crawler_subcrawlers()
     {
         $body = '<body>
@@ -287,9 +265,7 @@ class InteractsWithPagesTest extends TestCase
         });
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clearInputs_method_clear_all_inputs_and_uploads()
     {
         $avatar = '/path/to/my-avatar.png';
@@ -305,9 +281,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertEmpty($this->uploads);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function extractParametersFromForm_extract_parameter_of_form()
     {
         $html = '<html>
@@ -329,9 +303,7 @@ class InteractsWithPagesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function convertUploadsForTesting_converter_uploads_to_UploadedFile_instances()
     {
         $html = '<html>
@@ -357,9 +329,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertEmpty($uploads['photos'][0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertPageLoaded_check_that_the_page_was_loaded()
     {
         $this->app = null;
@@ -374,9 +344,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertPageLoaded($uri);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertPageLoaded_throw_exception_when_the_page_was_not_loaded_correctly()
     {
         $this->expectException(HttpException::class);
@@ -394,9 +362,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertPageLoaded($uri);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function assertPageLoaded_throw_exception_with_response_exception()
     {
         $this->expectException(HttpException::class);
@@ -421,9 +387,7 @@ class InteractsWithPagesTest extends TestCase
         $this->assertPageLoaded($uri);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function crawler_method_return_first_subCrawler()
     {
         $body = '<body>
@@ -444,11 +408,8 @@ class InteractsWithPagesTest extends TestCase
         });
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider attributes_UploadedFile
-     */
+    #[Test]
+    #[DataProvider('attributes_UploadedFile')]
     public function create_UploadedFile_for_testing($file, $uploads, $name)
     {
         $file = $this->getUploadedFileForTesting(
@@ -490,9 +451,7 @@ class InteractsWithPagesTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUploadedFileForTesting_return_null_if_it_can_not_upload_file()
     {
         $this->assertNull(
@@ -502,9 +461,7 @@ class InteractsWithPagesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_on_current_HTML()
     {
         $body = '<body>
@@ -516,9 +473,7 @@ class InteractsWithPagesTest extends TestCase
         $this->see('Hello, <strong>User</strong>');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_element_on_current_HTML()
     {
         $body = '<body>
@@ -530,9 +485,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeElement('img', ['src' => 'avatar.png', 'alt' => 'ups']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function count_elements_on_current_HTML()
     {
         $body = '<body>
@@ -544,9 +497,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeElementCount('.card-user', 2);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_text_on_current_HTML()
     {
         $body = '<body>
@@ -558,9 +509,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeText('Hello, User');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_html_on_element()
     {
         $body = '<body>
@@ -572,9 +521,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeInElement('h3', 'Hello, <strong>User</strong>');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_value_on_field()
     {
         $body = '<body>
@@ -588,9 +535,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeInField('email', 'john.doe@testing.com');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_selected_value_on_select_tag()
     {
         $body = '<body>
@@ -606,9 +551,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeIsSelected('role', 'sales');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function is_checked_checkbox()
     {
         $body = '<body>
@@ -621,9 +564,7 @@ class InteractsWithPagesTest extends TestCase
         $this->seeIsChecked('active');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function see_text_on_link()
     {
         $body = '<body>

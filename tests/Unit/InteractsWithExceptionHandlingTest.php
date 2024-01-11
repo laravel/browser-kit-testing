@@ -9,6 +9,7 @@ use Laravel\BrowserKitTesting\Concerns\InteractsWithExceptionHandling;
 use Laravel\BrowserKitTesting\Tests\Stubs\ExceptionHandlerStub;
 use Laravel\BrowserKitTesting\Tests\Stubs\OutputStub;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class InteractsWithExceptionHandlingTest extends TestCase
@@ -17,9 +18,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
 
     protected $app;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withExceptionHandling_restore_exception_handling()
     {
         $this->app = new Application();
@@ -31,9 +30,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withoutExceptionHandling_disable_exception_handling_for_the_test()
     {
         $this->app = new Application();
@@ -46,9 +43,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withExceptionHandling_throw_exception_NotFoundHttpException()
     {
         $this->expectException(NotFoundHttpException::class);
@@ -61,9 +56,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         abort(404, 'Abort 404');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function report_of_instance_ExceptionHandler_on_Application_does_nothing()
     {
         $this->app = new Application();
@@ -74,9 +67,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->assertNull(app(ExceptionHandler::class)->report(new Exception));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function render_of_instance_ExceptionHandler_on_Application_throw_exception_NotFoundHttpException()
     {
         $this->expectException(NotFoundHttpException::class);
@@ -108,9 +99,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         app(ExceptionHandler::class)->render($request, new NotFoundHttpException);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function render_of_instance_ExceptionHandler_on_Application_throw_exception_anyone()
     {
         $this->expectException(Exception::class);
@@ -128,9 +117,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         app(ExceptionHandler::class)->render($request, new Exception('My Exception'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForConsole_throw_exception_to_console_and_does_nothing()
     {
         $this->app = new Application();
@@ -145,9 +132,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withoutExceptionHandling_doesnt_not_report_exceptions()
     {
         $this->app = new Application();
