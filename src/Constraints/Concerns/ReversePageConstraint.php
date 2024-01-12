@@ -44,7 +44,7 @@ trait ReversePageConstraint
      */
     protected function getFailureDescription()
     {
-        return $this->pageConstraint->getReverseFailureDescription();
+        return (fn () => $this->getReverseFailureDescription())->call($this->pageConstraint);
     }
 
     /**
