@@ -4,6 +4,7 @@ namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Laravel\BrowserKitTesting\Concerns\InteractsWithContainer;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class InteractsWithContainerTest extends TestCase
 {
@@ -11,9 +12,7 @@ class InteractsWithContainerTest extends TestCase
 
     protected $app;
 
-    /**
-     * @test
-     */
+    #[Test]
     public function register_instances_of_object_on_container()
     {
         $this->app = new class
