@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.1.0...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.1.1...7.x)
+
+## [v7.1.1](https://github.com/laravel/browser-kit-testing/compare/v7.1.0...v7.1.1) - 2024-01-22
+
+* [7.x] Fixes `inferBasePath` method name by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/browser-kit-testing/pull/177
 
 ## [v7.1.0](https://github.com/laravel/browser-kit-testing/compare/v7.0.0...v7.1.0) - 2024-01-12
 
