@@ -3,11 +3,8 @@
 namespace Laravel\BrowserKitTesting;
 
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithTestCase;
-use Illuminate\Support\Facades\Facade;
-use Mockery;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use RuntimeException;
 
