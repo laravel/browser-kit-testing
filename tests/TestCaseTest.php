@@ -4,16 +4,11 @@ namespace Laravel\BrowserKitTesting\Tests;
 
 use Illuminate\Foundation\Application;
 use Laravel\BrowserKitTesting\TestCase;
+use Orchestra\Testbench\Concerns\CreatesApplication;
 
 class TestCaseTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createApplication()
-    {
-        return new Application();
-    }
+    use CreatesApplication;
 
     public function test_refresh_application()
     {
