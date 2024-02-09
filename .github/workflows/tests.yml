@@ -56,10 +56,6 @@ jobs:
 
     name: PHP ${{ matrix.php }} Paratest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
     services:
       mysql:
         image: mysql:8
@@ -69,6 +65,10 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
