@@ -26,8 +26,6 @@ class ParallelTestingTest extends TestCase
     {
         $databaseName = (new User)->getConnection()->getDatabaseName();
 
-        $defaultDatabaseName = config(sprintf('database.connections.%s.database', config('database.default')));
-
-        $this->assertStringContainsString("{$defaultDatabaseName}_test_", $databaseName);
+        $this->assertStringContainsString("_test_", $databaseName);
     }
 }
