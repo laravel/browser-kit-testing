@@ -3,6 +3,7 @@
 namespace Laravel\BrowserKitTesting\Tests\Feature;
 
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\BrowserKitTesting\TestCase;
 use Orchestra\Testbench\Concerns\CreatesApplication;
 use Orchestra\Testbench\Foundation\Env;
@@ -10,7 +11,7 @@ use Orchestra\Testbench\Foundation\UndefinedValue;
 
 class ParallelTestingTest extends TestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, DatabaseTransactions;
 
     protected function setUp(): void
     {

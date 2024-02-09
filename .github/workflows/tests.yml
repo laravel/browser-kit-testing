@@ -84,10 +84,6 @@ jobs:
           composer require "nunomaduro/collision" "brianium/paratest" --no-update
           composer update --prefer-dist --no-interaction --no-progress -W
 
-      - name: Setup Database
-        run:
-          php vendor/bin/testbench package:create-sqlite-db
-
       - name: Execute tests
         run: php vendor/bin/testbench package:test --parallel
         env:
