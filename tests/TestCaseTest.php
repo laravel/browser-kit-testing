@@ -4,7 +4,6 @@ namespace Laravel\BrowserKitTesting\Tests;
 
 use Illuminate\Foundation\Application;
 use Laravel\BrowserKitTesting\TestCase;
-use Orchestra\Testbench\Concerns\CreatesApplication;
 
 class TestCaseTest extends TestCase
 {
