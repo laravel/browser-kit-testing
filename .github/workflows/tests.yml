@@ -54,7 +54,7 @@ jobs:
       matrix:
         php: [8.2, 8.3]
 
-    name: PHP ${{ matrix.php }} - PHPUnit ${{ matrix.phpunit }} - Laravel ${{ matrix.laravel }} (Paratest)
+    name: PHP ${{ matrix.php }} Paratest
 
     steps:
       - name: Checkout code
