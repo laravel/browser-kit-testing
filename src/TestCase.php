@@ -4,7 +4,7 @@ namespace Laravel\BrowserKitTesting;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Testing\Concerns\InteractsWithTestCase;
+use Illuminate\Foundation\Testing\Concerns\InteractsWithTestCaseLifecycle;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use RuntimeException;
 
@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
         Concerns\InteractsWithDatabase,
         Concerns\InteractsWithExceptionHandling,
         Concerns\InteractsWithSession,
-        InteractsWithTestCase;
+        InteractsWithTestCaseLifecycle;
 
     /**
      * Creates the application.
