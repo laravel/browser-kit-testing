@@ -15,11 +15,11 @@ class ParallelTestingTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
-
         if (Env::get('LARAVEL_PARALLEL_TESTING', new UndefinedValue) instanceof UndefinedValue) {
             $this->markTestSkipped('Requires paratest to execute the tests');
         }
+
+        parent::setUp();
     }
 
     public function test_database_connection_name()
