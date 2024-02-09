@@ -26,6 +26,6 @@ class ParallelTestingTest extends TestCase
     {
         $databaseName = (new User)->getConnection()->getDatabaseName();
 
-        $this->assertStringContainsString("_test_", $databaseName);
+        $this->assertStringContainsString('_test_', $databaseName);
     }
 }
