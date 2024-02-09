@@ -2,16 +2,46 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-use PHPUnit\Runner\Version;
+class HasText extends PageConstraint
+{
+    /**
+     * The expected text.
+     *
+     * @var string
+     */
+    protected readonly string $text;
 
-if (str_starts_with(Version::series(), '10')) {
-    class HasText extends PageConstraint
+    /**
+     * Create a new constraint instance.
+     *
+     * @param  string  $text
+     * @return void
+     */
+    public function __construct($text)
     {
-        use Concerns\HasText;
+        $this->text = $text;
     }
-} else {
-    readonly class HasText extends PageConstraint
+
+    /**
+     * Check if the plain text is found in the given crawler.
+     *
+     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
+     * @return bool
+     */
+    protected function matches($crawler): bool
     {
-        use Concerns\HasText;
+        $pattern = $this->getEscapedPattern($this->text);
+
+        return preg_match("/{$pattern}/i", $this->text($crawler));
+    }
+
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return string
+     */
+    public function toString(): string
+    {
+        return "the text [{$this->text}]";
     }
 }

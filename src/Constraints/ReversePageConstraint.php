@@ -2,16 +2,56 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-use PHPUnit\Runner\Version;
+class ReversePageConstraint extends PageConstraint
+{
+    /**
+     * The page constraint instance.
+     *
+     * @var \Laravel\BrowserKitTesting\Constraints\PageConstraint
+     */
+    protected readonly PageConstraint $pageConstraint;
 
-if (str_starts_with(Version::series(), '10')) {
-    class ReversePageConstraint extends PageConstraint
+    /**
+     * Create a new reverse page constraint instance.
+     *
+     * @param  \Laravel\BrowserKitTesting\Constraints\PageConstraint  $pageConstraint
+     * @return void
+     */
+    public function __construct(PageConstraint $pageConstraint)
     {
-        use Concerns\ReversePageConstraint;
+        $this->pageConstraint = $pageConstraint;
     }
-} else {
-    readonly class ReversePageConstraint extends PageConstraint
+
+    /**
+     * Reverse the original page constraint result.
+     *
+     * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
+     * @return bool
+     */
+    public function matches($crawler): bool
     {
-        use Concerns\ReversePageConstraint;
+        return ! (fn () => $this->matches($crawler))->call($this->pageConstraint);
+    }
+
+    /**
+     * Get the description of the failure.
+     *
+     * This method will attempt to negate the original description.
+     *
+     * @return string
+     */
+    protected function getFailureDescription()
+    {
+        return (fn () => $this->getReverseFailureDescription())->call($this->pageConstraint);
+    }
+
+    /**
+     * Get a string representation of the object.
+     *
+     * @return string
+     */
+    public function toString(): string
+    {
+        return $this->pageConstraint->toString();
     }
 }
