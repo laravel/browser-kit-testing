@@ -7,13 +7,7 @@ use Laravel\BrowserKitTesting\TestCase;
 
 class TestCaseTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function createApplication()
-    {
-        return new Application();
-    }
+    use CreatesApplication;
 
     public function test_refresh_application()
     {

@@ -2,16 +2,77 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
-use PHPUnit\Runner\Version;
+use Symfony\Component\DomCrawler\Crawler;
 
-if (str_starts_with(Version::series(), '10')) {
-    class HasInElement extends PageConstraint
+class HasInElement extends PageConstraint
+{
+    /**
+     * The name or ID of the element.
+     *
+     * @var string
+     */
+    protected readonly string $element;
+
+    /**
+     * The text expected to be found.
+     *
+     * @var string
+     */
+    protected readonly string $text;
+
+    /**
+     * Create a new constraint instance.
+     *
+     * @param  string  $element
+     * @param  string  $text
+     * @return void
+     */
+    public function __construct($element, $text)
     {
-        use Concerns\HasInElement;
+        $this->text = $text;
+        $this->element = $element;
     }
-} else {
-    readonly class HasInElement extends PageConstraint
+
+    /**
+     * Check if the source or text is found within the element in the given crawler.
+     *
+     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
+     * @return bool
+     */
+    public function matches($crawler): bool
     {
-        use Concerns\HasInElement;
+        $elements = $this->crawler($crawler)->filter($this->element);
+
+        $pattern = $this->getEscapedPattern($this->text);
+
+        foreach ($elements as $element) {
+            $element = new Crawler($element);
+
+            if (preg_match("/$pattern/i", $element->html())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns the description of the failure.
+     *
+     * @return string
+     */
+    protected function getFailureDescription()
+    {
+        return sprintf('[%s] contains %s', $this->element, $this->text);
+    }
+
+    /**
+     * Returns the reversed description of the failure.
+     *
+     * @return string
+     */
+    protected function getReverseFailureDescription()
+    {
+        return sprintf('[%s] does not contain %s', $this->element, $this->text);
     }
 }
