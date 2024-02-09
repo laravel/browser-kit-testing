@@ -6,7 +6,7 @@ use Symfony\Component\DomCrawler\Crawler;
 
 abstract class FormFieldConstraint extends PageConstraint
 {
-        /**
+    /**
      * The name or ID of the element.
      *
      * @var string
