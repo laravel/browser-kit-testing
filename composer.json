@@ -14,7 +14,7 @@
         "ext-dom": "*",
         "laravel/framework": "^10.44|^11.0",
         "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^10.4|^11.0",
+        "phpunit/phpunit": "^10.4|^11.0.1",
         "symfony/console": "^6.2|^7.0",
         "symfony/css-selector": "^6.2|^7.0",
         "symfony/dom-crawler": "^6.2|^7.0",
