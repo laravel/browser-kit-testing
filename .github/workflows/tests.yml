@@ -45,3 +45,39 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit
+
+  paratests:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.2, 8.3]
+        phpunit: [10, 11]
+        laravel: [10, 11]
+        exclude:
+          - phpunit: 11
+            laravel: 10
+
+    name: PHP ${{ matrix.php }} - PHPUnit ${{ matrix.phpunit }} - Laravel ${{ matrix.laravel }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip
+          ini-values: error_reporting=E_ALL
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer require "nunomaduro/collision" "brianium/paratest" --no-update
+          composer update --with=laravel/framework=^${{ matrix.laravel }} --with=phpunit/phpunit:^${{ matrix.phpunit }} --prefer-dist --no-interaction --no-progress -W
+
+      - name: Execute tests
+        run: vendor/bin/phpunit
