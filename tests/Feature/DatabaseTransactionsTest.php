@@ -2,7 +2,6 @@
 
 namespace Laravel\BrowserKitTesting\Tests\Feature;
 
-use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Auth\User;
 use Laravel\BrowserKitTesting\TestCase;
 use Orchestra\Testbench\Concerns\CreatesApplication;
