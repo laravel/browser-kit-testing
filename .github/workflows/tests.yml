@@ -79,6 +79,6 @@ jobs:
           php vendor/bin/testbench package:create-sqlite-db
 
       - name: Execute tests
-        run: php vendor/bin/testbench test --parallel
+        run: php vendor/bin/testbench parallel:test --parallel
         env:
           DB_CONNECTION: sqlite
