@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.1.1...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.0...7.x)
+
+## [v7.2.0](https://github.com/laravel/browser-kit-testing/compare/v7.1.1...v7.2.0) - 2024-02-09
+
+* Supports Paratests and Fixes PHPUnit 11 Supports by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/browser-kit-testing/pull/179
 
 ## [v7.1.1](https://github.com/laravel/browser-kit-testing/compare/v7.1.0...v7.1.1) - 2024-01-22
 
