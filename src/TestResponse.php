@@ -2,6 +2,7 @@
 
 namespace Laravel\BrowserKitTesting;
 
+use BackedEnum;
 use Illuminate\Testing\Assert as PHPUnit;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -49,7 +50,7 @@ class TestResponse extends \Illuminate\Testing\TestResponse
     /**
      * Assert whether the client was redirected to a given route.
      *
-     * @param  string  $name
+     * @param  BackedEnum|string  $name
      * @param  array  $parameters
      * @param  array  $with
      * @return $this

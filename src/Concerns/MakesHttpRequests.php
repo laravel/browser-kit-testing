@@ -2,10 +2,12 @@
 
 namespace Laravel\BrowserKitTesting\Concerns;
 
+use BackedEnum;
 use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use Laravel\BrowserKitTesting\TestResponse;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
@@ -622,7 +624,7 @@ trait MakesHttpRequests
      * Call a named route and return the Response.
      *
      * @param  string  $method
-     * @param  string  $name
+     * @param  BackedEnum|string  $name
      * @param  array  $routeParameters
      * @param  array  $parameters
      * @param  array  $cookies
@@ -633,6 +635,10 @@ trait MakesHttpRequests
      */
     public function route($method, $name, $routeParameters = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
+        if ($name instanceof BackedEnum && ! is_string($name = $name->value)) {
+            throw new InvalidArgumentException('Route name must be a string or a BackedEnum.');
+        }
+
         $uri = $this->app['url']->route($name, $routeParameters);
 
         return $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
@@ -808,7 +814,7 @@ trait MakesHttpRequests
     /**
      * Assert whether the client was redirected to a given route.
      *
-     * @param  string  $name
+     * @param  BackedEnum|string  $name
      * @param  array  $parameters
      * @param  array  $with
      * @return $this
