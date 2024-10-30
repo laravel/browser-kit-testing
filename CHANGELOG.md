@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.0...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.1...7.x)
+
+## [v7.2.1](https://github.com/laravel/browser-kit-testing/compare/v7.2.0...v7.2.1) - 2024-10-29
+
+* Replace dead link in Security Policy by [@Jubeki](https://github.com/Jubeki) in https://github.com/laravel/browser-kit-testing/pull/181
+* Add BackedEnum for route names by [@parijke](https://github.com/parijke) in https://github.com/laravel/browser-kit-testing/pull/183
 
 ## [v7.2.0](https://github.com/laravel/browser-kit-testing/compare/v7.1.1...v7.2.0) - 2024-02-09
 
