@@ -20,6 +20,13 @@ jobs:
         php: [8.2, 8.3]
         phpunit: [10, 11]
         laravel: [10, 11]
+        include:
+          - php: 8.4
+            laravel: 11
+            phpunit: 10
+          - php: 8.4
+            laravel: 11
+            phpunit: 11
         exclude:
           - phpunit: 11
             laravel: 10
@@ -41,7 +48,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --with=laravel/framework=^${{ matrix.laravel }} --with=phpunit/phpunit:^${{ matrix.phpunit }} --prefer-dist --no-interaction --no-progress
+          composer update --with="laravel/framework=^${{ matrix.laravel }}" --with="phpunit/phpunit:^${{ matrix.phpunit }}" --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
         run: vendor/bin/phpunit
