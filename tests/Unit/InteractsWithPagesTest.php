@@ -15,7 +15,9 @@ class InteractsWithPagesTest extends TestCase
     use InteractsWithPages;
 
     protected $app;
+
     protected $response;
+
     protected $currentUri;
 
     #[Test]

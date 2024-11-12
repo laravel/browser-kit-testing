@@ -35,8 +35,7 @@ class InteractsWithSessionTest extends TestCase
                 return $times == $this->put;
             }
         };
-        $this->app['session.store'] = new class {
-        };
+        $this->app['session.store'] = new class {};
 
         $this->session([
             'foo' => 'bar',
@@ -68,8 +67,7 @@ class InteractsWithSessionTest extends TestCase
                 return $times == $this->put;
             }
         };
-        $this->app['session.store'] = new class {
-        };
+        $this->app['session.store'] = new class {};
 
         $this->withSession([
             'foo' => 'bar',
@@ -133,8 +131,7 @@ class InteractsWithSessionTest extends TestCase
     #[Test]
     public function check_if_exists_data_on_session_and_check_exist_key()
     {
-        $this->app['session'] = new class {
-        };
+        $this->app['session'] = new class {};
         $this->app['session.store'] = new class
         {
             public function get($key)
@@ -157,8 +154,7 @@ class InteractsWithSessionTest extends TestCase
     #[Test]
     public function check_multi_data_on_session_and_check_multi_keys()
     {
-        $this->app['session'] = new class {
-        };
+        $this->app['session'] = new class {};
         $this->app['session.store'] = new class
         {
             protected $data = [
@@ -193,8 +189,7 @@ class InteractsWithSessionTest extends TestCase
     #[Test]
     public function check_not_exists_key_and_multi_key_on_session()
     {
-        $this->app['session'] = new class {
-        };
+        $this->app['session'] = new class {};
         $this->app['session.store'] = new class
         {
             public function has($key)
@@ -209,8 +204,7 @@ class InteractsWithSessionTest extends TestCase
     #[Test]
     public function check_if_exists_errors_on_session()
     {
-        $this->app['session'] = new class {
-        };
+        $this->app['session'] = new class {};
         $this->app['session.store'] = new class
         {
             public function get($key)
@@ -229,7 +223,7 @@ class InteractsWithSessionTest extends TestCase
     #[Test]
     public function check_if_exists_errors_with_value_on_session()
     {
-        $this->app = new Application();
+        $this->app = new Application;
         $this->app['session.store'] = new class
         {
             public function get($key)
@@ -254,8 +248,7 @@ class InteractsWithSessionTest extends TestCase
     #[Test]
     public function check_if_exists_old_input_on_session()
     {
-        $this->app['session'] = new class {
-        };
+        $this->app['session'] = new class {};
         $this->app['session.store'] = new class
         {
             public function has($key)

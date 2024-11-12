@@ -10,14 +10,14 @@ use RuntimeException;
 
 abstract class TestCase extends BaseTestCase
 {
-    use Concerns\InteractsWithContainer,
-        Concerns\MakesHttpRequests,
-        Concerns\ImpersonatesUsers,
+    use Concerns\ImpersonatesUsers,
         Concerns\InteractsWithAuthentication,
         Concerns\InteractsWithConsole,
+        Concerns\InteractsWithContainer,
         Concerns\InteractsWithDatabase,
         Concerns\InteractsWithExceptionHandling,
         Concerns\InteractsWithSession,
+        Concerns\MakesHttpRequests,
         InteractsWithTestCaseLifecycle;
 
     /**
