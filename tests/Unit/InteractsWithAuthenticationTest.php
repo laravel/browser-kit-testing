@@ -18,6 +18,7 @@ class InteractsWithAuthenticationTest extends TestCase
         return new class
         {
             public $retrieveByCredentials;
+
             public $validateCredentials;
 
             public function make()

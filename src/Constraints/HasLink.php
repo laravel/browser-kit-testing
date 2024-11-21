@@ -19,7 +19,7 @@ class HasLink extends PageConstraint
      *
      * @var string|null
      */
-    protected readonly string|null $url;
+    protected readonly ?string $url;
 
     /**
      * Create a new constraint instance.

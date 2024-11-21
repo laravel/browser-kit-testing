@@ -10,8 +10,8 @@ use PHPUnit\Framework\Attributes\Test;
 
 class InteractsWithDatabaseTest extends TestCase
 {
-    use InteractsWithDatabase,
-        InteractsWithConsole;
+    use InteractsWithConsole,
+        InteractsWithDatabase;
 
     protected $app;
 

@@ -21,7 +21,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     #[Test]
     public function withExceptionHandling_restore_exception_handling()
     {
-        $this->app = new Application();
+        $this->app = new Application;
         $this->previousExceptionHandler = 'MyExceptionHandler';
         $this->withExceptionHandling();
         $this->assertEquals(
@@ -33,8 +33,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     #[Test]
     public function withoutExceptionHandling_disable_exception_handling_for_the_test()
     {
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new ExceptionHandlerStub());
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new ExceptionHandlerStub);
         $this->assertNull($this->previousExceptionHandler);
         $this->withoutExceptionHandling();
         $this->assertInstanceOf(
@@ -48,9 +48,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Abort 404');
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {
-        });
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new class {});
 
         $this->withoutExceptionHandling();
         abort(404, 'Abort 404');
@@ -59,9 +58,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     #[Test]
     public function report_of_instance_ExceptionHandler_on_Application_does_nothing()
     {
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {
-        });
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new class {});
 
         $this->withoutExceptionHandling();
         $this->assertNull(app(ExceptionHandler::class)->report(new Exception));
@@ -73,9 +71,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('GET http://localhost');
 
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {
-        });
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new class {});
 
         $request = new class
         {
@@ -105,12 +102,10 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('My Exception');
 
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {
-        });
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new class {});
 
-        $request = new class {
-        };
+        $request = new class {};
 
         $this->withoutExceptionHandling();
 
@@ -120,9 +115,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     #[Test]
     public function renderForConsole_throw_exception_to_console_and_does_nothing()
     {
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {
-        });
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new class {});
         $output = new OutputStub;
         $this->withoutExceptionHandling();
 
@@ -135,9 +129,8 @@ class InteractsWithExceptionHandlingTest extends TestCase
     #[Test]
     public function withoutExceptionHandling_doesnt_not_report_exceptions()
     {
-        $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class {
-        });
+        $this->app = new Application;
+        $this->app->instance(ExceptionHandler::class, new class {});
         $this->withoutExceptionHandling();
         $this->assertFalse(
             app(ExceptionHandler::class)->shouldReport(new NotFoundHttpException)

@@ -22,8 +22,7 @@ class InteractsWithContainerTest extends TestCase
             }
         };
         $abstract = 'Foo';
-        $instance = new class {
-        };
+        $instance = new class {};
         $this->assertEquals(
             $instance,
             $this->instance($abstract, $instance)
