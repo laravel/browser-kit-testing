@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.17",
-        "orchestra/testbench-core": "^8.31|^9.9|dev-phpunit12"
+        "orchestra/testbench-core": "^8.31|^9.9|9.x-dev"
     },
     "autoload": {
         "psr-4": {
