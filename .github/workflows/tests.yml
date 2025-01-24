@@ -27,6 +27,8 @@ jobs:
             laravel: 10
           - php: 8.2
             phpunit: 12
+          - phpunit: 12
+            laravel: 10
 
     name: PHP ${{ matrix.php }} - PHPUnit ${{ matrix.phpunit }} - Laravel ${{ matrix.laravel }}
 
