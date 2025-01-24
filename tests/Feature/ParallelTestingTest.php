@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\BrowserKitTesting\TestCase;
 use Laravel\BrowserKitTesting\Tests\CreatesApplication;
 use Orchestra\Testbench\Foundation\Env;
-use Orchestra\Testbench\Foundation\UndefinedValue;
+use Orchestra\Testbench\Support\UndefinedValue;
 
 class ParallelTestingTest extends TestCase
 {
