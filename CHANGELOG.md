@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.2...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.3...7.x)
+
+## [v7.2.3](https://github.com/laravel/browser-kit-testing/compare/v7.2.2...v7.2.3) - 2025-01-26
+
+* Supports Laravel 12 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/browser-kit-testing/pull/184
 
 ## [v7.2.2](https://github.com/laravel/browser-kit-testing/compare/v7.2.1...v7.2.2) - 2024-11-21
 
