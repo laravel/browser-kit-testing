@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.3...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.4...7.x)
+
+## [v7.2.4](https://github.com/laravel/browser-kit-testing/compare/v7.2.3...v7.2.4) - 2025-02-11
+
+* Supports PHPUnit 12.0 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/browser-kit-testing/pull/185
 
 ## [v7.2.3](https://github.com/laravel/browser-kit-testing/compare/v7.2.2...v7.2.3) - 2025-01-26
 
