@@ -7,7 +7,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\BrowserKitTesting\TestCase;
 use Laravel\BrowserKitTesting\Tests\CreatesApplication;
 use Orchestra\Testbench\Foundation\Env;
-use Orchestra\Testbench\Support\UndefinedValue;
 
 class ParallelTestingTest extends TestCase
 {
@@ -15,7 +14,7 @@ class ParallelTestingTest extends TestCase
 
     protected function setUp(): void
     {
-        if (Env::get('LARAVEL_PARALLEL_TESTING', new UndefinedValue) instanceof UndefinedValue) {
+        if (Env::get('LARAVEL_PARALLEL_TESTING', false) === false) {
             $this->markTestSkipped('Requires paratest to execute the tests');
         }
 
