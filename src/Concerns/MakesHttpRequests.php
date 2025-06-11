@@ -677,7 +677,7 @@ trait MakesHttpRequests
         foreach ($headers as $name => $value) {
             $name = strtr(strtoupper($name), '-', '_');
 
-            if (! Str::startsWith($name, $prefix) && $name != 'CONTENT_TYPE') {
+            if (! Str::startsWith($name, $prefix) && $name != 'CONTENT_TYPE' && $name != 'REMOTE_ADDR') {
                 $name = $prefix.$name;
             }
 
