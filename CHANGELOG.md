@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.4...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.5...7.x)
+
+## [v7.2.5](https://github.com/laravel/browser-kit-testing/compare/v7.2.4...v7.2.5) - 2025-06-11
+
+* Test Improvements by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/browser-kit-testing/pull/186
+* Allow overriding REMOTE_ADDR by [@Petah](https://github.com/Petah) in https://github.com/laravel/browser-kit-testing/pull/187
 
 ## [v7.2.4](https://github.com/laravel/browser-kit-testing/compare/v7.2.3...v7.2.4) - 2025-02-11
 
