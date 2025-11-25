@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.17",
-        "orchestra/testbench-core": "^8.31|^9.9.4|^10.0"
+        "orchestra/testbench-core": "^8.39|^9.17|^10.8"
     },
     "autoload": {
         "psr-4": {
@@ -41,9 +41,12 @@
         }
     },
     "config": {
+        "audit": {
+            "block-insecure": false
+        },
+        "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true
