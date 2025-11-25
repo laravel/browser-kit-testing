@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.5...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.6...7.x)
+
+## [v7.2.6](https://github.com/laravel/browser-kit-testing/compare/v7.2.5...v7.2.6) - 2025-11-25
+
+* [7.x] PHP 8.5 Compatibility by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/browser-kit-testing/pull/188
 
 ## [v7.2.5](https://github.com/laravel/browser-kit-testing/compare/v7.2.4...v7.2.5) - 2025-06-11
 
