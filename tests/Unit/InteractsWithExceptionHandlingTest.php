@@ -9,6 +9,7 @@ use Laravel\BrowserKitTesting\Concerns\InteractsWithExceptionHandling;
 use Laravel\BrowserKitTesting\Tests\Stubs\ExceptionHandlerStub;
 use Laravel\BrowserKitTesting\Tests\Stubs\OutputStub;
 use Laravel\BrowserKitTesting\Tests\TestCase;
+use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -44,6 +45,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
+    #[RequiresPhpunit('<12.3.5')]
     public function withExceptionHandling_throw_exception_NotFoundHttpException()
     {
         $this->expectException(NotFoundHttpException::class);
@@ -113,6 +115,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
+    #[RequiresPhpunit('<12.3.5')]
     public function renderForConsole_throw_exception_to_console_and_does_nothing()
     {
         $this->app = new Application;
