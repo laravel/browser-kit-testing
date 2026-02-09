@@ -32,6 +32,11 @@ if (property_exists(Command::class, 'defaultName')) {
             return false;
         }
 
+        public function isSilent(): bool
+        {
+            return false;
+        }
+
         public function isVerbose(): bool
         {
             return false;
@@ -85,6 +90,11 @@ if (property_exists(Command::class, 'defaultName')) {
         }
 
         public function isQuiet(): bool
+        {
+            return false;
+        }
+
+        public function isSilent(): bool
         {
             return false;
         }
