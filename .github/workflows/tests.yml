@@ -30,7 +30,7 @@ jobs:
           - php: 8.2
             laravel: 13
           - phpunit: 10
-            laravel: 12
+            laravel: 13
           - phpunit: 11
             laravel: 10
           - phpunit: 12
