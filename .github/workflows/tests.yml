@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - develop
-      - '*.x'
+      - *.x
   pull_request:
   schedule:
     - cron: '0 0 * * *'
@@ -14,11 +14,12 @@ jobs:
   tests:
     runs-on: ubuntu-22.04
 
+
     strategy:
       fail-fast: true
       matrix:
         php: [8.2, 8.3, 8.4, 8.5]
-        phpunit: [10, 11, 12]
+        phpunit: ['8.3', '8.4', '8.5', 10, 11, 12]
         laravel: [10, 11, 12, 13]
         exclude:
           - php: 8.5
@@ -39,12 +40,17 @@ jobs:
             laravel: 11
           - php: 8.2
             phpunit: 12
+          - laravel: '13'
+            php: 8.2
+
 
     name: PHP ${{ matrix.php }} - PHPUnit ${{ matrix.phpunit }} - Laravel ${{ matrix.laravel }}
+
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -55,9 +61,11 @@ jobs:
           tools: composer:v2
           coverage: none
 
+
       - name: Install dependencies
         run: |
           composer update --prefer-dist --no-interaction --no-progress --with="laravel/framework=^${{ matrix.laravel }}" --with="phpunit/phpunit:^${{ matrix.phpunit }}" 
+
 
       - name: Execute tests
         run: vendor/bin/phpunit --display-deprecations --fail-on-deprecation
@@ -65,10 +73,12 @@ jobs:
   paratests:
     runs-on: ubuntu-22.04
 
+
     strategy:
       fail-fast: true
       matrix:
         php: [8.2, 8.3, 8.4, 8.5]
+
 
     name: PHP ${{ matrix.php }} Paratest
 
@@ -82,9 +92,11 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -95,10 +107,12 @@ jobs:
           tools: composer:v2
           coverage: none
 
+
       - name: Install dependencies
         run: |
           composer require "nunomaduro/collision" "brianium/paratest" --no-update
           composer update --prefer-dist --no-interaction --no-progress -W
+
 
       - name: Execute tests
         run: php vendor/bin/testbench package:test --parallel
