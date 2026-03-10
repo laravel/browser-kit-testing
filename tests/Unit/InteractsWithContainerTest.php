@@ -17,7 +17,9 @@ class InteractsWithContainerTest extends TestCase
     {
         $this->app = new class
         {
-            public function instance() {}
+            public function instance()
+            {
+            }
         };
         $abstract = 'Foo';
         $instance = new class {};

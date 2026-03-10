@@ -41,9 +41,13 @@ trait InteractsWithExceptionHandling
 
         $this->app->instance(ExceptionHandler::class, new class implements ExceptionHandler
         {
-            public function __construct() {}
+            public function __construct()
+            {
+            }
 
-            public function report(Throwable $e) {}
+            public function report(Throwable $e)
+            {
+            }
 
             public function shouldReport(Throwable $e)
             {

@@ -18,19 +18,33 @@ class ImpersonatesUsersTest extends TestCase
     {
         $user = new class implements Authenticatable
         {
-            public function getAuthIdentifierName() {}
+            public function getAuthIdentifierName()
+            {
+            }
 
-            public function getAuthIdentifier() {}
+            public function getAuthIdentifier()
+            {
+            }
 
-            public function getAuthPassword() {}
+            public function getAuthPassword()
+            {
+            }
 
-            public function getAuthPasswordName() {}
+            public function getAuthPasswordName()
+            {
+            }
 
-            public function getRememberToken() {}
+            public function getRememberToken()
+            {
+            }
 
-            public function setRememberToken($value) {}
+            public function setRememberToken($value)
+            {
+            }
 
-            public function getRememberTokenName() {}
+            public function getRememberTokenName()
+            {
+            }
         };
 
         $this->app['auth'] = new class
