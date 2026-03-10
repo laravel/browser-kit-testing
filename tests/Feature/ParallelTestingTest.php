@@ -14,8 +14,14 @@ class ParallelTestingTest extends TestCase
 
     protected function setUp(): void
     {
-        if (Env::get('LARAVEL_PARALLEL_TESTING', false) === false) {
-            $this->markTestSkipped('Requires paratest to execute the tests');
+        if (class_exists(Env::class)) {
+            if (Env::get('LARAVEL_PARALLEL_TESTING', false) === false) {
+                $this->markTestSkipped('Requires paratest to execute the tests');
+            }
+        } else {
+            if (\Orchestra\Sidekick\Env::get('LARAVEL_PARALLEL_TESTING', false) === false) {
+                $this->markTestSkipped('Requires paratest to execute the tests');
+            }
         }
 
         parent::setUp();
