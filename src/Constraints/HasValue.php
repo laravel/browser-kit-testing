@@ -2,6 +2,7 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
+use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\DomCrawler\Crawler;
 
 class HasValue extends FormFieldConstraint
@@ -19,8 +20,7 @@ class HasValue extends FormFieldConstraint
     /**
      * Check if the input contains the expected value.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return bool
+     * @param  Crawler|string  $crawler
      */
     public function matches($crawler): bool
     {
@@ -32,10 +32,9 @@ class HasValue extends FormFieldConstraint
     /**
      * Get the value of an input or textarea.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
      * @return string
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     public function getInputOrTextAreaValue(Crawler $crawler)
     {

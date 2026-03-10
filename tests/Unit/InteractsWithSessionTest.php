@@ -46,7 +46,7 @@ class InteractsWithSessionTest extends TestCase
     }
 
     #[Test]
-    public function withSession_method_can_add_data_on_session()
+    public function with_session_method_can_add_data_on_session()
     {
         $this->app['session'] = new class
         {

@@ -2,6 +2,8 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
+use Symfony\Component\DomCrawler\Crawler;
+
 class IsChecked extends FormFieldConstraint
 {
     /**
@@ -28,8 +30,7 @@ class IsChecked extends FormFieldConstraint
     /**
      * Determine if the checkbox is checked.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return bool
+     * @param  Crawler|string  $crawler
      */
     public function matches($crawler): bool
     {

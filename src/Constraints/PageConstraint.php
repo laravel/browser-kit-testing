@@ -12,7 +12,7 @@ abstract class PageConstraint extends Constraint
     /**
      * Make sure we obtain the HTML from the crawler or the response.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
+     * @param  Crawler|string  $crawler
      * @return string
      */
     protected function html($crawler)
@@ -23,7 +23,7 @@ abstract class PageConstraint extends Constraint
     /**
      * Make sure we obtain the HTML from the crawler or the response.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
+     * @param  Crawler|string  $crawler
      * @return string
      */
     protected function text($crawler)
@@ -34,8 +34,8 @@ abstract class PageConstraint extends Constraint
     /**
      * Create a crawler instance if the given value is not already a Crawler.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return \Symfony\Component\DomCrawler\Crawler
+     * @param  Crawler|string  $crawler
+     * @return Crawler
      */
     protected function crawler($crawler)
     {
@@ -61,12 +61,9 @@ abstract class PageConstraint extends Constraint
     /**
      * Throw an exception for the given comparison and test description.
      *
-     * @param  mixed  $other
-     * @param  string  $description
-     * @param  \SebastianBergmann\Comparator\ComparisonFailure|null  $comparisonFailure
      * @return void
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     protected function fail(mixed $other, string $description, ?ComparisonFailure $comparisonFailure = null): never
     {
@@ -114,8 +111,6 @@ abstract class PageConstraint extends Constraint
      * Get a string representation of the object.
      *
      * Placeholder method to avoid forcing definition of this method.
-     *
-     * @return string
      */
     public function toString(): string
     {

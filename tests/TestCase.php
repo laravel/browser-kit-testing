@@ -9,12 +9,12 @@ use Symfony\Component\DomCrawler\Crawler;
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * @var \DOMDocument
+     * @var DOMDocument
      */
     protected $dom;
 
     /**
-     * @var \Symfony\Component\DomCrawler\Crawler
+     * @var Crawler
      */
     protected $crawler;
 

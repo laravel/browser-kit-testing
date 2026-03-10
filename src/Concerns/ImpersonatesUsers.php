@@ -9,7 +9,6 @@ trait ImpersonatesUsers
     /**
      * Set the currently logged in user for the application.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  string|null  $driver
      * @return $this
      */
@@ -23,7 +22,6 @@ trait ImpersonatesUsers
     /**
      * Set the currently logged in user for the application.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  string|null  $driver
      * @return void
      */

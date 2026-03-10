@@ -2,21 +2,18 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
+use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\DomCrawler\Crawler;
 
 abstract class FormFieldConstraint extends PageConstraint
 {
     /**
      * The name or ID of the element.
-     *
-     * @var string
      */
     protected readonly string $selector;
 
     /**
      * The expected value.
-     *
-     * @var string
      */
     protected readonly string $value;
 
@@ -45,10 +42,9 @@ abstract class FormFieldConstraint extends PageConstraint
     /**
      * Get the form field.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
-     * @return \Symfony\Component\DomCrawler\Crawler
+     * @return Crawler
      *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws ExpectationFailedException
      */
     protected function field(Crawler $crawler)
     {

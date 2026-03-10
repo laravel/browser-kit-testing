@@ -2,12 +2,12 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
+use Symfony\Component\DomCrawler\Crawler;
+
 class HasText extends PageConstraint
 {
     /**
      * The expected text.
-     *
-     * @var string
      */
     protected readonly string $text;
 
@@ -25,8 +25,7 @@ class HasText extends PageConstraint
     /**
      * Check if the plain text is found in the given crawler.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return bool
+     * @param  Crawler|string  $crawler
      */
     protected function matches($crawler): bool
     {
@@ -37,8 +36,6 @@ class HasText extends PageConstraint
 
     /**
      * Returns a string representation of the object.
-     *
-     * @return string
      */
     public function toString(): string
     {

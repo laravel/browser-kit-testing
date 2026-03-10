@@ -2,19 +2,18 @@
 
 namespace Laravel\BrowserKitTesting\Constraints;
 
+use Symfony\Component\DomCrawler\Crawler;
+
 class ReversePageConstraint extends PageConstraint
 {
     /**
      * The page constraint instance.
-     *
-     * @var \Laravel\BrowserKitTesting\Constraints\PageConstraint
      */
     protected readonly PageConstraint $pageConstraint;
 
     /**
      * Create a new reverse page constraint instance.
      *
-     * @param  \Laravel\BrowserKitTesting\Constraints\PageConstraint  $pageConstraint
      * @return void
      */
     public function __construct(PageConstraint $pageConstraint)
@@ -25,8 +24,7 @@ class ReversePageConstraint extends PageConstraint
     /**
      * Reverse the original page constraint result.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler  $crawler
-     * @return bool
+     * @param  Crawler  $crawler
      */
     public function matches($crawler): bool
     {
@@ -47,8 +45,6 @@ class ReversePageConstraint extends PageConstraint
 
     /**
      * Get a string representation of the object.
-     *
-     * @return string
      */
     public function toString(): string
     {

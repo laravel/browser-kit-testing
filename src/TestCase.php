@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Creates the application.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return Application
      */
     public function createApplication()
     {
@@ -42,8 +42,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Setup the test environment.
-     *
-     * @return void
      */
     protected function setUp(): void
     {
@@ -64,8 +62,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Clean up the testing environment before the next test.
-     *
-     * @return void
      */
     protected function tearDown(): void
     {

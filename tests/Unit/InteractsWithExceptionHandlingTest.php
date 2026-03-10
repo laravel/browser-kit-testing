@@ -20,7 +20,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     protected $app;
 
     #[Test]
-    public function withExceptionHandling_restore_exception_handling()
+    public function with_exception_handling_restore_exception_handling()
     {
         $this->app = new Application;
         $this->previousExceptionHandler = 'MyExceptionHandler';
@@ -32,7 +32,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
-    public function withoutExceptionHandling_disable_exception_handling_for_the_test()
+    public function without_exception_handling_disable_exception_handling_for_the_test()
     {
         $this->app = new Application;
         $this->app->instance(ExceptionHandler::class, new ExceptionHandlerStub);
@@ -46,7 +46,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
 
     #[Test]
     #[RequiresPhpunit('<12.3.5')]
-    public function withExceptionHandling_throw_exception_NotFoundHttpException()
+    public function with_exception_handling_throw_exception_not_found_http_exception()
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Abort 404');
@@ -58,7 +58,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
-    public function report_of_instance_ExceptionHandler_on_Application_does_nothing()
+    public function report_of_instance_exception_handler_on_application_does_nothing()
     {
         $this->app = new Application;
         $this->app->instance(ExceptionHandler::class, new class {});
@@ -68,7 +68,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
-    public function render_of_instance_ExceptionHandler_on_Application_throw_exception_NotFoundHttpException()
+    public function render_of_instance_exception_handler_on_application_throw_exception_not_found_http_exception()
     {
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('GET http://localhost');
@@ -99,7 +99,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
-    public function render_of_instance_ExceptionHandler_on_Application_throw_exception_anyone()
+    public function render_of_instance_exception_handler_on_application_throw_exception_anyone()
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('My Exception');
@@ -116,7 +116,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
 
     #[Test]
     #[RequiresPhpunit('<12.3.5')]
-    public function renderForConsole_throw_exception_to_console_and_does_nothing()
+    public function render_for_console_throw_exception_to_console_and_does_nothing()
     {
         $this->app = new Application;
         $this->app->instance(ExceptionHandler::class, new class {});
@@ -130,7 +130,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     }
 
     #[Test]
-    public function withoutExceptionHandling_doesnt_not_report_exceptions()
+    public function without_exception_handling_doesnt_not_report_exceptions()
     {
         $this->app = new Application;
         $this->app->instance(ExceptionHandler::class, new class {});

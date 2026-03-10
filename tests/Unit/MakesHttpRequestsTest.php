@@ -18,7 +18,7 @@ class MakesHttpRequestsTest extends TestCase
 
     #[Test]
     #[DataProvider('dataUrls')]
-    public function prepareUrlForRequest_method_return_all_url($url, $expectedUrl)
+    public function prepare_url_for_request_method_return_all_url($url, $expectedUrl)
     {
         $this->baseUrl = 'http://localhost';
         $this->assertSame(
@@ -40,7 +40,7 @@ class MakesHttpRequestsTest extends TestCase
     }
 
     #[Test]
-    public function seeStatusCode_check_status_code()
+    public function see_status_code_check_status_code()
     {
         $this->response = TestResponse::fromBaseResponse(new class extends Response
         {
@@ -54,7 +54,7 @@ class MakesHttpRequestsTest extends TestCase
     }
 
     #[Test]
-    public function assertResponseOk_check_that_the_status_page_should_be_200()
+    public function assert_response_ok_check_that_the_status_page_should_be_200()
     {
         $this->response = TestResponse::fromBaseResponse(new class extends Response
         {
@@ -73,7 +73,7 @@ class MakesHttpRequestsTest extends TestCase
     }
 
     #[Test]
-    public function assertResponseOk_throw_exception_when_the_status_page_is_not_200()
+    public function assert_response_ok_throw_exception_when_the_status_page_is_not_200()
     {
         $this->expectException(ExpectationFailedException::class);
 
@@ -94,7 +94,7 @@ class MakesHttpRequestsTest extends TestCase
     }
 
     #[Test]
-    public function assertResponseStatus_check_the_response_status_is_equal_to_passed_by_parameter()
+    public function assert_response_status_check_the_response_status_is_equal_to_passed_by_parameter()
     {
         $this->response = TestResponse::fromBaseResponse(new class extends Response
         {
@@ -108,7 +108,7 @@ class MakesHttpRequestsTest extends TestCase
     }
 
     #[Test]
-    public function assertResponseStatus_throw_exception_when_the_response_status_is_not_equal_to_passed_by_parameter()
+    public function assert_response_status_throw_exception_when_the_response_status_is_not_equal_to_passed_by_parameter()
     {
         $this->expectException(ExpectationFailedException::class);
 
@@ -123,7 +123,7 @@ class MakesHttpRequestsTest extends TestCase
         $this->response->assertResponseStatus(404);
     }
 
-    public function testWithCookieSetCookie()
+    public function test_with_cookie_set_cookie()
     {
         $this->withCookie('foo', 'bar');
 
@@ -131,7 +131,7 @@ class MakesHttpRequestsTest extends TestCase
         $this->assertSame('bar', $this->defaultCookies['foo']);
     }
 
-    public function testWithCookiesSetsCookiesAndOverwritesPreviousValues()
+    public function test_with_cookies_sets_cookies_and_overwrites_previous_values()
     {
         $this->withCookie('foo', 'bar');
         $this->withCookies([

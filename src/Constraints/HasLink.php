@@ -4,20 +4,17 @@ namespace Laravel\BrowserKitTesting\Constraints;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use Symfony\Component\DomCrawler\Crawler;
 
 class HasLink extends PageConstraint
 {
     /**
      * The text expected to be found.
-     *
-     * @var string
      */
     protected readonly string $text;
 
     /**
      * The URL expected to be linked in the <a> tag.
-     *
-     * @var string|null
      */
     protected readonly ?string $url;
 
@@ -37,8 +34,7 @@ class HasLink extends PageConstraint
     /**
      * Check if the link is found in the given crawler.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return bool
+     * @param  Crawler|string  $crawler
      */
     public function matches($crawler): bool
     {
