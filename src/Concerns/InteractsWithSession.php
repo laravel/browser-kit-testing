@@ -9,7 +9,6 @@ trait InteractsWithSession
     /**
      * Set the session to the given array.
      *
-     * @param  array  $data
      * @return $this
      */
     public function withSession(array $data)
@@ -22,7 +21,6 @@ trait InteractsWithSession
     /**
      * Set the session to the given array.
      *
-     * @param  array  $data
      * @return void
      */
     public function session(array $data)
@@ -95,7 +93,6 @@ trait InteractsWithSession
     /**
      * Assert that the session has a given list of values.
      *
-     * @param  array  $bindings
      * @return void
      */
     public function assertSessionHasAll(array $bindings)

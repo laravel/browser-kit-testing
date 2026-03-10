@@ -8,15 +8,11 @@ class HasInElement extends PageConstraint
 {
     /**
      * The name or ID of the element.
-     *
-     * @var string
      */
     protected readonly string $element;
 
     /**
      * The text expected to be found.
-     *
-     * @var string
      */
     protected readonly string $text;
 
@@ -36,8 +32,7 @@ class HasInElement extends PageConstraint
     /**
      * Check if the source or text is found within the element in the given crawler.
      *
-     * @param  \Symfony\Component\DomCrawler\Crawler|string  $crawler
-     * @return bool
+     * @param  Crawler|string  $crawler
      */
     public function matches($crawler): bool
     {

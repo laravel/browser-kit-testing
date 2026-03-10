@@ -49,7 +49,7 @@ class InteractsWithAuthenticationTest extends TestCase
     }
 
     #[Test]
-    public function hasCredentials_return_true_if_the_credentials_are_valid()
+    public function has_credentials_return_true_if_the_credentials_are_valid()
     {
         $this->app = $this->createUserProviderToCredentials();
         $this->app->retrieveByCredentials = true;
@@ -64,7 +64,7 @@ class InteractsWithAuthenticationTest extends TestCase
 
     #[Test]
     #[DataProvider('dataHasCredentials')]
-    public function hasCredentials_return_false_if_the_credentials_arent_valid($validateCredentials, $retrieveByCredentials)
+    public function has_credentials_return_false_if_the_credentials_arent_valid($validateCredentials, $retrieveByCredentials)
     {
         $this->app = $this->createUserProviderToCredentials();
         $this->app->retrieveByCredentials = $retrieveByCredentials;

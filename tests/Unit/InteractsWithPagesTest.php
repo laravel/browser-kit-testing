@@ -3,12 +3,15 @@
 namespace Laravel\BrowserKitTesting\Tests\Unit;
 
 use Exception;
+use Illuminate\Http\UploadedFile;
 use InvalidArgumentException;
 use Laravel\BrowserKitTesting\Concerns\InteractsWithPages;
 use Laravel\BrowserKitTesting\HttpException;
 use Laravel\BrowserKitTesting\Tests\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
+use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\DomCrawler\Form;
 
 class InteractsWithPagesTest extends TestCase
 {
@@ -115,7 +118,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function storeInput_method_store_a_form_input_in_the_local_array()
+    public function store_input_method_store_a_form_input_in_the_local_array()
     {
         $html = '<html>
             <body>
@@ -150,7 +153,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function when_input_dont_exist_storeInput_throw_exception()
+    public function when_input_dont_exist_store_input_throw_exception()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Nothing matched the filter [name] CSS query provided for [].');
@@ -172,7 +175,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function getForm_method_returns_Form_from_page_with_the_given_submit_button_text()
+    public function get_form_method_returns_form_from_page_with_the_given_submit_button_text()
     {
         $html = '<html>
             <body>
@@ -183,12 +186,12 @@ class InteractsWithPagesTest extends TestCase
         </html>';
         $this->createPage($html);
 
-        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm('Send'));
-        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm());
+        $this->assertInstanceOf(Form::class, $this->getForm('Send'));
+        $this->assertInstanceOf(Form::class, $this->getForm());
     }
 
     #[Test]
-    public function when_exists_button_getForm_method_throw_exception()
+    public function when_exists_button_get_form_method_throw_exception()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Could not find a form that has submit button [Search].');
@@ -202,11 +205,11 @@ class InteractsWithPagesTest extends TestCase
         </html>';
         $this->createPage($html);
 
-        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $this->getForm('Search'));
+        $this->assertInstanceOf(Form::class, $this->getForm('Search'));
     }
 
     #[Test]
-    public function fillForm_method_return_Form_with_the_given_data()
+    public function fill_form_method_return_form_with_the_given_data()
     {
         $html = '<html>
             <body>
@@ -218,12 +221,12 @@ class InteractsWithPagesTest extends TestCase
         </html>';
         $this->createPage($html);
         $form = $this->fillForm('Send', ['name' => 'Taylor']);
-        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $form);
+        $this->assertInstanceOf(Form::class, $form);
         $this->assertSame('Taylor', $form->get('name')->getValue());
     }
 
     #[Test]
-    public function fillForm_method_return_Form_when_given_array_data()
+    public function fill_form_method_return_form_when_given_array_data()
     {
         $html = '<html>
             <body>
@@ -235,12 +238,12 @@ class InteractsWithPagesTest extends TestCase
         </html>';
         $this->createPage($html);
         $form = $this->fillForm(['name' => 'Taylor']);
-        $this->assertInstanceOf(\Symfony\Component\DomCrawler\Form::class, $form);
+        $this->assertInstanceOf(Form::class, $form);
         $this->assertSame('Taylor', $form->get('name')->getValue());
     }
 
     #[Test]
-    public function resetPageContext_method_clear_crawler_subcrawlers()
+    public function reset_page_context_method_clear_crawler_subcrawlers()
     {
         $body = '<body>
             <form action="https://localhost" method="post">
@@ -252,11 +255,11 @@ class InteractsWithPagesTest extends TestCase
 
         $this->within('form', function () {
             $this->assertInstanceOf(
-                \Symfony\Component\DomCrawler\Crawler::class,
+                Crawler::class,
                 $this->crawler
             );
             $this->assertInstanceOf(
-                \Symfony\Component\DomCrawler\Crawler::class,
+                Crawler::class,
                 $this->subCrawlers[0]
             );
 
@@ -268,7 +271,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function clearInputs_method_clear_all_inputs_and_uploads()
+    public function clear_inputs_method_clear_all_inputs_and_uploads()
     {
         $avatar = '/path/to/my-avatar.png';
         $this->inputs = [
@@ -284,7 +287,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function extractParametersFromForm_extract_parameter_of_form()
+    public function extract_parameters_from_form_extract_parameter_of_form()
     {
         $html = '<html>
             <body>
@@ -306,7 +309,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function convertUploadsForTesting_converter_uploads_to_UploadedFile_instances()
+    public function convert_uploads_for_testing_converter_uploads_to_uploaded_file_instances()
     {
         $html = '<html>
             <body>
@@ -332,7 +335,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function assertPageLoaded_check_that_the_page_was_loaded()
+    public function assert_page_loaded_check_that_the_page_was_loaded()
     {
         $this->app = null;
         $this->response = new class
@@ -347,7 +350,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function assertPageLoaded_throw_exception_when_the_page_was_not_loaded_correctly()
+    public function assert_page_loaded_throw_exception_when_the_page_was_not_loaded_correctly()
     {
         $this->expectException(HttpException::class);
         $this->expectExceptionMessage('A request to [http://localhost/login] failed. Received status code [404].');
@@ -365,7 +368,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function assertPageLoaded_throw_exception_with_response_exception()
+    public function assert_page_loaded_throw_exception_with_response_exception()
     {
         $this->expectException(HttpException::class);
         $this->expectExceptionMessage('A request to [http://localhost/login] failed. Received status code [500].');
@@ -390,7 +393,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function crawler_method_return_first_subCrawler()
+    public function crawler_method_return_first_sub_crawler()
     {
         $body = '<body>
             <div class="card-user">
@@ -412,13 +415,13 @@ class InteractsWithPagesTest extends TestCase
 
     #[Test]
     #[DataProvider('attributes_UploadedFile')]
-    public function create_UploadedFile_for_testing($file, $uploads, $name)
+    public function create_uploaded_file_for_testing($file, $uploads, $name)
     {
         $file = $this->getUploadedFileForTesting(
             $file, $uploads, $name
         );
         $this->assertInstanceOf(
-            \Illuminate\Http\UploadedFile::class,
+            UploadedFile::class,
             $file
         );
         $this->assertSame('avatar.png', $file->getClientOriginalName());
@@ -454,7 +457,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function getUploadedFileForTesting_return_null_if_it_can_not_upload_file()
+    public function get_uploaded_file_for_testing_return_null_if_it_can_not_upload_file()
     {
         $this->assertNull(
             $this->getUploadedFileForTesting(
@@ -464,7 +467,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function see_on_current_HTML()
+    public function see_on_current_html()
     {
         $body = '<body>
             <h3>Hello, <strong>User</strong></h3>
@@ -476,7 +479,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function see_element_on_current_HTML()
+    public function see_element_on_current_html()
     {
         $body = '<body>
             <img src="avatar.png" alt="ups"/>
@@ -488,7 +491,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function count_elements_on_current_HTML()
+    public function count_elements_on_current_html()
     {
         $body = '<body>
             <div class="card-user">...</div>
@@ -500,7 +503,7 @@ class InteractsWithPagesTest extends TestCase
     }
 
     #[Test]
-    public function see_text_on_current_HTML()
+    public function see_text_on_current_html()
     {
         $body = '<body>
             <h3>Hello, <strong>User</strong></h3>

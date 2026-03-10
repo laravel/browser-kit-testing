@@ -20,7 +20,7 @@ trait MakesHttpRequests
     /**
      * The last response returned by the application.
      *
-     * @var \Laravel\BrowserKitTesting\TestResponse
+     * @var TestResponse
      */
     protected $response;
 
@@ -89,7 +89,6 @@ trait MakesHttpRequests
     /**
      * Define additional cookies to be sent with the request.
      *
-     * @param  array  $cookies
      * @return $this
      */
     public function withCookies(array $cookies)
@@ -102,8 +101,6 @@ trait MakesHttpRequests
     /**
      * Add a cookie to be sent with the request.
      *
-     * @param  string  $name
-     * @param  string  $value
      * @return $this
      */
     public function withCookie(string $name, string $value)
@@ -116,7 +113,6 @@ trait MakesHttpRequests
     /**
      * Define additional cookies will not be encrypted before sending with the request.
      *
-     * @param  array  $cookies
      * @return $this
      */
     public function withUnencryptedCookies(array $cookies)
@@ -129,8 +125,6 @@ trait MakesHttpRequests
     /**
      * Add a cookie will not be encrypted before sending with the request.
      *
-     * @param  string  $name
-     * @param  string  $value
      * @return $this
      */
     public function withUnencryptedCookie(string $name, string $value)
@@ -157,8 +151,6 @@ trait MakesHttpRequests
      *
      * @param  string  $method
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function json($method, $uri, array $data = [], array $headers = [])
@@ -206,7 +198,6 @@ trait MakesHttpRequests
      * Visit the given URI with a GET request.
      *
      * @param  string  $uri
-     * @param  array  $headers
      * @return $this
      */
     public function get($uri, array $headers = [])
@@ -223,7 +214,6 @@ trait MakesHttpRequests
      * Visit the given URI with a GET request, expecting a JSON response.
      *
      * @param  string  $uri
-     * @param  array  $headers
      * @return $this
      */
     public function getJson($uri, array $headers = [])
@@ -235,8 +225,6 @@ trait MakesHttpRequests
      * Visit the given URI with a POST request.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function post($uri, array $data = [], array $headers = [])
@@ -253,8 +241,6 @@ trait MakesHttpRequests
      * Visit the given URI with a POST request, expecting a JSON response.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function postJson($uri, array $data = [], array $headers = [])
@@ -266,8 +252,6 @@ trait MakesHttpRequests
      * Visit the given URI with a PUT request.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function put($uri, array $data = [], array $headers = [])
@@ -284,8 +268,6 @@ trait MakesHttpRequests
      * Visit the given URI with a PUT request, expecting a JSON response.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function putJson($uri, array $data = [], array $headers = [])
@@ -297,8 +279,6 @@ trait MakesHttpRequests
      * Visit the given URI with a PATCH request.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function patch($uri, array $data = [], array $headers = [])
@@ -315,8 +295,6 @@ trait MakesHttpRequests
      * Visit the given URI with a PATCH request, expecting a JSON response.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function patchJson($uri, array $data = [], array $headers = [])
@@ -328,8 +306,6 @@ trait MakesHttpRequests
      * Visit the given URI with a DELETE request.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function delete($uri, array $data = [], array $headers = [])
@@ -346,8 +322,6 @@ trait MakesHttpRequests
      * Visit the given URI with a DELETE request, expecting a JSON response.
      *
      * @param  string  $uri
-     * @param  array  $data
-     * @param  array  $headers
      * @return $this
      */
     public function deleteJson($uri, array $data = [], array $headers = [])
@@ -360,7 +334,6 @@ trait MakesHttpRequests
      *
      * This method allows you to fully customize the entire Request object.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return $this
      */
     public function handle(Request $request)
@@ -377,7 +350,6 @@ trait MakesHttpRequests
     /**
      * Assert that the response contains JSON.
      *
-     * @param  array|null  $data
      * @return $this
      */
     protected function shouldReturnJson(?array $data = null)
@@ -388,7 +360,6 @@ trait MakesHttpRequests
     /**
      * Assert that the response contains JSON.
      *
-     * @param  array|null  $data
      * @return $this|null
      */
     protected function receiveJson(?array $data = null)
@@ -399,7 +370,6 @@ trait MakesHttpRequests
     /**
      * Assert that the response contains an exact JSON array.
      *
-     * @param  array  $data
      * @return $this
      */
     public function seeJsonEquals(array $data)
@@ -412,7 +382,6 @@ trait MakesHttpRequests
     /**
      * Assert that the response contains JSON.
      *
-     * @param  array|null  $data
      * @param  bool  $negate
      * @return $this
      */
@@ -439,7 +408,6 @@ trait MakesHttpRequests
     /**
      * Assert that the response doesn't contain JSON.
      *
-     * @param  array|null  $data
      * @return $this
      */
     public function dontSeeJson(?array $data = null)
@@ -450,7 +418,6 @@ trait MakesHttpRequests
     /**
      * Assert that the JSON response has a given structure.
      *
-     * @param  array|null  $structure
      * @param  array|null  $responseData
      * @return $this
      */
@@ -464,7 +431,6 @@ trait MakesHttpRequests
     /**
      * Assert that the response contains the given JSON.
      *
-     * @param  array  $data
      * @param  bool  $negate
      * @return $this
      */
@@ -537,7 +503,6 @@ trait MakesHttpRequests
     /**
      * Define a set of server variables to be sent with the requests.
      *
-     * @param  array  $server
      * @return $this
      */
     protected function withServerVariables(array $server)
@@ -557,7 +522,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Laravel\BrowserKitTesting\TestResponse
+     * @return TestResponse
      */
     public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -591,7 +556,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Laravel\BrowserKitTesting\TestResponse
+     * @return TestResponse
      */
     public function callSecure($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -611,7 +576,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Laravel\BrowserKitTesting\TestResponse
+     * @return TestResponse
      */
     public function action($method, $action, $wildcards = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -631,7 +596,7 @@ trait MakesHttpRequests
      * @param  array  $files
      * @param  array  $server
      * @param  string  $content
-     * @return \Laravel\BrowserKitTesting\TestResponse
+     * @return TestResponse
      */
     public function route($method, $name, $routeParameters = [], $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
@@ -666,7 +631,6 @@ trait MakesHttpRequests
     /**
      * Transform headers array to array of $_SERVER vars with HTTP_* format.
      *
-     * @param  array  $headers
      * @return array
      */
     protected function transformHeadersToServerVars(array $headers)
@@ -774,7 +738,6 @@ trait MakesHttpRequests
     /**
      * Assert that the view has a given list of bound data.
      *
-     * @param  array  $bindings
      * @return $this
      */
     public function assertViewHasAll(array $bindings)

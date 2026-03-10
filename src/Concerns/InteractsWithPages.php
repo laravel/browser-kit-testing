@@ -27,7 +27,7 @@ trait InteractsWithPages
     /**
      * The DomCrawler instance.
      *
-     * @var \Symfony\Component\DomCrawler\Crawler
+     * @var Crawler
      */
     protected $crawler;
 
@@ -115,8 +115,6 @@ trait InteractsWithPages
     /**
      * Make a request to the application using the given form.
      *
-     * @param  \Symfony\Component\DomCrawler\Form  $form
-     * @param  array  $uploads
      * @return $this
      */
     protected function makeRequestUsingForm(Form $form, array $uploads = [])
@@ -131,7 +129,6 @@ trait InteractsWithPages
     /**
      * Extract the parameters from the given form.
      *
-     * @param  \Symfony\Component\DomCrawler\Form  $form
      * @return array
      */
     protected function extractParametersFromForm(Form $form)
@@ -212,7 +209,7 @@ trait InteractsWithPages
      * @param  string|null  $message
      * @return void
      *
-     * @throws \Laravel\BrowserKitTesting\HttpException
+     * @throws HttpException
      */
     protected function assertPageLoaded($uri, $message = null)
     {
@@ -235,7 +232,6 @@ trait InteractsWithPages
      * Narrow the test content to a specific area of the page.
      *
      * @param  string  $element
-     * @param  \Closure  $callback
      * @return $this
      */
     public function within($element, Closure $callback)
@@ -252,7 +248,7 @@ trait InteractsWithPages
     /**
      * Get the current crawler according to the test context.
      *
-     * @return \Symfony\Component\DomCrawler\Crawler
+     * @return Crawler
      */
     protected function crawler()
     {
@@ -266,7 +262,6 @@ trait InteractsWithPages
     /**
      * Assert the given constraint.
      *
-     * @param  \Laravel\BrowserKitTesting\Constraints\PageConstraint  $constraint
      * @param  bool  $reverse
      * @param  string  $message
      * @return $this
@@ -312,7 +307,6 @@ trait InteractsWithPages
      * Assert that an element is present on the page.
      *
      * @param  string  $selector
-     * @param  array  $attributes
      * @param  bool  $negate
      * @return $this
      */
@@ -325,7 +319,6 @@ trait InteractsWithPages
      * Assert that an element is not present on the page.
      *
      * @param  string  $selector
-     * @param  array  $attributes
      * @return $this
      */
     public function dontSeeElement($selector, array $attributes = [])
@@ -499,7 +492,7 @@ trait InteractsWithPages
      * @param  string  $name
      * @return $this
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function click($name)
     {
@@ -611,7 +604,7 @@ trait InteractsWithPages
      *
      * @param  string  $buttonText
      * @param  array  $inputs
-     * @return \Symfony\Component\DomCrawler\Form
+     * @return Form
      */
     protected function fillForm($buttonText, $inputs = [])
     {
@@ -628,9 +621,9 @@ trait InteractsWithPages
      * Get the form from the page with the given submit button text.
      *
      * @param  string|null  $buttonText
-     * @return \Symfony\Component\DomCrawler\Form
+     * @return Form
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function getForm($buttonText = null)
     {
@@ -671,7 +664,7 @@ trait InteractsWithPages
      * @param  string  $filter
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function assertFilterProducesResults($filter)
     {
@@ -689,7 +682,7 @@ trait InteractsWithPages
      *
      * @param  string  $name
      * @param  array|string  $elements
-     * @return \Symfony\Component\DomCrawler\Crawler
+     * @return Crawler
      */
     protected function filterByNameOrId($name, $elements = '*')
     {
@@ -709,8 +702,6 @@ trait InteractsWithPages
     /**
      * Convert the given uploads to UploadedFile instances.
      *
-     * @param  \Symfony\Component\DomCrawler\Form  $form
-     * @param  array  $uploads
      * @return array
      */
     protected function convertUploadsForTesting(Form $form, array $uploads)
@@ -764,7 +755,7 @@ trait InteractsWithPages
      * @param  array  $file
      * @param  array  $uploads
      * @param  string  $name
-     * @return \Illuminate\Http\UploadedFile
+     * @return UploadedFile
      */
     protected function getUploadedFileForTesting($file, $uploads, $name)
     {

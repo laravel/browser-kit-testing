@@ -44,7 +44,6 @@ trait InteractsWithAuthentication
     /**
      * Assert that the user is authenticated as the given user.
      *
-     * @param  $user
      * @param  string|null  $guard
      * @return $this
      */
@@ -68,7 +67,6 @@ trait InteractsWithAuthentication
     /**
      * Assert that the given credentials are valid.
      *
-     * @param  array  $credentials
      * @param  string|null  $guard
      * @return $this
      */
@@ -84,7 +82,6 @@ trait InteractsWithAuthentication
     /**
      * Assert that the given credentials are invalid.
      *
-     * @param  array  $credentials
      * @param  string|null  $guard
      * @return $this
      */
@@ -100,7 +97,6 @@ trait InteractsWithAuthentication
     /**
      * Return true is the credentials are valid, false otherwise.
      *
-     * @param  array  $credentials
      * @param  string|null  $guard
      * @return bool
      */
