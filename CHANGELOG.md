@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.7...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.8...7.x)
+
+## [v7.2.8](https://github.com/laravel/browser-kit-testing/compare/v7.2.7...v7.2.8) - 2026-03-16
+
+### What's Changed
+
+* [7.x] Makes imports consistent by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/browser-kit-testing/pull/191
+* Supports PHPUnit 13 by [@crynobone](https://github.com/crynobone) in https://github.com/laravel/browser-kit-testing/pull/192
+
+**Full Changelog**: https://github.com/laravel/browser-kit-testing/compare/v7.2.7...v7.2.8
 
 ## [v7.2.7](https://github.com/laravel/browser-kit-testing/compare/v7.2.6...v7.2.7) - 2026-02-09
 
