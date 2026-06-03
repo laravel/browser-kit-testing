@@ -16,6 +16,7 @@ class MakesHttpRequestsTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider dataUrls
      */
     public function prepareUrlForRequest_method_return_all_url($url, $expectedUrl)

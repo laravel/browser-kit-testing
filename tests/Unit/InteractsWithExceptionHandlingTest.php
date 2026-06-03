@@ -54,8 +54,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectException(NotFoundHttpException::class);
         $this->expectExceptionMessage('Abort 404');
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class
-        {
+        $this->app->instance(ExceptionHandler::class, new class {
         });
 
         $this->withoutExceptionHandling();
@@ -68,8 +67,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     public function report_of_instance_ExceptionHandler_on_Application_does_nothing()
     {
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class
-        {
+        $this->app->instance(ExceptionHandler::class, new class {
         });
 
         $this->withoutExceptionHandling();
@@ -85,8 +83,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectExceptionMessage('GET http://localhost');
 
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class
-        {
+        $this->app->instance(ExceptionHandler::class, new class {
         });
 
         $request = new class
@@ -120,12 +117,10 @@ class InteractsWithExceptionHandlingTest extends TestCase
         $this->expectExceptionMessage('My Exception');
 
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class
-        {
+        $this->app->instance(ExceptionHandler::class, new class {
         });
 
-        $request = new class
-        {
+        $request = new class {
         };
 
         $this->withoutExceptionHandling();
@@ -139,8 +134,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     public function renderForConsole_throw_exception_to_console_and_does_nothing()
     {
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class
-        {
+        $this->app->instance(ExceptionHandler::class, new class {
         });
         $output = new OutputStub;
         $this->withoutExceptionHandling();
@@ -157,8 +151,7 @@ class InteractsWithExceptionHandlingTest extends TestCase
     public function withoutExceptionHandling_doesnt_not_report_exceptions()
     {
         $this->app = new Application();
-        $this->app->instance(ExceptionHandler::class, new class
-        {
+        $this->app->instance(ExceptionHandler::class, new class {
         });
         $this->withoutExceptionHandling();
         $this->assertFalse(
