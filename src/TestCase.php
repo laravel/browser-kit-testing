@@ -6,7 +6,6 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithTestCaseLifecycle;
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use RuntimeException;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -27,17 +26,11 @@ abstract class TestCase extends BaseTestCase
      */
     public function createApplication()
     {
-        if (method_exists(Application::class, 'inferBasePath')) {
-            $app = require Application::inferBasePath().'/bootstrap/app.php';
+        $app = require Application::inferBasePath().'/bootstrap/app.php';
 
-            $app->make(Kernel::class)->bootstrap();
+        $app->make(Kernel::class)->bootstrap();
 
-            return $app;
-        }
-
-        throw new RuntimeException(
-            'Unable to guess application base directory. Please use the [Tests\CreatesApplication] trait.',
-        );
+        return $app;
     }
 
     /**
