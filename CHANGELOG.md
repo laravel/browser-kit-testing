@@ -1,6 +1,30 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.2.8...7.x)
+## [Unreleased](https://github.com/laravel/browser-kit-testing/compare/v7.3.0...7.x)
+
+## [v7.3.0](https://github.com/laravel/browser-kit-testing/compare/v7.2.8...v7.3.0) - 2026-11-11
+
+### What's Changed
+
+* Pin GitHub Actions to commit SHAs and add Dependabot config by [@joetannenbaum](https://github.com/joetannenbaum) in https://github.com/laravel/browser-kit-testing/pull/193
+* GitHub Actions hardening by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/browser-kit-testing/pull/196
+* Bump the github-actions group with 2 updates by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/browser-kit-testing/pull/195
+* Add Dependabot cooldown of 5 days by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/browser-kit-testing/pull/197
+* Enable Dependabot auto-merge by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/browser-kit-testing/pull/198
+* Bump shivammathur/setup-php from 2.37.1 to 2.37.2 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/browser-kit-testing/pull/199
+* Bump actions/checkout from 6.0.3 to 7.0.0 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/browser-kit-testing/pull/200
+* Bump actions/checkout from 7.0.0 to 7.0.1 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/browser-kit-testing/pull/201
+* Remove security policy in favor of the org-wide default by [@pushpak1300](https://github.com/pushpak1300) in https://github.com/laravel/browser-kit-testing/pull/202
+* Bump shivammathur/setup-php from 2.37.2 to 2.40.0 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/browser-kit-testing/pull/203
+* Dependency floor bump by [@pushpak1300](https://github.com/pushpak1300) in https://github.com/laravel/browser-kit-testing/pull/204
+
+### New Contributors
+
+* [@joetannenbaum](https://github.com/joetannenbaum) made their first contribution in https://github.com/laravel/browser-kit-testing/pull/193
+* [@dependabot](https://github.com/dependabot)[bot] made their first contribution in https://github.com/laravel/browser-kit-testing/pull/195
+* [@pushpak1300](https://github.com/pushpak1300) made their first contribution in https://github.com/laravel/browser-kit-testing/pull/202
+
+**Full Changelog**: https://github.com/laravel/browser-kit-testing/compare/v7.2.8...v7.3.0
 
 ## [v7.2.8](https://github.com/laravel/browser-kit-testing/compare/v7.2.7...v7.2.8) - 2026-03-16
 
